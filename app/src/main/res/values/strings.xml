@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Player Picker 2K25</string>
+    <string name="Random1">Randomize</string>
+    <string name="select_the_range_of_teams">Select the range of Teams</string>
+    <string name="select_game_mode">Select game mode</string>
+    <string name="first_team">First team:</string>
+    <string name="second_team">Second team:</string>
+    <string name="go_back">Go back</string>
+</resources>

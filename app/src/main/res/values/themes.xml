@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.NBA_Team_Rand_Gen" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:elevation">10dp</item>
+        <item name="android:windowBackground">@color/splash_color</item>
+    </style>
+</resources>
