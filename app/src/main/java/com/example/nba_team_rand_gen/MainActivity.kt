@@ -1,6 +1,5 @@
 package com.example.nba_team_rand_gen
 
-import TheChosens
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -10,16 +9,21 @@ import android.widget.Toast
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
-
+import androidx.core.content.res.ResourcesCompat
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : View.OnClickListener, AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        auth = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_main)
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar()?.setElevation(10F);
-            getSupportActionBar()?.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_gradient))
+        if (supportActionBar != null) {
+            supportActionBar?.elevation = 10F
+            val drawable = ResourcesCompat.getDrawable(resources, R.drawable.action_bar_gradient, theme)
+            supportActionBar?.setBackgroundDrawable(drawable)
         }
 
         val randbtn = findViewById<Button>(R.id.random_button)
@@ -27,7 +31,7 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
         val type = findViewById<Spinner>(R.id.choose_type)
         val options = arrayOf("All", "Current", "Classic", "All-time")
-        var final_type = ""
+        var finalType = ""
         if (type != null) {
             val adapter = ArrayAdapter(this,
                 R.layout.spinner_list, options)
@@ -36,7 +40,7 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
             type.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, p3: Long) {
-                    final_type = options[position]
+                    finalType = options[position]
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>) {
@@ -47,7 +51,7 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
         val gametype = findViewById<Spinner>(R.id.choose_game_type)
         val gameoptions = arrayOf("1vs1", "2vs2", "3vs3", "4vs4", "5vs5")
-        var final_game = ""
+        var finalGame = ""
         if(gametype != null) {
             val adapter = ArrayAdapter(this, R.layout.spinner_list, gameoptions)
             adapter.setDropDownViewResource(R.layout.spinner_list)
@@ -55,13 +59,12 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
             gametype.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    final_game = gameoptions[p2]
+                    finalGame = gameoptions[p2]
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                     Toast.makeText(this@MainActivity, "nothing selected", Toast.LENGTH_LONG).show()
                 }
-
             }
         }
 
@@ -69,12 +72,12 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             val intent = Intent(this, ShowPlayer::class.java)
             startActivity(intent)
             val randomizeGame = RandomizeGame(this)
-            randomizeGame.Randomize(final_type, final_game)
+            randomizeGame.Randomize(finalType, finalGame)
         }
 
     }
 
-    override fun onClick(p0: View?) {
+    override fun onClick(v: View?) {
         TODO("Not yet implemented")
     }
 }
