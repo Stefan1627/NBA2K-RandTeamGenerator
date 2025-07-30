@@ -43,7 +43,6 @@ class LoginService : AppCompatActivity() {
                     .edit {
                         putLong("session_expiry", expiry)
                     }
-
             }
 
             val intent = Intent(this, MainActivity::class.java)
