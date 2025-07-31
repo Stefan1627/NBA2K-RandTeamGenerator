@@ -1,0 +1,482 @@
+[
+    {
+        "id": 1,
+        "team_name": "Atlanta Hawks",
+        "type": "current"
+    },
+    {
+        "id": 2,
+        "team_name": "Boston Celtics",
+        "type": "current"
+    },
+    {
+        "id": 3,
+        "team_name": "Brooklyn Nets",
+        "type": "current"
+    },
+    {
+        "id": 4,
+        "team_name": "Charlotte Hornets",
+        "type": "current"
+    },
+    {
+        "id": 5,
+        "team_name": "Chicago Bulls",
+        "type": "current"
+    },
+    {
+        "id": 6,
+        "team_name": "Cleveland Cavaliers",
+        "type": "current"
+    },
+    {
+        "id": 7,
+        "team_name": "Dallas Mavericks",
+        "type": "current"
+    },
+    {
+        "id": 8,
+        "team_name": "Denver Nuggets",
+        "type": "current"
+    },
+    {
+        "id": 9,
+        "team_name": "Detroit Pistons",
+        "type": "current"
+    },
+    {
+        "id": 10,
+        "team_name": "Golden State Warriors",
+        "type": "current"
+    },
+    {
+        "id": 11,
+        "team_name": "Houston Rockets",
+        "type": "current"
+    },
+    {
+        "id": 12,
+        "team_name": "Indiana Pacers",
+        "type": "current"
+    },
+    {
+        "id": 13,
+        "team_name": "Los Angeles Clippers",
+        "type": "current"
+    },
+    {
+        "id": 14,
+        "team_name": "Los Angeles Lakers",
+        "type": "current"
+    },
+    {
+        "id": 15,
+        "team_name": "Memphis Grizzlies",
+        "type": "current"
+    },
+    {
+        "id": 16,
+        "team_name": "Miami Heat",
+        "type": "current"
+    },
+    {
+        "id": 17,
+        "team_name": "Milwaukee Bucks",
+        "type": "current"
+    },
+    {
+        "id": 18,
+        "team_name": "Minnesota Timberwolves",
+        "type": "current"
+    },
+    {
+        "id": 19,
+        "team_name": "New Orleans Pelicans",
+        "type": "current"
+    },
+    {
+        "id": 20,
+        "team_name": "New York Knicks",
+        "type": "current"
+    },
+    {
+        "id": 21,
+        "team_name": "Oklahoma City Thunder",
+        "type": "current"
+    },
+    {
+        "id": 22,
+        "team_name": "Orlando Magic",
+        "type": "current"
+    },
+    {
+        "id": 23,
+        "team_name": "Philadelphia 76ers",
+        "type": "current"
+    },
+    {
+        "id": 24,
+        "team_name": "Phoenix Suns",
+        "type": "current"
+    },
+    {
+        "id": 25,
+        "team_name": "Portland Trail Blazers",
+        "type": "current"
+    },
+    {
+        "id": 26,
+        "team_name": "Sacramento Kings",
+        "type": "current"
+    },
+    {
+        "id": 27,
+        "team_name": "San Antonio Spurs",
+        "type": "current"
+    },
+    {
+        "id": 28,
+        "team_name": "Toronto Raptors",
+        "type": "current"
+    },
+    {
+        "id": 29,
+        "team_name": "Utah Jazz",
+        "type": "current"
+    },
+    {
+        "id": 30,
+        "team_name": "Washington Wizards",
+        "type": "current"
+    },
+    {
+        "id": 31,
+        "team_name": "2013-14 Indiana Pacers",
+        "type": "classic"
+    },
+    {
+        "id": 32,
+        "team_name": "1988-89 Detroit Pistons",
+        "type": "classic"
+    },
+    {
+        "id": 33,
+        "team_name": "2003-04 Detroit Pistons",
+        "type": "classic"
+    },
+    {
+        "id": 34,
+        "team_name": "1999-00 Toronto Raptors",
+        "type": "classic"
+    },
+    {
+        "id": 35,
+        "team_name": "2018-19 Toronto Raptors",
+        "type": "classic"
+    },
+    {
+        "id": 36,
+        "team_name": "1993-94 Houston Rockets",
+        "type": "classic"
+    },
+    {
+        "id": 37,
+        "team_name": "2007-08 Houston Rockets",
+        "type": "classic"
+    },
+    {
+        "id": 38,
+        "team_name": "1990-91 Portland Trail Blazers",
+        "type": "classic"
+    },
+    {
+        "id": 39,
+        "team_name": "1999-00 Portland Trail Blazers",
+        "type": "classic"
+    },
+    {
+        "id": 40,
+        "team_name": "2009-10 Portland Trail Blazers",
+        "type": "classic"
+    },
+    {
+        "id": 41,
+        "team_name": "1997-98 San Antonio Spurs",
+        "type": "classic"
+    },
+    {
+        "id": 42,
+        "team_name": "2004-05 San Antonio Spurs",
+        "type": "classic"
+    },
+    {
+        "id": 43,
+        "team_name": "2013-14 San Antonio Spurs",
+        "type": "classic"
+    },
+    {
+        "id": 44,
+        "team_name": "2002-03 Phoenix Suns",
+        "type": "classic"
+    },
+    {
+        "id": 45,
+        "team_name": "2004-05 Phoenix Suns",
+        "type": "classic"
+    },
+    {
+        "id": 46,
+        "team_name": "1995-96 Seattle Supersonics",
+        "type": "classic"
+    },
+    {
+        "id": 47,
+        "team_name": "2011-12 Oklahoma City Thunder",
+        "type": "classic"
+    },
+    {
+        "id": 48,
+        "team_name": "2003-04 Minnesota Timberwolves",
+        "type": "classic"
+    },
+    {
+        "id": 49,
+        "team_name": "1990-91 Golden State Warriors",
+        "type": "classic"
+    },
+    {
+        "id": 50,
+        "team_name": "2006-07 Golden State Warriors",
+        "type": "classic"
+    },
+    {
+        "id": 51,
+        "team_name": "2015-16 Golden State Warriors",
+        "type": "classic"
+    },
+    {
+        "id": 52,
+        "team_name": "2016-17 Golden State Warriors",
+        "type": "classic"
+    },
+    {
+        "id": 53,
+        "team_name": "2006-07 Washington Wizards",
+        "type": "classic"
+    },
+    {
+        "id": 54,
+        "team_name": "2012-13 Miami Heat",
+        "type": "classic"
+    },
+    {
+        "id": 55,
+        "team_name": "1992-93 Charlotte Hornets",
+        "type": "classic"
+    },
+    {
+        "id": 56,
+        "team_name": "1997-98 Utah Jazz",
+        "type": "classic"
+    },
+    {
+        "id": 57,
+        "team_name": "2001-02 Sacramento Kings",
+        "type": "classic"
+    },
+    {
+        "id": 58,
+        "team_name": "1971-72 New York Knicks",
+        "type": "classic"
+    },
+    {
+        "id": 59,
+        "team_name": "1994-95 New York Knicks",
+        "type": "classic"
+    },
+    {
+        "id": 60,
+        "team_name": "1998-99 New York Knicks",
+        "type": "classic"
+    },
+    {
+        "id": 61,
+        "team_name": "2011-12 New York Knicks",
+        "type": "classic"
+    },
+    {
+        "id": 62,
+        "team_name": "1964-65 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 63,
+        "team_name": "1970-71 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 64,
+        "team_name": "1986-87 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 65,
+        "team_name": "1990-91 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 66,
+        "team_name": "1997-98 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 67,
+        "team_name": "2000-01 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 68,
+        "team_name": "2003-04 Los Angeles Lakers",
+        "type": "classic"
+    },
+    {
+        "id": 69,
+        "team_name": "1994-95 Orlando Magic",
+        "type": "classic"
+    },
+    {
+        "id": 70,
+        "team_name": "2002-03 Dallas Mavericks",
+        "type": "classic"
+    },
+    {
+        "id": 71,
+        "team_name": "2010-11 Dallas Mavericks",
+        "type": "classic"
+    },
+    {
+        "id": 72,
+        "team_name": "2001-02 New Jersey Nets",
+        "type": "classic"
+    },
+    {
+        "id": 73,
+        "team_name": "1993-94 Denver Nuggets",
+        "type": "classic"
+    },
+    {
+        "id": 74,
+        "team_name": "2007-08 Denver Nuggets",
+        "type": "classic"
+    },
+    {
+        "id": 75,
+        "team_name": "1976-77 Philadelphia 76ers",
+        "type": "classic"
+    },
+    {
+        "id": 76,
+        "team_name": "2000-01 Philadelphia 76ers",
+        "type": "classic"
+    },
+    {
+        "id": 77,
+        "team_name": "1970-71 Milwaukee Bucks",
+        "type": "classic"
+    },
+    {
+        "id": 78,
+        "team_name": "1984-85 Milwaukee Bucks",
+        "type": "classic"
+    },
+    {
+        "id": 79,
+        "team_name": "1985-86 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 80,
+        "team_name": "1988-89 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 81,
+        "team_name": "1990-91 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 82,
+        "team_name": "1992-93 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 83,
+        "team_name": "1995-96 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 84,
+        "team_name": "1997-98 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 85,
+        "team_name": "2010-11 Chicago Bulls",
+        "type": "classic"
+    },
+    {
+        "id": 86,
+        "team_name": "1989-90 Cleveland Cavaliers",
+        "type": "classic"
+    },
+    {
+        "id": 87,
+        "team_name": "2006-07 Cleveland Cavaliers",
+        "type": "classic"
+    },
+    {
+        "id": 88,
+        "team_name": "2015-16 Cleveland Cavaliers",
+        "type": "classic"
+    },
+    {
+        "id": 89,
+        "team_name": "1985-86 Boston Celtics",
+        "type": "classic"
+    },
+    {
+        "id": 90,
+        "team_name": "2007-08 Boston Celtics",
+        "type": "classic"
+    },
+    {
+        "id": 91,
+        "team_name": "2013-14 Los Angeles Clippers",
+        "type": "classic"
+    },
+    {
+        "id": 92,
+        "team_name": "2005-06 Memphis Grizzlies",
+        "type": "classic"
+    },
+    {
+        "id": 93,
+        "team_name": "2012-13 Memphis Grizzlies",
+        "type": "classic"
+    },
+    {
+        "id": 94,
+        "team_name": "1985-86 Atlanta Hawks",
+        "type": "classic"
+    },
+    {
+        "id": 95,
+        "team_name": "1996-97 Miami Heat",
+        "type": "classic"
+    },
+    {
+        "id": 96,
+        "team_name": "2005-06 Miami Heat",
+        "type": "classic"
+    }
+]

@@ -1,0 +1,3128 @@
+[
+    {
+        "id": 1,
+        "player_name": "Trae Young",
+        "ovr": 89,
+        "team_id": 1
+    },
+    {
+        "id": 2,
+        "player_name": "Clint Capela",
+        "ovr": 80,
+        "team_id": 1
+    },
+    {
+        "id": 3,
+        "player_name": "Onyeka Okongwu",
+        "ovr": 80,
+        "team_id": 1
+    },
+    {
+        "id": 4,
+        "player_name": "Jalen Johnson",
+        "ovr": 80,
+        "team_id": 1
+    },
+    {
+        "id": 5,
+        "player_name": "Bogdan Bogdanovic",
+        "ovr": 79,
+        "team_id": 1
+    },
+    {
+        "id": 6,
+        "player_name": "De'Andre Hunter",
+        "ovr": 79,
+        "team_id": 1
+    },
+    {
+        "id": 7,
+        "player_name": "Larry Nanca Jr.",
+        "ovr": 76,
+        "team_id": 1
+    },
+    {
+        "id": 8,
+        "player_name": "Zaccharie Risacher",
+        "ovr": 75,
+        "team_id": 1
+    },
+    {
+        "id": 9,
+        "player_name": "Dyson Daniels",
+        "ovr": 74,
+        "team_id": 1
+    },
+    {
+        "id": 10,
+        "player_name": "David Roddy",
+        "ovr": 73,
+        "team_id": 1
+    },
+    {
+        "id": 11,
+        "player_name": "Cody Zeller",
+        "ovr": 73,
+        "team_id": 1
+    },
+    {
+        "id": 12,
+        "player_name": "Kobe Bufkin",
+        "ovr": 72,
+        "team_id": 1
+    },
+    {
+        "id": 13,
+        "player_name": "Garrison Mathews",
+        "ovr": 72,
+        "team_id": 1
+    },
+    {
+        "id": 14,
+        "player_name": "Vit Krejci",
+        "ovr": 70,
+        "team_id": 1
+    },
+    {
+        "id": 15,
+        "player_name": "Dominick Barlow",
+        "ovr": 70,
+        "team_id": 1
+    },
+    {
+        "id": 16,
+        "player_name": "Mouhamed Gueye",
+        "ovr": 70,
+        "team_id": 1
+    },
+    {
+        "id": 17,
+        "player_name": "Seth Lundy",
+        "ovr": 68,
+        "team_id": 1
+    },
+    {
+        "id": 18,
+        "player_name": "Keaton Wallace",
+        "ovr": 67,
+        "team_id": 1
+    },
+    {
+        "id": 19,
+        "player_name": "Jayson Tatum",
+        "ovr": 95,
+        "team_id": 2
+    },
+    {
+        "id": 20,
+        "player_name": "Jaylen Brown",
+        "ovr": 92,
+        "team_id": 2
+    },
+    {
+        "id": 21,
+        "player_name": "Jrue Holiday",
+        "ovr": 87,
+        "team_id": 2
+    },
+    {
+        "id": 22,
+        "player_name": "Kristaps Porzingis",
+        "ovr": 87,
+        "team_id": 2
+    },
+    {
+        "id": 23,
+        "player_name": "Derrick White",
+        "ovr": 86,
+        "team_id": 2
+    },
+    {
+        "id": 24,
+        "player_name": "Al Horford",
+        "ovr": 80,
+        "team_id": 2
+    },
+    {
+        "id": 25,
+        "player_name": "Payton Pritchard",
+        "ovr": 78,
+        "team_id": 2
+    },
+    {
+        "id": 26,
+        "player_name": "Luke Kornet",
+        "ovr": 76,
+        "team_id": 2
+    },
+    {
+        "id": 27,
+        "player_name": "Sam Hauser",
+        "ovr": 75,
+        "team_id": 2
+    },
+    {
+        "id": 28,
+        "player_name": "Xavier Tillman",
+        "ovr": 74,
+        "team_id": 2
+    },
+    {
+        "id": 29,
+        "player_name": "Jaden Springer",
+        "ovr": 71,
+        "team_id": 2
+    },
+    {
+        "id": 30,
+        "player_name": "Neemias Queta",
+        "ovr": 71,
+        "team_id": 2
+    },
+    {
+        "id": 31,
+        "player_name": "Jordan Walsh",
+        "ovr": 70,
+        "team_id": 2
+    },
+    {
+        "id": 32,
+        "player_name": "Drew Peterson",
+        "ovr": 70,
+        "team_id": 2
+    },
+    {
+        "id": 33,
+        "player_name": "Baylor Scheierman",
+        "ovr": 69,
+        "team_id": 2
+    },
+    {
+        "id": 34,
+        "player_name": "JD Davison",
+        "ovr": 69,
+        "team_id": 2
+    },
+    {
+        "id": 35,
+        "player_name": "Anton Watson",
+        "ovr": 68,
+        "team_id": 2
+    },
+    {
+        "id": 36,
+        "player_name": "Nic Claxton",
+        "ovr": 81,
+        "team_id": 3
+    },
+    {
+        "id": 37,
+        "player_name": "Cam Thomas",
+        "ovr": 81,
+        "team_id": 3
+    },
+    {
+        "id": 38,
+        "player_name": "Cameron Johnson",
+        "ovr": 79,
+        "team_id": 3
+    },
+    {
+        "id": 39,
+        "player_name": "Dennis Schroder",
+        "ovr": 78,
+        "team_id": 3
+    },
+    {
+        "id": 40,
+        "player_name": "Bojan Bogdanovic",
+        "ovr": 77,
+        "team_id": 3
+    },
+    {
+        "id": 41,
+        "player_name": "Ben Simmons",
+        "ovr": 76,
+        "team_id": 3
+    },
+    {
+        "id": 42,
+        "player_name": "Dorian Finney-Smith",
+        "ovr": 76,
+        "team_id": 3
+    },
+    {
+        "id": 43,
+        "player_name": "Noah Clowney",
+        "ovr": 74,
+        "team_id": 3
+    },
+    {
+        "id": 44,
+        "player_name": "Day'Ron Sharpe",
+        "ovr": 74,
+        "team_id": 3
+    },
+    {
+        "id": 45,
+        "player_name": "Trendon Watford",
+        "ovr": 74,
+        "team_id": 3
+    },
+    {
+        "id": 46,
+        "player_name": "Ziaire Williams",
+        "ovr": 73,
+        "team_id": 3
+    },
+    {
+        "id": 47,
+        "player_name": "Shake Milton",
+        "ovr": 72,
+        "team_id": 3
+    },
+    {
+        "id": 48,
+        "player_name": "Dariq Whitehead",
+        "ovr": 71,
+        "team_id": 3
+    },
+    {
+        "id": 49,
+        "player_name": "Jalen Wilson",
+        "ovr": 71,
+        "team_id": 3
+    },
+    {
+        "id": 50,
+        "player_name": "Tyrese Martin",
+        "ovr": 69,
+        "team_id": 3
+    },
+    {
+        "id": 51,
+        "player_name": "Keon Johnson",
+        "ovr": 69,
+        "team_id": 3
+    },
+    {
+        "id": 52,
+        "player_name": "Jaylen Martin",
+        "ovr": 67,
+        "team_id": 3
+    },
+    {
+        "id": 53,
+        "player_name": "LaMelo Ball",
+        "ovr": 87,
+        "team_id": 4
+    },
+    {
+        "id": 54,
+        "player_name": "Brandon Miller",
+        "ovr": 81,
+        "team_id": 4
+    },
+    {
+        "id": 55,
+        "player_name": "Miles Bridges",
+        "ovr": 81,
+        "team_id": 4
+    },
+    {
+        "id": 56,
+        "player_name": "Mark Williams",
+        "ovr": 80,
+        "team_id": 4
+    },
+    {
+        "id": 57,
+        "player_name": "Nick Richards",
+        "ovr": 77,
+        "team_id": 4
+    },
+    {
+        "id": 58,
+        "player_name": "Tre Mann",
+        "ovr": 76,
+        "team_id": 4
+    },
+    {
+        "id": 59,
+        "player_name": "Grant Williams",
+        "ovr": 76,
+        "team_id": 4
+    },
+    {
+        "id": 60,
+        "player_name": "Cody Martin",
+        "ovr": 76,
+        "team_id": 4
+    },
+    {
+        "id": 61,
+        "player_name": "Josh Green",
+        "ovr": 76,
+        "team_id": 4
+    },
+    {
+        "id": 62,
+        "player_name": "Vasilije Micic",
+        "ovr": 75,
+        "team_id": 4
+    },
+    {
+        "id": 63,
+        "player_name": "Seth Curry",
+        "ovr": 73,
+        "team_id": 4
+    },
+    {
+        "id": 64,
+        "player_name": "Nick Smith Jr.",
+        "ovr": 72,
+        "team_id": 4
+    },
+    {
+        "id": 65,
+        "player_name": "Tidjane Salaun",
+        "ovr": 71,
+        "team_id": 4
+    },
+    {
+        "id": 66,
+        "player_name": "Taj Gibson",
+        "ovr": 71,
+        "team_id": 4
+    },
+    {
+        "id": 67,
+        "player_name": "KJ Simpson",
+        "ovr": 70,
+        "team_id": 4
+    },
+    {
+        "id": 68,
+        "player_name": "DaQuan Jeffries",
+        "ovr": 70,
+        "team_id": 4
+    },
+    {
+        "id": 69,
+        "player_name": "Jared Rhoden",
+        "ovr": 70,
+        "team_id": 4
+    },
+    {
+        "id": 70,
+        "player_name": "Moussa Diabate",
+        "ovr": 69,
+        "team_id": 4
+    },
+    {
+        "id": 71,
+        "player_name": "Zach LaVine",
+        "ovr": 83,
+        "team_id": 5
+    },
+    {
+        "id": 72,
+        "player_name": "Nikola Vucevic",
+        "ovr": 81,
+        "team_id": 5
+    },
+    {
+        "id": 73,
+        "player_name": "Coby White",
+        "ovr": 81,
+        "team_id": 5
+    },
+    {
+        "id": 74,
+        "player_name": "Josh Giddey",
+        "ovr": 79,
+        "team_id": 5
+    },
+    {
+        "id": 75,
+        "player_name": "Lonzo Ball",
+        "ovr": 79,
+        "team_id": 5
+    },
+    {
+        "id": 76,
+        "player_name": "Ayo Dosunmu",
+        "ovr": 78,
+        "team_id": 5
+    },
+    {
+        "id": 77,
+        "player_name": "Jalen Smith",
+        "ovr": 77,
+        "team_id": 5
+    },
+    {
+        "id": 78,
+        "player_name": "Patrick Williams",
+        "ovr": 76,
+        "team_id": 5
+    },
+    {
+        "id": 79,
+        "player_name": "Talen Horton-Tucker",
+        "ovr": 75,
+        "team_id": 5
+    },
+    {
+        "id": 80,
+        "player_name": "Torrey Craig",
+        "ovr": 74,
+        "team_id": 5
+    },
+    {
+        "id": 81,
+        "player_name": "Dalen Terry",
+        "ovr": 73,
+        "team_id": 5
+    },
+    {
+        "id": 82,
+        "player_name": "Jevon Carter",
+        "ovr": 73,
+        "team_id": 5
+    },
+    {
+        "id": 83,
+        "player_name": "Matas Buzelis",
+        "ovr": 72,
+        "team_id": 5
+    },
+    {
+        "id": 84,
+        "player_name": "Chris Duarte",
+        "ovr": 72,
+        "team_id": 5
+    },
+    {
+        "id": 85,
+        "player_name": "E.J. Liddell",
+        "ovr": 70,
+        "team_id": 5
+    },
+    {
+        "id": 86,
+        "player_name": "Julian Phillips",
+        "ovr": 70,
+        "team_id": 5
+    },
+    {
+        "id": 87,
+        "player_name": "Adama Sanogo",
+        "ovr": 68,
+        "team_id": 5
+    },
+    {
+        "id": 88,
+        "player_name": "DJ Steward",
+        "ovr": 68,
+        "team_id": 5
+    },
+    {
+        "id": 89,
+        "player_name": "Donovan Mitchell",
+        "ovr": 92,
+        "team_id": 6
+    },
+    {
+        "id": 90,
+        "player_name": "Evan Mobley",
+        "ovr": 86,
+        "team_id": 6
+    },
+    {
+        "id": 91,
+        "player_name": "Jarrett Allen",
+        "ovr": 84,
+        "team_id": 6
+    },
+    {
+        "id": 92,
+        "player_name": "Darius Garland",
+        "ovr": 82,
+        "team_id": 6
+    },
+    {
+        "id": 93,
+        "player_name": "Caris LeVert",
+        "ovr": 77,
+        "team_id": 6
+    },
+    {
+        "id": 94,
+        "player_name": "Max Strus",
+        "ovr": 77,
+        "team_id": 6
+    },
+    {
+        "id": 95,
+        "player_name": "Isaac Okoro",
+        "ovr": 76,
+        "team_id": 6
+    },
+    {
+        "id": 96,
+        "player_name": "Sam Merrill",
+        "ovr": 74,
+        "team_id": 6
+    },
+    {
+        "id": 97,
+        "player_name": "Georges Niang",
+        "ovr": 73,
+        "team_id": 6
+    },
+    {
+        "id": 98,
+        "player_name": "Craig Porter",
+        "ovr": 72,
+        "team_id": 6
+    },
+    {
+        "id": 99,
+        "player_name": "Dean Wade",
+        "ovr": 72,
+        "team_id": 6
+    },
+    {
+        "id": 100,
+        "player_name": "Ty Jerome",
+        "ovr": 72,
+        "team_id": 6
+    },
+    {
+        "id": 101,
+        "player_name": "J.T. Thor",
+        "ovr": 71,
+        "team_id": 6
+    },
+    {
+        "id": 102,
+        "player_name": "Jaylon Tyson",
+        "ovr": 70,
+        "team_id": 6
+    },
+    {
+        "id": 103,
+        "player_name": "Tristan Thompson",
+        "ovr": 70,
+        "team_id": 6
+    },
+    {
+        "id": 104,
+        "player_name": "Isaiah Mobley",
+        "ovr": 69,
+        "team_id": 6
+    },
+    {
+        "id": 105,
+        "player_name": "Luke Travers",
+        "ovr": 69,
+        "team_id": 6
+    },
+    {
+        "id": 106,
+        "player_name": "Emoni Bates",
+        "ovr": 68,
+        "team_id": 6
+    },
+    {
+        "id": 107,
+        "player_name": "Luka Doncic",
+        "ovr": 97,
+        "team_id": 7
+    },
+    {
+        "id": 108,
+        "player_name": "Kyrie Irving",
+        "ovr": 92,
+        "team_id": 7
+    },
+    {
+        "id": 109,
+        "player_name": "Klay Thompson",
+        "ovr": 81,
+        "team_id": 7
+    },
+    {
+        "id": 110,
+        "player_name": "Dereck Lively II",
+        "ovr": 81,
+        "team_id": 7
+    },
+    {
+        "id": 111,
+        "player_name": "Daniel Gafford",
+        "ovr": 81,
+        "team_id": 7
+    },
+    {
+        "id": 112,
+        "player_name": "P.J. Washington",
+        "ovr": 79,
+        "team_id": 7
+    },
+    {
+        "id": 113,
+        "player_name": "Naji Marshall",
+        "ovr": 75,
+        "team_id": 7
+    },
+    {
+        "id": 114,
+        "player_name": "Dante Exum",
+        "ovr": 75,
+        "team_id": 7
+    },
+    {
+        "id": 115,
+        "player_name": "Spencer Dinwiddie",
+        "ovr": 74,
+        "team_id": 7
+    },
+    {
+        "id": 116,
+        "player_name": "Quentin Grimes",
+        "ovr": 74,
+        "team_id": 7
+    },
+    {
+        "id": 117,
+        "player_name": "Maxi Kleber",
+        "ovr": 74,
+        "team_id": 7
+    },
+    {
+        "id": 118,
+        "player_name": "Jaden Hardy",
+        "ovr": 73,
+        "team_id": 7
+    },
+    {
+        "id": 119,
+        "player_name": "Dwight Powell",
+        "ovr": 73,
+        "team_id": 7
+    },
+    {
+        "id": 120,
+        "player_name": "Olivier-Maxence Prosper",
+        "ovr": 72,
+        "team_id": 7
+    },
+    {
+        "id": 121,
+        "player_name": "Markieff Morris",
+        "ovr": 70,
+        "team_id": 7
+    },
+    {
+        "id": 122,
+        "player_name": "Brandon Williams",
+        "ovr": 70,
+        "team_id": 7
+    },
+    {
+        "id": 123,
+        "player_name": "Kessler Edwards",
+        "ovr": 69,
+        "team_id": 7
+    },
+    {
+        "id": 124,
+        "player_name": "Nikola Jokic",
+        "ovr": 97,
+        "team_id": 8
+    },
+    {
+        "id": 125,
+        "player_name": "Jamal Murray",
+        "ovr": 87,
+        "team_id": 8
+    },
+    {
+        "id": 126,
+        "player_name": "Aaron Gordon",
+        "ovr": 84,
+        "team_id": 8
+    },
+    {
+        "id": 127,
+        "player_name": "Michael Porter Jr.",
+        "ovr": 83,
+        "team_id": 8
+    },
+    {
+        "id": 128,
+        "player_name": "Russell Westbrook",
+        "ovr": 77,
+        "team_id": 8
+    },
+    {
+        "id": 129,
+        "player_name": "Christian Braun",
+        "ovr": 76,
+        "team_id": 8
+    },
+    {
+        "id": 130,
+        "player_name": "Dario Saric",
+        "ovr": 76,
+        "team_id": 8
+    },
+    {
+        "id": 131,
+        "player_name": "Peyton Watson",
+        "ovr": 75,
+        "team_id": 8
+    },
+    {
+        "id": 132,
+        "player_name": "DeAndre Jordan",
+        "ovr": 74,
+        "team_id": 8
+    },
+    {
+        "id": 133,
+        "player_name": "Julian Strawther",
+        "ovr": 73,
+        "team_id": 8
+    },
+    {
+        "id": 134,
+        "player_name": "Zeke Nnaji",
+        "ovr": 72,
+        "team_id": 8
+    },
+    {
+        "id": 135,
+        "player_name": "Vlatko Cancar",
+        "ovr": 72,
+        "team_id": 8
+    },
+    {
+        "id": 136,
+        "player_name": "DaRon Holmes II",
+        "ovr": 71,
+        "team_id": 8
+    },
+    {
+        "id": 137,
+        "player_name": "Hunter Tyson",
+        "ovr": 70,
+        "team_id": 8
+    },
+    {
+        "id": 138,
+        "player_name": "Jalen Pickett",
+        "ovr": 70,
+        "team_id": 8
+    },
+    {
+        "id": 139,
+        "player_name": "PJ Hall",
+        "ovr": 68,
+        "team_id": 8
+    },
+    {
+        "id": 140,
+        "player_name": "Trey Alexander",
+        "ovr": 68,
+        "team_id": 8
+    },
+    {
+        "id": 141,
+        "player_name": "Spencer Jones",
+        "ovr": 67,
+        "team_id": 8
+    },
+    {
+        "id": 142,
+        "player_name": "Cade Cunningham",
+        "ovr": 86,
+        "team_id": 9
+    },
+    {
+        "id": 143,
+        "player_name": "Jalen Duren",
+        "ovr": 81,
+        "team_id": 9
+    },
+    {
+        "id": 144,
+        "player_name": "Tobias Harris",
+        "ovr": 80,
+        "team_id": 9
+    },
+    {
+        "id": 145,
+        "player_name": "Ausar Thompson",
+        "ovr": 78,
+        "team_id": 9
+    },
+    {
+        "id": 146,
+        "player_name": "Jaden Ivey",
+        "ovr": 78,
+        "team_id": 9
+    },
+    {
+        "id": 147,
+        "player_name": "Tim Hardaway Jr.",
+        "ovr": 76,
+        "team_id": 9
+    },
+    {
+        "id": 148,
+        "player_name": "Isaiah Stewart",
+        "ovr": 76,
+        "team_id": 9
+    },
+    {
+        "id": 149,
+        "player_name": "Simone Fontecchio",
+        "ovr": 76,
+        "team_id": 9
+    },
+    {
+        "id": 150,
+        "player_name": "Malik Beasley",
+        "ovr": 75,
+        "team_id": 9
+    },
+    {
+        "id": 151,
+        "player_name": "Paul Reed",
+        "ovr": 75,
+        "team_id": 9
+    },
+    {
+        "id": 152,
+        "player_name": "Marcus Sasser",
+        "ovr": 74,
+        "team_id": 9
+    },
+    {
+        "id": 153,
+        "player_name": "Ronald Holland II",
+        "ovr": 72,
+        "team_id": 9
+    },
+    {
+        "id": 154,
+        "player_name": "Wendell Moore Jr.",
+        "ovr": 70,
+        "team_id": 9
+    },
+    {
+        "id": 155,
+        "player_name": "Bobi Klintman",
+        "ovr": 69,
+        "team_id": 9
+    },
+    {
+        "id": 156,
+        "player_name": "Alondes Williams",
+        "ovr": 67,
+        "team_id": 9
+    },
+    {
+        "id": 157,
+        "player_name": "Cole Swider",
+        "ovr": 67,
+        "team_id": 9
+    },
+    {
+        "id": 158,
+        "player_name": "Daniss Jenkins",
+        "ovr": 67,
+        "team_id": 9
+    },
+    {
+        "id": 159,
+        "player_name": "Stephen Curry",
+        "ovr": 95,
+        "team_id": 10
+    },
+    {
+        "id": 160,
+        "player_name": "Draymond Green",
+        "ovr": 83,
+        "team_id": 10
+    },
+    {
+        "id": 161,
+        "player_name": "Jonathan Kuminga",
+        "ovr": 80,
+        "team_id": 10
+    },
+    {
+        "id": 162,
+        "player_name": "Brandin Podziemski",
+        "ovr": 79,
+        "team_id": 10
+    },
+    {
+        "id": 163,
+        "player_name": "Buddy Hield",
+        "ovr": 79,
+        "team_id": 10
+    },
+    {
+        "id": 164,
+        "player_name": "Andrew Wiggins",
+        "ovr": 78,
+        "team_id": 10
+    },
+    {
+        "id": 165,
+        "player_name": "De'Anthony Melton",
+        "ovr": 77,
+        "team_id": 10
+    },
+    {
+        "id": 166,
+        "player_name": "Trayce Jackson-Davis",
+        "ovr": 76,
+        "team_id": 10
+    },
+    {
+        "id": 167,
+        "player_name": "Kyle Anderson",
+        "ovr": 76,
+        "team_id": 10
+    },
+    {
+        "id": 168,
+        "player_name": "Moses Moody",
+        "ovr": 76,
+        "team_id": 10
+    },
+    {
+        "id": 169,
+        "player_name": "Kevon Looney",
+        "ovr": 76,
+        "team_id": 10
+    },
+    {
+        "id": 170,
+        "player_name": "Gary Payton II",
+        "ovr": 75,
+        "team_id": 10
+    },
+    {
+        "id": 171,
+        "player_name": "Lindy Waters III",
+        "ovr": 74,
+        "team_id": 10
+    },
+    {
+        "id": 172,
+        "player_name": "Gui Santos",
+        "ovr": 71,
+        "team_id": 10
+    },
+    {
+        "id": 173,
+        "player_name": "Quinten Post",
+        "ovr": 68,
+        "team_id": 10
+    },
+    {
+        "id": 174,
+        "player_name": "Reece Beekman",
+        "ovr": 68,
+        "team_id": 10
+    },
+    {
+        "id": 175,
+        "player_name": "Pat Spencer",
+        "ovr": 68,
+        "team_id": 10
+    },
+    {
+        "id": 176,
+        "player_name": "Alperen Sengun",
+        "ovr": 85,
+        "team_id": 11
+    },
+    {
+        "id": 177,
+        "player_name": "Jalen Green",
+        "ovr": 84,
+        "team_id": 11
+    },
+    {
+        "id": 178,
+        "player_name": "Fred VanVleet",
+        "ovr": 84,
+        "team_id": 11
+    },
+    {
+        "id": 179,
+        "player_name": "Amen Thompson",
+        "ovr": 80,
+        "team_id": 11
+    },
+    {
+        "id": 180,
+        "player_name": "Jabari Smith Jr.",
+        "ovr": 80,
+        "team_id": 11
+    },
+    {
+        "id": 181,
+        "player_name": "Tari Eason",
+        "ovr": 79,
+        "team_id": 11
+    },
+    {
+        "id": 182,
+        "player_name": "Steven Adams",
+        "ovr": 79,
+        "team_id": 11
+    },
+    {
+        "id": 183,
+        "player_name": "Dillon Brooks",
+        "ovr": 79,
+        "team_id": 11
+    },
+    {
+        "id": 184,
+        "player_name": "Cam Whitmore",
+        "ovr": 78,
+        "team_id": 11
+    },
+    {
+        "id": 185,
+        "player_name": "Jock Landale",
+        "ovr": 76,
+        "team_id": 11
+    },
+    {
+        "id": 186,
+        "player_name": "Jeff Green",
+        "ovr": 74,
+        "team_id": 11
+    },
+    {
+        "id": 187,
+        "player_name": "Reed Sheppard",
+        "ovr": 73,
+        "team_id": 11
+    },
+    {
+        "id": 188,
+        "player_name": "Jae'Sean Tate",
+        "ovr": 73,
+        "team_id": 11
+    },
+    {
+        "id": 189,
+        "player_name": "Aaron Holiday",
+        "ovr": 73,
+        "team_id": 11
+    },
+    {
+        "id": 190,
+        "player_name": "Jack McVeigh",
+        "ovr": 69,
+        "team_id": 11
+    },
+    {
+        "id": 191,
+        "player_name": "Nate Williams",
+        "ovr": 69,
+        "team_id": 11
+    },
+    {
+        "id": 192,
+        "player_name": "N'Faly Dante",
+        "ovr": 68,
+        "team_id": 11
+    },
+    {
+        "id": 193,
+        "player_name": "Tyrese Haliburton",
+        "ovr": 90,
+        "team_id": 12
+    },
+    {
+        "id": 194,
+        "player_name": "Pascal Siakam",
+        "ovr": 88,
+        "team_id": 12
+    },
+    {
+        "id": 195,
+        "player_name": "Myles Turner",
+        "ovr": 84,
+        "team_id": 12
+    },
+    {
+        "id": 196,
+        "player_name": "Andrew Nembhard",
+        "ovr": 81,
+        "team_id": 12
+    },
+    {
+        "id": 197,
+        "player_name": "Bennedict Mathurin",
+        "ovr": 80,
+        "team_id": 12
+    },
+    {
+        "id": 198,
+        "player_name": "Obi Toppin",
+        "ovr": 80,
+        "team_id": 12
+    },
+    {
+        "id": 199,
+        "player_name": "T.J. McConnell",
+        "ovr": 79,
+        "team_id": 12
+    },
+    {
+        "id": 200,
+        "player_name": "Aaron Nesmith",
+        "ovr": 78,
+        "team_id": 12
+    },
+    {
+        "id": 201,
+        "player_name": "Isaiah Jackson",
+        "ovr": 76,
+        "team_id": 12
+    },
+    {
+        "id": 202,
+        "player_name": "James Wiseman",
+        "ovr": 75,
+        "team_id": 12
+    },
+    {
+        "id": 203,
+        "player_name": "Jarace Walker",
+        "ovr": 74,
+        "team_id": 12
+    },
+    {
+        "id": 204,
+        "player_name": "Ben Sheppard",
+        "ovr": 71,
+        "team_id": 12
+    },
+    {
+        "id": 205,
+        "player_name": "Johnny Furphy",
+        "ovr": 70,
+        "team_id": 12
+    },
+    {
+        "id": 206,
+        "player_name": "James Johnson",
+        "ovr": 70,
+        "team_id": 12
+    },
+    {
+        "id": 207,
+        "player_name": "Kendall Brown",
+        "ovr": 69,
+        "team_id": 12
+    },
+    {
+        "id": 208,
+        "player_name": "Tristen Newton",
+        "ovr": 68,
+        "team_id": 12
+    },
+    {
+        "id": 209,
+        "player_name": "Enrique Freeman",
+        "ovr": 68,
+        "team_id": 12
+    },
+    {
+        "id": 210,
+        "player_name": "Quenton Jackson",
+        "ovr": 67,
+        "team_id": 12
+    },
+    {
+        "id": 211,
+        "player_name": "Kawhi Leonard",
+        "ovr": 92,
+        "team_id": 13
+    },
+    {
+        "id": 212,
+        "player_name": "James Harden",
+        "ovr": 84,
+        "team_id": 13
+    },
+    {
+        "id": 213,
+        "player_name": "Ivica Zubac",
+        "ovr": 82,
+        "team_id": 13
+    },
+    {
+        "id": 214,
+        "player_name": "Norman Powell",
+        "ovr": 79,
+        "team_id": 13
+    },
+    {
+        "id": 215,
+        "player_name": "Derrick Jones Jr.",
+        "ovr": 77,
+        "team_id": 13
+    },
+    {
+        "id": 216,
+        "player_name": "Kevin Porter Jr.",
+        "ovr": 76,
+        "team_id": 13
+    },
+    {
+        "id": 217,
+        "player_name": "Terance Mann",
+        "ovr": 76,
+        "team_id": 13
+    },
+    {
+        "id": 218,
+        "player_name": "Nicolas Batum",
+        "ovr": 75,
+        "team_id": 13
+    },
+    {
+        "id": 219,
+        "player_name": "Kris Dunn",
+        "ovr": 75,
+        "team_id": 13
+    },
+    {
+        "id": 220,
+        "player_name": "Bones Hyland",
+        "ovr": 74,
+        "team_id": 13
+    },
+    {
+        "id": 221,
+        "player_name": "Mo Bamba",
+        "ovr": 73,
+        "team_id": 13
+    },
+    {
+        "id": 222,
+        "player_name": "Amir Coffey",
+        "ovr": 73,
+        "team_id": 13
+    },
+    {
+        "id": 223,
+        "player_name": "P.J. Tucker",
+        "ovr": 71,
+        "team_id": 13
+    },
+    {
+        "id": 224,
+        "player_name": "Kobe Brown",
+        "ovr": 70,
+        "team_id": 13
+    },
+    {
+        "id": 225,
+        "player_name": "Kai Jones",
+        "ovr": 69,
+        "team_id": 13
+    },
+    {
+        "id": 226,
+        "player_name": "Cam Christie",
+        "ovr": 68,
+        "team_id": 13
+    },
+    {
+        "id": 227,
+        "player_name": "Trentyn Flowers",
+        "ovr": 68,
+        "team_id": 13
+    },
+    {
+        "id": 228,
+        "player_name": "Jordan Miller",
+        "ovr": 68,
+        "team_id": 13
+    },
+    {
+        "id": 229,
+        "player_name": "LeBron James",
+        "ovr": 95,
+        "team_id": 14
+    },
+    {
+        "id": 230,
+        "player_name": "Anthony Davis",
+        "ovr": 94,
+        "team_id": 14
+    },
+    {
+        "id": 231,
+        "player_name": "D'Angelo Russell",
+        "ovr": 81,
+        "team_id": 14
+    },
+    {
+        "id": 232,
+        "player_name": "Austin Reaves",
+        "ovr": 81,
+        "team_id": 14
+    },
+    {
+        "id": 233,
+        "player_name": "Rui Hachimura",
+        "ovr": 79,
+        "team_id": 14
+    },
+    {
+        "id": 234,
+        "player_name": "Jarred Vanderbilt",
+        "ovr": 78,
+        "team_id": 14
+    },
+    {
+        "id": 235,
+        "player_name": "Christian Wood",
+        "ovr": 74,
+        "team_id": 14
+    },
+    {
+        "id": 236,
+        "player_name": "Gabe Vincent",
+        "ovr": 74,
+        "team_id": 14
+    },
+    {
+        "id": 237,
+        "player_name": "Max Christie",
+        "ovr": 73,
+        "team_id": 14
+    },
+    {
+        "id": 238,
+        "player_name": "Jaxson Hayes",
+        "ovr": 73,
+        "team_id": 14
+    },
+    {
+        "id": 239,
+        "player_name": "Cam Reddish",
+        "ovr": 73,
+        "team_id": 14
+    },
+    {
+        "id": 240,
+        "player_name": "Jalen Hood-Schifino",
+        "ovr": 72,
+        "team_id": 14
+    },
+    {
+        "id": 241,
+        "player_name": "Christian Koloko",
+        "ovr": 72,
+        "team_id": 14
+    },
+    {
+        "id": 242,
+        "player_name": "Dalton Knecht",
+        "ovr": 71,
+        "team_id": 14
+    },
+    {
+        "id": 243,
+        "player_name": "Maxwell Lewis",
+        "ovr": 69,
+        "team_id": 14
+    },
+    {
+        "id": 244,
+        "player_name": "Bronny James",
+        "ovr": 68,
+        "team_id": 14
+    },
+    {
+        "id": 245,
+        "player_name": "Quincy Olivari",
+        "ovr": 68,
+        "team_id": 14
+    },
+    {
+        "id": 246,
+        "player_name": "Armel Traore",
+        "ovr": 67,
+        "team_id": 14
+    },
+    {
+        "id": 247,
+        "player_name": "Ja Morant",
+        "ovr": 90,
+        "team_id": 15
+    },
+    {
+        "id": 248,
+        "player_name": "Jaren Jackson Jr.",
+        "ovr": 87,
+        "team_id": 15
+    },
+    {
+        "id": 249,
+        "player_name": "Desmond Bane",
+        "ovr": 83,
+        "team_id": 15
+    },
+    {
+        "id": 250,
+        "player_name": "Marcus Smart",
+        "ovr": 80,
+        "team_id": 15
+    },
+    {
+        "id": 251,
+        "player_name": "G.G. Jackson",
+        "ovr": 78,
+        "team_id": 15
+    },
+    {
+        "id": 252,
+        "player_name": "Brandon Clarke",
+        "ovr": 77,
+        "team_id": 15
+    },
+    {
+        "id": 253,
+        "player_name": "Vince Williams Jr.",
+        "ovr": 77,
+        "team_id": 15
+    },
+    {
+        "id": 254,
+        "player_name": "Luke Kennard",
+        "ovr": 76,
+        "team_id": 15
+    },
+    {
+        "id": 255,
+        "player_name": "Santi Aldama",
+        "ovr": 75,
+        "team_id": 15
+    },
+    {
+        "id": 256,
+        "player_name": "Jake LaRavia",
+        "ovr": 74,
+        "team_id": 15
+    },
+    {
+        "id": 257,
+        "player_name": "Scotty Pippen Jr.",
+        "ovr": 74,
+        "team_id": 15
+    },
+    {
+        "id": 258,
+        "player_name": "Zach Edey",
+        "ovr": 72,
+        "team_id": 15
+    },
+    {
+        "id": 259,
+        "player_name": "John Konchar",
+        "ovr": 72,
+        "team_id": 15
+    },
+    {
+        "id": 260,
+        "player_name": "Cam Spencer",
+        "ovr": 68,
+        "team_id": 15
+    },
+    {
+        "id": 261,
+        "player_name": "Jaylen Wells",
+        "ovr": 68,
+        "team_id": 15
+    },
+    {
+        "id": 262,
+        "player_name": "Yuki Kawamura",
+        "ovr": 67,
+        "team_id": 15
+    },
+    {
+        "id": 263,
+        "player_name": "Jay Huff",
+        "ovr": 67,
+        "team_id": 15
+    },
+    {
+        "id": 264,
+        "player_name": "Jimmy Butler",
+        "ovr": 89,
+        "team_id": 16
+    },
+    {
+        "id": 265,
+        "player_name": "Bam Adebayo",
+        "ovr": 88,
+        "team_id": 16
+    },
+    {
+        "id": 266,
+        "player_name": "Tyler Herro",
+        "ovr": 83,
+        "team_id": 16
+    },
+    {
+        "id": 267,
+        "player_name": "Terry Rozier III",
+        "ovr": 80,
+        "team_id": 16
+    },
+    {
+        "id": 268,
+        "player_name": "Jaime Jaquez Jr.",
+        "ovr": 79,
+        "team_id": 16
+    },
+    {
+        "id": 269,
+        "player_name": "Duncan Robinson",
+        "ovr": 77,
+        "team_id": 16
+    },
+    {
+        "id": 270,
+        "player_name": "Kevin Love",
+        "ovr": 76,
+        "team_id": 16
+    },
+    {
+        "id": 271,
+        "player_name": "Nikola Jovic",
+        "ovr": 76,
+        "team_id": 16
+    },
+    {
+        "id": 272,
+        "player_name": "Alec Burks",
+        "ovr": 76,
+        "team_id": 16
+    },
+    {
+        "id": 273,
+        "player_name": "Josh Richardson",
+        "ovr": 75,
+        "team_id": 16
+    },
+    {
+        "id": 274,
+        "player_name": "Haywood Highsmith",
+        "ovr": 74,
+        "team_id": 16
+    },
+    {
+        "id": 275,
+        "player_name": "Thomas Bryant",
+        "ovr": 71,
+        "team_id": 16
+    },
+    {
+        "id": 276,
+        "player_name": "Dru Smith",
+        "ovr": 71,
+        "team_id": 16
+    },
+    {
+        "id": 277,
+        "player_name": "Kel'el Ware",
+        "ovr": 70,
+        "team_id": 16
+    },
+    {
+        "id": 278,
+        "player_name": "Josh Christopher",
+        "ovr": 70,
+        "team_id": 16
+    },
+    {
+        "id": 279,
+        "player_name": "Keshad Johnson",
+        "ovr": 68,
+        "team_id": 16
+    },
+    {
+        "id": 280,
+        "player_name": "Pelle Larsson",
+        "ovr": 68,
+        "team_id": 16
+    },
+    {
+        "id": 281,
+        "player_name": "Giannis Antetokounmpo",
+        "ovr": 97,
+        "team_id": 17
+    },
+    {
+        "id": 282,
+        "player_name": "Damian Lillard",
+        "ovr": 89,
+        "team_id": 17
+    },
+    {
+        "id": 283,
+        "player_name": "Khris Middleton",
+        "ovr": 85,
+        "team_id": 17
+    },
+    {
+        "id": 284,
+        "player_name": "Bobby Portis",
+        "ovr": 80,
+        "team_id": 17
+    },
+    {
+        "id": 285,
+        "player_name": "Brook Lopez",
+        "ovr": 80,
+        "team_id": 17
+    },
+    {
+        "id": 286,
+        "player_name": "Gary Trent Jr.",
+        "ovr": 78,
+        "team_id": 17
+    },
+    {
+        "id": 287,
+        "player_name": "Delon Wright",
+        "ovr": 75,
+        "team_id": 17
+    },
+    {
+        "id": 288,
+        "player_name": "Taurean Prince",
+        "ovr": 75,
+        "team_id": 17
+    },
+    {
+        "id": 289,
+        "player_name": "Pat Connaughton",
+        "ovr": 74,
+        "team_id": 17
+    },
+    {
+        "id": 290,
+        "player_name": "MarJon Beauchamp",
+        "ovr": 73,
+        "team_id": 17
+    },
+    {
+        "id": 291,
+        "player_name": "Andre Jackson Jr.",
+        "ovr": 72,
+        "team_id": 17
+    },
+    {
+        "id": 292,
+        "player_name": "A.J. Green",
+        "ovr": 72,
+        "team_id": 17
+    },
+    {
+        "id": 293,
+        "player_name": "Ryan Rollins",
+        "ovr": 71,
+        "team_id": 17
+    },
+    {
+        "id": 294,
+        "player_name": "Stanley Umude",
+        "ovr": 70,
+        "team_id": 17
+    },
+    {
+        "id": 295,
+        "player_name": "AJ Johnson",
+        "ovr": 69,
+        "team_id": 17
+    },
+    {
+        "id": 296,
+        "player_name": "Tyler Smith",
+        "ovr": 69,
+        "team_id": 17
+    },
+    {
+        "id": 297,
+        "player_name": "Chris Livingston",
+        "ovr": 69,
+        "team_id": 17
+    },
+    {
+        "id": 298,
+        "player_name": "Anthony Edwards",
+        "ovr": 93,
+        "team_id": 18
+    },
+    {
+        "id": 299,
+        "player_name": "Rudy Gobert",
+        "ovr": 85,
+        "team_id": 18
+    },
+    {
+        "id": 300,
+        "player_name": "Julius Randle",
+        "ovr": 85,
+        "team_id": 18
+    },
+    {
+        "id": 301,
+        "player_name": "Mike Conley",
+        "ovr": 81,
+        "team_id": 18
+    },
+    {
+        "id": 302,
+        "player_name": "Naz Reid",
+        "ovr": 81,
+        "team_id": 18
+    },
+    {
+        "id": 303,
+        "player_name": "Donte DiVincenzo",
+        "ovr": 80,
+        "team_id": 18
+    },
+    {
+        "id": 304,
+        "player_name": "Jaden McDaniels",
+        "ovr": 80,
+        "team_id": 18
+    },
+    {
+        "id": 305,
+        "player_name": "Nickeil Alexander-Walker",
+        "ovr": 77,
+        "team_id": 18
+    },
+    {
+        "id": 306,
+        "player_name": "Joe Ingles",
+        "ovr": 74,
+        "team_id": 18
+    },
+    {
+        "id": 307,
+        "player_name": "Luka Garza",
+        "ovr": 74,
+        "team_id": 18
+    },
+    {
+        "id": 308,
+        "player_name": "Rob Dillingham",
+        "ovr": 72,
+        "team_id": 18
+    },
+    {
+        "id": 309,
+        "player_name": "Terrence Shannon Jr.",
+        "ovr": 71,
+        "team_id": 18
+    },
+    {
+        "id": 310,
+        "player_name": "P.J. Dozier",
+        "ovr": 71,
+        "team_id": 18
+    },
+    {
+        "id": 311,
+        "player_name": "Leonard Miller",
+        "ovr": 70,
+        "team_id": 18
+    },
+    {
+        "id": 312,
+        "player_name": "Josh Minott",
+        "ovr": 70,
+        "team_id": 18
+    },
+    {
+        "id": 313,
+        "player_name": "Daishen Nix",
+        "ovr": 70,
+        "team_id": 18
+    },
+    {
+        "id": 314,
+        "player_name": "Jaylen Clark",
+        "ovr": 68,
+        "team_id": 18
+    },
+    {
+        "id": 315,
+        "player_name": "Jesse Edwards",
+        "ovr": 67,
+        "team_id": 18
+    },
+    {
+        "id": 316,
+        "player_name": "Zion Williamson",
+        "ovr": 88,
+        "team_id": 19
+    },
+    {
+        "id": 317,
+        "player_name": "Dejounte Murray",
+        "ovr": 86,
+        "team_id": 19
+    },
+    {
+        "id": 318,
+        "player_name": "Brandon Ingram",
+        "ovr": 85,
+        "team_id": 19
+    },
+    {
+        "id": 319,
+        "player_name": "C.J. McCollum",
+        "ovr": 84,
+        "team_id": 19
+    },
+    {
+        "id": 320,
+        "player_name": "Herbert Jones",
+        "ovr": 82,
+        "team_id": 19
+    },
+    {
+        "id": 321,
+        "player_name": "Trey Murphy III",
+        "ovr": 80,
+        "team_id": 19
+    },
+    {
+        "id": 322,
+        "player_name": "Jose Alvarado",
+        "ovr": 76,
+        "team_id": 19
+    },
+    {
+        "id": 323,
+        "player_name": "Daniel Theis",
+        "ovr": 74,
+        "team_id": 19
+    },
+    {
+        "id": 324,
+        "player_name": "Javonte Green",
+        "ovr": 74,
+        "team_id": 19
+    },
+    {
+        "id": 325,
+        "player_name": "Jordan Hawkins",
+        "ovr": 73,
+        "team_id": 19
+    },
+    {
+        "id": 326,
+        "player_name": "Jeremiah Robinson-Earl",
+        "ovr": 72,
+        "team_id": 19
+    },
+    {
+        "id": 327,
+        "player_name": "Brandon Boston Jr.",
+        "ovr": 72,
+        "team_id": 19
+    },
+    {
+        "id": 328,
+        "player_name": "Trey Jemison III",
+        "ovr": 72,
+        "team_id": 19
+    },
+    {
+        "id": 329,
+        "player_name": "Karlo Matkovic",
+        "ovr": 71,
+        "team_id": 19
+    },
+    {
+        "id": 330,
+        "player_name": "Matt Ryan",
+        "ovr": 71,
+        "team_id": 19
+    },
+    {
+        "id": 331,
+        "player_name": "Yves Missi",
+        "ovr": 70,
+        "team_id": 19
+    },
+    {
+        "id": 332,
+        "player_name": "Jamal Cain",
+        "ovr": 70,
+        "team_id": 19
+    },
+    {
+        "id": 333,
+        "player_name": "Antonio Reeves",
+        "ovr": 68,
+        "team_id": 19
+    },
+    {
+        "id": 334,
+        "player_name": "Jalen Brunson",
+        "ovr": 93,
+        "team_id": 20
+    },
+    {
+        "id": 335,
+        "player_name": "Karl-Anthony Towns",
+        "ovr": 88,
+        "team_id": 20
+    },
+    {
+        "id": 336,
+        "player_name": "Mikal Bridges",
+        "ovr": 84,
+        "team_id": 20
+    },
+    {
+        "id": 337,
+        "player_name": "OG Anunoby",
+        "ovr": 84,
+        "team_id": 20
+    },
+    {
+        "id": 338,
+        "player_name": "Josh Hart",
+        "ovr": 82,
+        "team_id": 20
+    },
+    {
+        "id": 339,
+        "player_name": "Mitchell Robinson",
+        "ovr": 80,
+        "team_id": 20
+    },
+    {
+        "id": 340,
+        "player_name": "Precious Achiuwa",
+        "ovr": 76,
+        "team_id": 20
+    },
+    {
+        "id": 341,
+        "player_name": "Miles McBride",
+        "ovr": 76,
+        "team_id": 20
+    },
+    {
+        "id": 342,
+        "player_name": "Cameron Payne",
+        "ovr": 75,
+        "team_id": 20
+    },
+    {
+        "id": 343,
+        "player_name": "Jericho Sims",
+        "ovr": 72,
+        "team_id": 20
+    },
+    {
+        "id": 344,
+        "player_name": "Tyler Kolek",
+        "ovr": 70,
+        "team_id": 20
+    },
+    {
+        "id": 345,
+        "player_name": "Pacome Dadiet",
+        "ovr": 69,
+        "team_id": 20
+    },
+    {
+        "id": 346,
+        "player_name": "Kevin McCullar",
+        "ovr": 69,
+        "team_id": 20
+    },
+    {
+        "id": 347,
+        "player_name": "Ariel Hukporti",
+        "ovr": 68,
+        "team_id": 20
+    },
+    {
+        "id": 348,
+        "player_name": "Jacob Toppin",
+        "ovr": 67,
+        "team_id": 20
+    },
+    {
+        "id": 349,
+        "player_name": "Shai Gilgeous-Alexander",
+        "ovr": 96,
+        "team_id": 21
+    },
+    {
+        "id": 350,
+        "player_name": "Chet Holmgren",
+        "ovr": 87,
+        "team_id": 21
+    },
+    {
+        "id": 351,
+        "player_name": "Jalen Williams",
+        "ovr": 86,
+        "team_id": 21
+    },
+    {
+        "id": 352,
+        "player_name": "Alex Caruso",
+        "ovr": 82,
+        "team_id": 21
+    },
+    {
+        "id": 353,
+        "player_name": "Isaiah Hartenstein",
+        "ovr": 81,
+        "team_id": 21
+    },
+    {
+        "id": 354,
+        "player_name": "Luguentz Dort",
+        "ovr": 80,
+        "team_id": 21
+    },
+    {
+        "id": 355,
+        "player_name": "Aaron Wiggins",
+        "ovr": 78,
+        "team_id": 21
+    },
+    {
+        "id": 356,
+        "player_name": "Isaiah Joe",
+        "ovr": 78,
+        "team_id": 21
+    },
+    {
+        "id": 357,
+        "player_name": "Cason Wallace",
+        "ovr": 76,
+        "team_id": 21
+    },
+    {
+        "id": 358,
+        "player_name": "Jaylin Williams",
+        "ovr": 75,
+        "team_id": 21
+    },
+    {
+        "id": 359,
+        "player_name": "Ousmane Dieng",
+        "ovr": 73,
+        "team_id": 21
+    },
+    {
+        "id": 360,
+        "player_name": "Kenrich Williams",
+        "ovr": 73,
+        "team_id": 21
+    },
+    {
+        "id": 361,
+        "player_name": "Nikola Topic",
+        "ovr": 72,
+        "team_id": 21
+    },
+    {
+        "id": 362,
+        "player_name": "Dillon Jones",
+        "ovr": 69,
+        "team_id": 21
+    },
+    {
+        "id": 363,
+        "player_name": "Ajay Mitchell",
+        "ovr": 68,
+        "team_id": 21
+    },
+    {
+        "id": 364,
+        "player_name": "Alex Ducas",
+        "ovr": 67,
+        "team_id": 21
+    },
+    {
+        "id": 365,
+        "player_name": "Adam Flagler",
+        "ovr": 67,
+        "team_id": 21
+    },
+    {
+        "id": 366,
+        "player_name": "Paolo Banchero",
+        "ovr": 89,
+        "team_id": 22
+    },
+    {
+        "id": 367,
+        "player_name": "Franz Wagner",
+        "ovr": 86,
+        "team_id": 22
+    },
+    {
+        "id": 368,
+        "player_name": "Jalen Suggs",
+        "ovr": 82,
+        "team_id": 22
+    },
+    {
+        "id": 369,
+        "player_name": "Wendell Carter Jr.",
+        "ovr": 80,
+        "team_id": 22
+    },
+    {
+        "id": 370,
+        "player_name": "Cole Anthony",
+        "ovr": 78,
+        "team_id": 22
+    },
+    {
+        "id": 371,
+        "player_name": "Jonathan Isaac",
+        "ovr": 78,
+        "team_id": 22
+    },
+    {
+        "id": 372,
+        "player_name": "Kentavious Caldwell-Pope",
+        "ovr": 78,
+        "team_id": 22
+    },
+    {
+        "id": 373,
+        "player_name": "Moritz Wagner",
+        "ovr": 77,
+        "team_id": 22
+    },
+    {
+        "id": 374,
+        "player_name": "Gary Harris",
+        "ovr": 75,
+        "team_id": 22
+    },
+    {
+        "id": 375,
+        "player_name": "Anthony Black",
+        "ovr": 74,
+        "team_id": 22
+    },
+    {
+        "id": 376,
+        "player_name": "Goga Bitadze",
+        "ovr": 73,
+        "team_id": 22
+    },
+    {
+        "id": 377,
+        "player_name": "Caleb Houstan",
+        "ovr": 72,
+        "team_id": 22
+    },
+    {
+        "id": 378,
+        "player_name": "Cory Joseph",
+        "ovr": 72,
+        "team_id": 22
+    },
+    {
+        "id": 379,
+        "player_name": "Jett Howard",
+        "ovr": 71,
+        "team_id": 22
+    },
+    {
+        "id": 380,
+        "player_name": "Tristan da Silva",
+        "ovr": 70,
+        "team_id": 22
+    },
+    {
+        "id": 381,
+        "player_name": "Mac McClung",
+        "ovr": 69,
+        "team_id": 22
+    },
+    {
+        "id": 382,
+        "player_name": "Trevelin Queen",
+        "ovr": 67,
+        "team_id": 22
+    },
+    {
+        "id": 383,
+        "player_name": "Joel Embiid",
+        "ovr": 96,
+        "team_id": 23
+    },
+    {
+        "id": 384,
+        "player_name": "Paul George",
+        "ovr": 89,
+        "team_id": 23
+    },
+    {
+        "id": 385,
+        "player_name": "Tyrese Maxey",
+        "ovr": 89,
+        "team_id": 23
+    },
+    {
+        "id": 386,
+        "player_name": "Kelly Oubre Jr.",
+        "ovr": 79,
+        "team_id": 23
+    },
+    {
+        "id": 387,
+        "player_name": "Andre Drummond",
+        "ovr": 78,
+        "team_id": 23
+    },
+    {
+        "id": 388,
+        "player_name": "Kyle Lowry",
+        "ovr": 76,
+        "team_id": 23
+    },
+    {
+        "id": 389,
+        "player_name": "Caleb Martin",
+        "ovr": 76,
+        "team_id": 23
+    },
+    {
+        "id": 390,
+        "player_name": "Eric Gordon",
+        "ovr": 76,
+        "team_id": 23
+    },
+    {
+        "id": 391,
+        "player_name": "Kenyon Martin Jr.",
+        "ovr": 74,
+        "team_id": 23
+    },
+    {
+        "id": 392,
+        "player_name": "Guerschon Yabusele",
+        "ovr": 74,
+        "team_id": 23
+    },
+    {
+        "id": 393,
+        "player_name": "Reggie Jackson",
+        "ovr": 74,
+        "team_id": 23
+    },
+    {
+        "id": 394,
+        "player_name": "Ricky Council IV",
+        "ovr": 73,
+        "team_id": 23
+    },
+    {
+        "id": 395,
+        "player_name": "Lester Quifones",
+        "ovr": 71,
+        "team_id": 23
+    },
+    {
+        "id": 396,
+        "player_name": "Jared McCain",
+        "ovr": 70,
+        "team_id": 23
+    },
+    {
+        "id": 397,
+        "player_name": "Jeff Dowtin",
+        "ovr": 70,
+        "team_id": 23
+    },
+    {
+        "id": 398,
+        "player_name": "Adem Bona",
+        "ovr": 69,
+        "team_id": 23
+    },
+    {
+        "id": 399,
+        "player_name": "Justin Edwards",
+        "ovr": 68,
+        "team_id": 23
+    },
+    {
+        "id": 400,
+        "player_name": "Kevin Durant",
+        "ovr": 94,
+        "team_id": 24
+    },
+    {
+        "id": 401,
+        "player_name": "Devin Booker",
+        "ovr": 93,
+        "team_id": 24
+    },
+    {
+        "id": 402,
+        "player_name": "Bradley Beal",
+        "ovr": 85,
+        "team_id": 24
+    },
+    {
+        "id": 403,
+        "player_name": "Jusuf Nurkic",
+        "ovr": 80,
+        "team_id": 24
+    },
+    {
+        "id": 404,
+        "player_name": "Tyus Jones",
+        "ovr": 78,
+        "team_id": 24
+    },
+    {
+        "id": 405,
+        "player_name": "Grayson Allen",
+        "ovr": 78,
+        "team_id": 24
+    },
+    {
+        "id": 406,
+        "player_name": "Mason Plumlee",
+        "ovr": 77,
+        "team_id": 24
+    },
+    {
+        "id": 407,
+        "player_name": "Monte Morris",
+        "ovr": 75,
+        "team_id": 24
+    },
+    {
+        "id": 408,
+        "player_name": "Bol Bol",
+        "ovr": 75,
+        "team_id": 24
+    },
+    {
+        "id": 409,
+        "player_name": "Royce O'Neale",
+        "ovr": 75,
+        "team_id": 24
+    },
+    {
+        "id": 410,
+        "player_name": "Josh Okogie",
+        "ovr": 74,
+        "team_id": 24
+    },
+    {
+        "id": 411,
+        "player_name": "Damion Lee",
+        "ovr": 74,
+        "team_id": 24
+    },
+    {
+        "id": 412,
+        "player_name": "TyTy Washington",
+        "ovr": 71,
+        "team_id": 24
+    },
+    {
+        "id": 413,
+        "player_name": "Ryan Dunn",
+        "ovr": 70,
+        "team_id": 24
+    },
+    {
+        "id": 414,
+        "player_name": "Collin Gillespie",
+        "ovr": 69,
+        "team_id": 24
+    },
+    {
+        "id": 415,
+        "player_name": "Oso Ighodaro",
+        "ovr": 68,
+        "team_id": 24
+    },
+    {
+        "id": 416,
+        "player_name": "Jalen Bridges",
+        "ovr": 68,
+        "team_id": 24
+    },
+    {
+        "id": 417,
+        "player_name": "Deandre Ayton",
+        "ovr": 83,
+        "team_id": 25
+    },
+    {
+        "id": 418,
+        "player_name": "Jerami Grant",
+        "ovr": 82,
+        "team_id": 25
+    },
+    {
+        "id": 419,
+        "player_name": "Anfernee Simons",
+        "ovr": 81,
+        "team_id": 25
+    },
+    {
+        "id": 420,
+        "player_name": "Robert Williams III",
+        "ovr": 80,
+        "team_id": 25
+    },
+    {
+        "id": 421,
+        "player_name": "Deni Avdija",
+        "ovr": 80,
+        "team_id": 25
+    },
+    {
+        "id": 422,
+        "player_name": "Shaedon Sharpe",
+        "ovr": 79,
+        "team_id": 25
+    },
+    {
+        "id": 423,
+        "player_name": "Scoot Henderson",
+        "ovr": 78,
+        "team_id": 25
+    },
+    {
+        "id": 424,
+        "player_name": "Dalano Banton",
+        "ovr": 75,
+        "team_id": 25
+    },
+    {
+        "id": 425,
+        "player_name": "Toumani Camara",
+        "ovr": 74,
+        "team_id": 25
+    },
+    {
+        "id": 426,
+        "player_name": "Matisse Thybulle",
+        "ovr": 74,
+        "team_id": 25
+    },
+    {
+        "id": 427,
+        "player_name": "Jabari Walker",
+        "ovr": 74,
+        "team_id": 25
+    },
+    {
+        "id": 428,
+        "player_name": "Duop Reath",
+        "ovr": 74,
+        "team_id": 25
+    },
+    {
+        "id": 429,
+        "player_name": "Donovan Clingan",
+        "ovr": 73,
+        "team_id": 25
+    },
+    {
+        "id": 430,
+        "player_name": "Kris Murray",
+        "ovr": 73,
+        "team_id": 25
+    },
+    {
+        "id": 431,
+        "player_name": "Bryce McGowens",
+        "ovr": 71,
+        "team_id": 25
+    },
+    {
+        "id": 432,
+        "player_name": "Rayan Rupert",
+        "ovr": 70,
+        "team_id": 25
+    },
+    {
+        "id": 433,
+        "player_name": "Justin Minaya",
+        "ovr": 69,
+        "team_id": 25
+    },
+    {
+        "id": 434,
+        "player_name": "De'Aaron Fox",
+        "ovr": 88,
+        "team_id": 26
+    },
+    {
+        "id": 435,
+        "player_name": "Domantas Sabonis",
+        "ovr": 88,
+        "team_id": 26
+    },
+    {
+        "id": 436,
+        "player_name": "DeMar DeRozan",
+        "ovr": 87,
+        "team_id": 26
+    },
+    {
+        "id": 437,
+        "player_name": "Keegan Murray",
+        "ovr": 80,
+        "team_id": 26
+    },
+    {
+        "id": 438,
+        "player_name": "Malik Monk",
+        "ovr": 80,
+        "team_id": 26
+    },
+    {
+        "id": 439,
+        "player_name": "Keon Ellis",
+        "ovr": 77,
+        "team_id": 26
+    },
+    {
+        "id": 440,
+        "player_name": "Kevin Huerter",
+        "ovr": 75,
+        "team_id": 26
+    },
+    {
+        "id": 441,
+        "player_name": "Trey Lyles",
+        "ovr": 75,
+        "team_id": 26
+    },
+    {
+        "id": 442,
+        "player_name": "Jordan McLaughlin",
+        "ovr": 74,
+        "team_id": 26
+    },
+    {
+        "id": 443,
+        "player_name": "Doug McDermott",
+        "ovr": 72,
+        "team_id": 26
+    },
+    {
+        "id": 444,
+        "player_name": "Devin Carter",
+        "ovr": 71,
+        "team_id": 26
+    },
+    {
+        "id": 445,
+        "player_name": "Colby Jones",
+        "ovr": 71,
+        "team_id": 26
+    },
+    {
+        "id": 446,
+        "player_name": "Alex Len",
+        "ovr": 71,
+        "team_id": 26
+    },
+    {
+        "id": 447,
+        "player_name": "Orlando Robinson",
+        "ovr": 71,
+        "team_id": 26
+    },
+    {
+        "id": 448,
+        "player_name": "Mason Jones",
+        "ovr": 69,
+        "team_id": 26
+    },
+    {
+        "id": 449,
+        "player_name": "Isaac Jones",
+        "ovr": 68,
+        "team_id": 26
+    },
+    {
+        "id": 450,
+        "player_name": "Isaiah Crawford",
+        "ovr": 68,
+        "team_id": 26
+    },
+    {
+        "id": 451,
+        "player_name": "Victor Wembanyama",
+        "ovr": 91,
+        "team_id": 27
+    },
+    {
+        "id": 452,
+        "player_name": "Chris Paul",
+        "ovr": 81,
+        "team_id": 27
+    },
+    {
+        "id": 453,
+        "player_name": "Devin Vassell",
+        "ovr": 81,
+        "team_id": 27
+    },
+    {
+        "id": 454,
+        "player_name": "Keldon Johnson",
+        "ovr": 79,
+        "team_id": 27
+    },
+    {
+        "id": 455,
+        "player_name": "Tre Jones",
+        "ovr": 78,
+        "team_id": 27
+    },
+    {
+        "id": 456,
+        "player_name": "Zach Collins",
+        "ovr": 78,
+        "team_id": 27
+    },
+    {
+        "id": 457,
+        "player_name": "Jeremy Sochan",
+        "ovr": 77,
+        "team_id": 27
+    },
+    {
+        "id": 458,
+        "player_name": "Harrison Barnes",
+        "ovr": 77,
+        "team_id": 27
+    },
+    {
+        "id": 459,
+        "player_name": "Malaki Branham",
+        "ovr": 75,
+        "team_id": 27
+    },
+    {
+        "id": 460,
+        "player_name": "Stephon Castle",
+        "ovr": 73,
+        "team_id": 27
+    },
+    {
+        "id": 461,
+        "player_name": "Charles Bassey",
+        "ovr": 73,
+        "team_id": 27
+    },
+    {
+        "id": 462,
+        "player_name": "Sandro Mamukelashvili",
+        "ovr": 73,
+        "team_id": 27
+    },
+    {
+        "id": 463,
+        "player_name": "Julian Champagnie",
+        "ovr": 73,
+        "team_id": 27
+    },
+    {
+        "id": 464,
+        "player_name": "Blake Wesley",
+        "ovr": 72,
+        "team_id": 27
+    },
+    {
+        "id": 465,
+        "player_name": "Sidy Cissoko",
+        "ovr": 70,
+        "team_id": 27
+    },
+    {
+        "id": 466,
+        "player_name": "Harrison Ingram",
+        "ovr": 69,
+        "team_id": 27
+    },
+    {
+        "id": 467,
+        "player_name": "David Duke Jr.",
+        "ovr": 69,
+        "team_id": 27
+    },
+    {
+        "id": 468,
+        "player_name": "Scottie Barnes",
+        "ovr": 85,
+        "team_id": 28
+    },
+    {
+        "id": 469,
+        "player_name": "R.J. Barrett",
+        "ovr": 81,
+        "team_id": 28
+    },
+    {
+        "id": 470,
+        "player_name": "Immanuel Quickley",
+        "ovr": 81,
+        "team_id": 28
+    },
+    {
+        "id": 471,
+        "player_name": "Jakob Poeltl",
+        "ovr": 80,
+        "team_id": 28
+    },
+    {
+        "id": 472,
+        "player_name": "Kelly Olynyk",
+        "ovr": 79,
+        "team_id": 28
+    },
+    {
+        "id": 473,
+        "player_name": "Bruce Brown",
+        "ovr": 77,
+        "team_id": 28
+    },
+    {
+        "id": 474,
+        "player_name": "Gradey Dick",
+        "ovr": 76,
+        "team_id": 28
+    },
+    {
+        "id": 475,
+        "player_name": "Chris Boucher",
+        "ovr": 74,
+        "team_id": 28
+    },
+    {
+        "id": 476,
+        "player_name": "Ochai Agbaji",
+        "ovr": 73,
+        "team_id": 28
+    },
+    {
+        "id": 477,
+        "player_name": "Davion Mitchell",
+        "ovr": 72,
+        "team_id": 28
+    },
+    {
+        "id": 478,
+        "player_name": "Bruno Fernando",
+        "ovr": 71,
+        "team_id": 28
+    },
+    {
+        "id": 479,
+        "player_name": "Ja'Kobe Walter",
+        "ovr": 70,
+        "team_id": 28
+    },
+    {
+        "id": 480,
+        "player_name": "Garrett Temple",
+        "ovr": 70,
+        "team_id": 28
+    },
+    {
+        "id": 481,
+        "player_name": "Jamal Shead",
+        "ovr": 69,
+        "team_id": 28
+    },
+    {
+        "id": 482,
+        "player_name": "Jonathan Mogbo",
+        "ovr": 69,
+        "team_id": 28
+    },
+    {
+        "id": 483,
+        "player_name": "Ulrich Chomche",
+        "ovr": 68,
+        "team_id": 28
+    },
+    {
+        "id": 484,
+        "player_name": "D.J. Carton",
+        "ovr": 68,
+        "team_id": 28
+    },
+    {
+        "id": 485,
+        "player_name": "Lauri Markkanen",
+        "ovr": 86,
+        "team_id": 29
+    },
+    {
+        "id": 486,
+        "player_name": "John Collins",
+        "ovr": 80,
+        "team_id": 29
+    },
+    {
+        "id": 487,
+        "player_name": "Collin Sexton",
+        "ovr": 80,
+        "team_id": 29
+    },
+    {
+        "id": 488,
+        "player_name": "Walker Kessler",
+        "ovr": 79,
+        "team_id": 29
+    },
+    {
+        "id": 489,
+        "player_name": "Keyonte George",
+        "ovr": 78,
+        "team_id": 29
+    },
+    {
+        "id": 490,
+        "player_name": "Jordan Clarkson",
+        "ovr": 78,
+        "team_id": 29
+    },
+    {
+        "id": 491,
+        "player_name": "Taylor Hendricks",
+        "ovr": 76,
+        "team_id": 29
+    },
+    {
+        "id": 492,
+        "player_name": "Drew Eubanks",
+        "ovr": 74,
+        "team_id": 29
+    },
+    {
+        "id": 493,
+        "player_name": "Brice Sensabaugh",
+        "ovr": 72,
+        "team_id": 29
+    },
+    {
+        "id": 494,
+        "player_name": "Svi Mykhailiuk",
+        "ovr": 72,
+        "team_id": 29
+    },
+    {
+        "id": 495,
+        "player_name": "Patty Mills",
+        "ovr": 72,
+        "team_id": 29
+    },
+    {
+        "id": 496,
+        "player_name": "Cody Williams",
+        "ovr": 71,
+        "team_id": 29
+    },
+    {
+        "id": 497,
+        "player_name": "Isaiah Collier",
+        "ovr": 70,
+        "team_id": 29
+    },
+    {
+        "id": 498,
+        "player_name": "Kyle Filipowski",
+        "ovr": 70,
+        "team_id": 29
+    },
+    {
+        "id": 499,
+        "player_name": "Jason Preston",
+        "ovr": 69,
+        "team_id": 29
+    },
+    {
+        "id": 500,
+        "player_name": "Johnny Juzang",
+        "ovr": 69,
+        "team_id": 29
+    },
+    {
+        "id": 501,
+        "player_name": "Oscar Tshiebwe",
+        "ovr": 69,
+        "team_id": 29
+    },
+    {
+        "id": 502,
+        "player_name": "Micah Potter",
+        "ovr": 68,
+        "team_id": 29
+    },
+    {
+        "id": 503,
+        "player_name": "Kyle Kuzma",
+        "ovr": 83,
+        "team_id": 30
+    },
+    {
+        "id": 504,
+        "player_name": "Jonas Valanciunas",
+        "ovr": 82,
+        "team_id": 30
+    },
+    {
+        "id": 505,
+        "player_name": "Malcolm Brogdon",
+        "ovr": 80,
+        "team_id": 30
+    },
+    {
+        "id": 506,
+        "player_name": "Jordan Poole",
+        "ovr": 79,
+        "team_id": 30
+    },
+    {
+        "id": 507,
+        "player_name": "Corey Kispert",
+        "ovr": 78,
+        "team_id": 30
+    },
+    {
+        "id": 508,
+        "player_name": "Bilal Coulibaly",
+        "ovr": 77,
+        "team_id": 30
+    },
+    {
+        "id": 509,
+        "player_name": "Saddiq Bey",
+        "ovr": 77,
+        "team_id": 30
+    },
+    {
+        "id": 510,
+        "player_name": "Marvin Bagley III",
+        "ovr": 76,
+        "team_id": 30
+    },
+    {
+        "id": 511,
+        "player_name": "Alexandre Sarr",
+        "ovr": 75,
+        "team_id": 30
+    },
+    {
+        "id": 512,
+        "player_name": "Richaun Holmes",
+        "ovr": 74,
+        "team_id": 30
+    },
+    {
+        "id": 513,
+        "player_name": "Anthony Gill",
+        "ovr": 72,
+        "team_id": 30
+    },
+    {
+        "id": 514,
+        "player_name": "Patrick Baldwin Jr.",
+        "ovr": 71,
+        "team_id": 30
+    },
+    {
+        "id": 515,
+        "player_name": "Kira Lewis Jr.",
+        "ovr": 71,
+        "team_id": 30
+    },
+    {
+        "id": 516,
+        "player_name": "Justin Champagnie",
+        "ovr": 71,
+        "team_id": 30
+    },
+    {
+        "id": 517,
+        "player_name": "Johnny Davis",
+        "ovr": 70,
+        "team_id": 30
+    },
+    {
+        "id": 518,
+        "player_name": "Bub Carrington",
+        "ovr": 70,
+        "team_id": 30
+    },
+    {
+        "id": 519,
+        "player_name": "KyShawn George",
+        "ovr": 70,
+        "team_id": 30
+    },
+    {
+        "id": 520,
+        "player_name": "Tristan Vukcevic",
+        "ovr": 70,
+        "team_id": 30
+    },
+    {
+        "id": 521,
+        "player_name": "Leaky Black",
+        "ovr": 70,
+        "team_id": 30
+    }
+]
