@@ -11,6 +11,7 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.serialization.json.*
 
 class MainActivity : View.OnClickListener, AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -69,10 +70,16 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
         }
 
         randbtn.setOnClickListener{
-            val intent = Intent(this, ShowPlayer::class.java)
-            startActivity(intent)
             val randomizeGame = RandomizeGame(this)
-            randomizeGame.Randomize(finalType, finalGame)
+            val teams: List<PlayerWithTeam> =
+                randomizeGame.randomize(finalType, finalGame)
+
+            val teamsJson = Json.encodeToString(teams)
+            val intent = Intent(this, ShowPlayer::class.java).apply {
+                putExtra("teamsJson", teamsJson)
+            }
+            startActivity(intent)
+            finish()
         }
 
     }

@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "830526418293",
-    "project_id": "randteamgenerator",
-    "storage_bucket": "randteamgenerator.firebasestorage.app"
+    "project_number": "265150737989",
+    "project_id": "teampickernba",
+    "storage_bucket": "teampickernba.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:830526418293:android:78fa99ee6729f03c5b373c",
+        "mobilesdk_app_id": "1:265150737989:android:a67cdb392ee3c5ec703d2c",
         "android_client_info": {
           "package_name": "com.example.nba_team_rand_gen"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBQBTOPMaORzY7KEV542NbsfcSNjLsroY8"
+          "current_key": "AIzaSyDyG_9P3vsW3-e0g9OK_0CJXWS3ZjYhygE"
         }
       ],
       "services": {

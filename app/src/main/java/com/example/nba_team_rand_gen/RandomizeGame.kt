@@ -20,6 +20,12 @@ data class Player(
     val team_id: Int
 )
 
+@Serializable
+data class PlayerWithTeam(
+    val player: Player,
+    val teamName: String
+)
+
 class RandomizeGame(private val context: Context) {
     private fun loadTeamsJson(): String =
         context.assets
@@ -46,34 +52,35 @@ class RandomizeGame(private val context: Context) {
         return copy.take(teamSize)
     }
 
-    fun Randomize (type: String, game_type: String): Int {
+    fun randomize (type: String, gameType: String): List<PlayerWithTeam> {
         val json = Json { ignoreUnknownKeys = true }
-        val numOptions = 2
 
         val teamsText = loadTeamsJson()
         val allTeams: List<Team> = json.decodeFromString(teamsText)
         val selectedTeams = when (type) {
             "All" -> allTeams
+            "All-time" -> allTeams.filter { it.type == "all-time"}
             "Current" -> allTeams.filter { it.type == "current" }
             "Classic" -> allTeams.filter { it.type == "classic" }
             else -> {
                 println("Invalid type")
-                return -1
+                return emptyList()
             }
         }
+
         val validTeamIds = selectedTeams.map { it.id }.toSet()
         val teamNames = selectedTeams.associate { it.id to it.team_name }
 
         var nrPlayers = 0
-        when (game_type) {
-            "1vs1" -> nrPlayers = 2
-            "2vs2" -> nrPlayers = 4
-            "3vs3" -> nrPlayers = 6
-            "4vs4" -> nrPlayers = 8
-            "5vs5" -> nrPlayers = 10
+        nrPlayers = when (gameType) {
+            "1vs1" -> 2
+            "2vs2" -> 4
+            "3vs3" -> 6
+            "4vs4" -> 8
+            "5vs5" -> 10
             else -> {
                 println("Invalid game_type")
-                return -1
+                return emptyList()
             }
         }
 
@@ -83,19 +90,12 @@ class RandomizeGame(private val context: Context) {
         val pool = allPlayers.filter { it.team_id in validTeamIds }
         if (pool.size < nrPlayers) {
             println("Not enough players (${pool.size}) for a team of size $nrPlayers in mode $type")
-            return -1
+            return emptyList()
         }
 
-        repeat(numOptions) { opt ->
-            val team = pickRandomTeam(pool, nrPlayers)
-            println("Option ${opt + 1} ($type):")
-            for (p in team) {
-                val tm = teamNames[p.team_id] ?: "Unknown"
-                println("  • ${p.player_name} (OVR ${p.ovr}) — $tm")
+        return pickRandomTeam(pool, nrPlayers)
+            .map { player ->
+                PlayerWithTeam(player, teamNames[player.team_id] ?: "Unknown")
             }
-            println()
-        }
-
-        return 1
     }
 }

@@ -1,25 +1,63 @@
 package com.example.nba_team_rand_gen
 
+
+import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.Toast
+import android.widget.ListView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kotlinx.serialization.json.Json
 
 class ShowPlayer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_player)
 
+        val json = intent.getStringExtra("teamsJson") ?: "[]"
+        val teams: List<PlayerWithTeam> = Json.decodeFromString(json)
+
+        val half = teams.size / 2
+        val firstTeam  = teams.subList(0, half)
+        val secondTeam = teams.subList(half, teams.size)
+
+        val tvFirst  = findViewById<TextView>(R.id.textView3)
+        val tvSecond = findViewById<TextView>(R.id.textView4)
+
+        tvFirst.text = buildString {
+            append(getString(R.string.first_team))
+            appendLine()
+            append(
+                firstTeam.joinToString("\n") {
+                    "${it.player.player_name}(${it.player.ovr}) - ${it.teamName}"
+                }
+            )
+        }
+
+        tvSecond.text = buildString {
+            append(getString(R.string.second_team))
+            appendLine()
+            append(
+                secondTeam.joinToString("\n") {
+                    "${it.player.player_name}(${it.player.ovr}) - ${it.teamName}"
+                }
+            )
+        }
+
         val backbtn = findViewById<Button>(R.id.back_btn)
         backbtn.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar()?.setElevation(10F);
-            getSupportActionBar()?.setBackgroundDrawable(getResources().getDrawable(R.drawable.action_bar_gradient))
+        if (supportActionBar != null) {
+            supportActionBar?.elevation = 10F
+            val drawable = ResourcesCompat.getDrawable(resources, R.drawable.action_bar_gradient, theme)
+            supportActionBar?.setBackgroundDrawable(drawable)
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
