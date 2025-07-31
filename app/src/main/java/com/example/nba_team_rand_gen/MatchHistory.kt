@@ -4,6 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
@@ -12,6 +15,10 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
 class MatchHistory : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private val data = listOf("Alpha", "Beta", "Gamma", "Delta")    // your strings
+    val favorites = mutableSetOf<Int>()
+
     companion object {
         /**
          * Appends [json] to /users/{uid}/matchesList array.
@@ -83,10 +90,32 @@ class MatchHistory : AppCompatActivity() {
         setContentView(R.layout.activity_show_matches)
         printMatchHistory()
 
-        val backBtn = findViewById<Button>(R.id.back_btn)
-        backBtn.setOnClickListener {
+        if (supportActionBar != null) {
+            supportActionBar?.elevation = 10F
+            val drawable = ResourcesCompat.getDrawable(resources, R.drawable.action_bar_gradient, theme)
+            supportActionBar?.setBackgroundDrawable(drawable)
+        }
+
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = StringListAdapter(data, favorites) { pos ->
+            toggleFavorite(pos)
+        }
+
+        val backbtn = findViewById<Button>(R.id.back_btn)
+        backbtn.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    // temporary it would be stored in firestore
+    private fun toggleFavorite(position: Int) {
+        if (favorites.contains(position)) {
+            favorites.remove(position)
+        } else {
+            favorites.add(position)
+        }
+        recyclerView.adapter?.notifyItemChanged(position)
     }
 }
