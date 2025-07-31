@@ -3,10 +3,9 @@ package com.example.nba_team_rand_gen
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
@@ -46,6 +45,18 @@ class ShowPlayer : AppCompatActivity() {
                     "${it.player.player_name}(${it.player.ovr}) - ${it.teamName}"
                 }
             )
+        }
+
+        val acceptBtn = findViewById<Button>(R.id.accept_btn)
+        acceptBtn.setOnClickListener {
+            MatchHistory.uploadMatch(json)
+                .addOnSuccessListener { code ->
+                    if (code == 0) {
+                        Toast.makeText(this, "Match saved to your history!", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "Save failed.", Toast.LENGTH_LONG).show()
+                    }
+                }
         }
 
         val backbtn = findViewById<Button>(R.id.back_btn)

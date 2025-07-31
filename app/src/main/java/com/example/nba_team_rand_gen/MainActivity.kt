@@ -29,7 +29,6 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
         val randbtn = findViewById<Button>(R.id.random_button)
 
-
         val type = findViewById<Spinner>(R.id.choose_type)
         val options = arrayOf("All", "Current", "Classic", "All-time")
         var finalType = ""
@@ -82,6 +81,11 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             finish()
         }
 
+        val historybtn = findViewById<Button>(R.id.history_button)
+        historybtn.setOnClickListener {
+            startActivity(Intent(this, MatchHistory::class.java))
+            finish()
+        }
     }
 
     override fun onClick(v: View?) {

@@ -10,4 +10,5 @@
     <string name="username">Username</string>
     <string name="login">Login</string>
     <string name="match_history">Match History</string>
+    <string name="accept_match">Accept Match</string>
 </resources>

@@ -36,6 +36,7 @@
             android:exported="true"
             android:theme="@style/Theme.NBA_Team_Rand_Gen">
         </activity>
+        <activity android:name=".MatchHistory" />
     </application>
 
 </manifest>
