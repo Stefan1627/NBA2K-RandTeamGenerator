@@ -55,15 +55,6 @@ class ShowPlayer : AppCompatActivity() {
 
         val acceptBtn = findViewById<Button>(R.id.accept_btn)
         acceptBtn.setOnClickListener {
-            // 1) Build the dialog
-            val builder = AlertDialog.Builder(this)
-                .setTitle("Name your match")
-                .setNegativeButton("Return") { dialog, _ ->
-                    dialog.dismiss()
-                }
-                .setPositiveButton("Save", null)  // we override later so we can control enable/disable
-
-            // 2) Create an EditText programmatically (or inflate a custom layout)
             val input = EditText(this).apply {
                 hint = "Enter match name"
                 layoutParams = LinearLayout.LayoutParams(
@@ -71,22 +62,21 @@ class ShowPlayer : AppCompatActivity() {
                     LayoutParams.WRAP_CONTENT
                 )
             }
-            // add some padding
             val container = FrameLayout(this).apply {
                 setPadding(50, 20, 50, 0)
                 addView(input)
             }
-            builder.setView(container)
 
-            // 3) Show the dialog
-            val dialog = builder.create()
-            dialog.show()
+            val dialog = AlertDialog.Builder(this, R.style.Theme_NBA_Team_Rand_Gen_AlertDialog)
+                .setTitle("Name your match")
+                .setNegativeButton("Return") { d, _ -> d.dismiss() }
+                .setPositiveButton("Save", null)
+                .setView(container)
+                .show()
 
-            // 4) Grab the Save button and disable it initially
             val saveBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
             saveBtn.isEnabled = false
 
-            // 5) Watch the text; enable Save only when non-blank
             input.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable?) {
                     saveBtn.isEnabled = !s.isNullOrBlank()
@@ -95,7 +85,6 @@ class ShowPlayer : AppCompatActivity() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) = Unit
             })
 
-            // 6) Override the Save click so we can run uploadMatch with the name
             saveBtn.setOnClickListener {
                 val matchName = input.text.toString().trim()
 
