@@ -10,50 +10,63 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.google.firebase.auth.FirebaseAuth
 
-const val SESSION_DURATION_MS = 96L * 60 * 60 * 1000
+const val SESSION_DURATION_MS = 10L * 1000
 
 class LoginService : AppCompatActivity() {
-    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+
+    private lateinit var etEmail:    EditText
+    private lateinit var etPassword: EditText
+    private lateinit var btnPrimary: Button
+    private lateinit var btnToggle:  Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val etUsername = findViewById<EditText>(R.id.etUsername)
-        val etPassword = findViewById<EditText>(R.id.etPassword)
-        val btnLogin   = findViewById<Button>(R.id.btnLogin)
+        // bind views
+        etEmail    = findViewById(R.id.etUsername)
+        etPassword = findViewById(R.id.etPassword)
+        btnPrimary = findViewById(R.id.btnPrimary)
+        btnToggle  = findViewById(R.id.btnToggleMode)
 
-        btnLogin.setOnClickListener {
-            val email = etUsername.text.toString().trim()
+        // toggle between login <-> signup
+        btnToggle.setOnClickListener {
+            startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
+        // primary button does either login or sign up
+        btnPrimary.setOnClickListener {
+            val email = etEmail.text.toString().trim()
             val pass  = etPassword.text.toString()
-
             if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+                return@setOnClickListener Toast
+                    .makeText(this, "Email & password required", Toast.LENGTH_SHORT)
+                    .show()
             }
-
-            authenticate(email, pass) { success ->
-                Toast.makeText(
-                    this,
-                    if (success) "Logged in" else "Not logged in",
-                    Toast.LENGTH_SHORT
-                ).show()
-                val expiry = System.currentTimeMillis() + SESSION_DURATION_MS
-                getSharedPreferences("session_prefs", Context.MODE_PRIVATE)
-                    .edit {
-                        putLong("session_expiry", expiry)
-                    }
-            }
-
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            signIn(email, pass)
         }
     }
 
-    private fun authenticate(email: String, password: String, callback: (Boolean) -> Unit) {
-        auth.signInWithEmailAndPassword(email, password)
+    private fun signIn(email: String, pass: String) {
+        auth.signInWithEmailAndPassword(email, pass)
             .addOnCompleteListener { task ->
-                callback(task.isSuccessful)
+                if (task.isSuccessful) {
+                    onAuthSuccess()
+                } else {
+                    Toast.makeText(this, "Login failed", Toast.LENGTH_SHORT).show()
+                }
             }
+    }
+
+    private fun onAuthSuccess() {
+        // save session expiry…
+        val expiry = System.currentTimeMillis() + SESSION_DURATION_MS
+        getSharedPreferences("session_prefs", Context.MODE_PRIVATE).edit {
+            putLong("session_expiry", expiry)
+        }
+        // go to main
+        startActivity(Intent(this, MainActivity::class.java))
+        finish()
     }
 }

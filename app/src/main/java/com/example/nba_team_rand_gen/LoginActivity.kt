@@ -13,17 +13,20 @@ class LoginActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         auth = FirebaseAuth.getInstance()
 
-        if (isUserLoggedIn()) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+        val next = if (isUserLoggedIn()) {
+            Intent(this, MainActivity::class.java)
         } else {
-            startActivity(Intent(this, LoginService::class.java))
+            Intent(this, LoginService::class.java)
         }
+
+        startActivity(next)
+        finish()
     }
 
     private fun isUserLoggedIn(): Boolean {
         val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
-        val expiry = prefs.getLong("session_expiry", -1L)
+        var expiry = prefs.getLong("session_expiry", -1L)
+        println("$expiry ------------------------- ${System.currentTimeMillis()}")
         if (auth.currentUser != null && expiry > System.currentTimeMillis()) {
             return true
         } else {
@@ -33,14 +36,14 @@ class LoginActivity: AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        auth.currentUser?.let {
-            val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
-            if (prefs.getLong("session_expiry", 0L) > System.currentTimeMillis()) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }
-        }
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        auth.currentUser?.let {
+//            val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
+//            if (prefs.getLong("session_expiry", 0L) > System.currentTimeMillis()) {
+//                startActivity(Intent(this, MainActivity::class.java))
+//                finish()
+//            }
+//        }
+//    }
 }

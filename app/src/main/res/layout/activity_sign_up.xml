@@ -7,7 +7,22 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/etUsername"
+        android:id="@+id/etFullname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/full_name"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/etEmail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintWidth_percent="0.8" />
+
+    <EditText
+        android:id="@+id/etEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -34,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etUsername"
+        app:layout_constraintTop_toBottomOf="@id/etEmail"
         app:layout_constraintWidth_percent="0.8" />
 
     <Button
@@ -42,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/red"
-        android:text="@string/login"
+        android:text="@string/return1"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +67,7 @@
         app:layout_constraintVertical_bias="0.1" />
 
     <Button
-        android:id="@+id/btnToggleMode"
+        android:id="@+id/btnSignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/red"

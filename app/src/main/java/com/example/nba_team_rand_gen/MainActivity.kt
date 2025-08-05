@@ -86,6 +86,11 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             startActivity(Intent(this, MatchHistory::class.java))
             finish()
         }
+
+        val favbtn = findViewById<Button>(R.id.fav_button)
+        favbtn.setOnClickListener {
+            Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onClick(v: View?) {
