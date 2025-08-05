@@ -13,13 +13,17 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/tvString"
+        <Button
+            android:id="@+id/tvBtn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16sp"
-            android:textColor="@android:color/black" />
+            android:textSize="20sp"
+            android:textAlignment="textStart"
+            android:text=""
+            android:background="@color/splash_color"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"/>
 
         <ImageButton
             android:id="@+id/btnFavorite"
@@ -27,6 +31,19 @@
             android:layout_height="wrap_content"
             android:focusable="true"
             android:src="@drawable/favorite_svg"
+            app:tint="@color/heart_tint"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tintMode="src_in"
+            android:padding="8dp"
+            android:clickable="true"
+            android:contentDescription="@string/delete_from_history"/>
+
+        <ImageButton
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:src="@drawable/trash_svg"
             app:tint="@color/heart_tint"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:tintMode="src_in"

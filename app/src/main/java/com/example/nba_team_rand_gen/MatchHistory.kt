@@ -73,9 +73,12 @@ class MatchHistory : AppCompatActivity() {
             supportActionBar?.setBackgroundDrawable(drawable)
         }
 
-        adapter = StringListAdapter(data, favorites) { pos ->
-            toggleFavorite(pos)
-        }
+        adapter = StringListAdapter(
+            items           = data,
+            favorites       = favorites,
+            onFavoriteClick = { pos -> toggleFavorite(pos) },
+            onTrashClick   = { pos -> deleteMatch(pos) }
+        )
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
             layoutManager = LinearLayoutManager(this@MatchHistory)
@@ -196,5 +199,9 @@ class MatchHistory : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+    }
+
+    private fun deleteMatch(position: Int) {
+        Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show()
     }
 }

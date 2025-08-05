@@ -3,24 +3,29 @@ package com.example.nba_team_rand_gen
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class StringListAdapter(
     private val items: List<String>,
     private val favorites: MutableSet<Int>,
-    private val onFavoriteClick: (position: Int) -> Unit
+    private val onFavoriteClick: (position: Int) -> Unit,
+    private val onTrashClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<StringListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvString: TextView       = view.findViewById(R.id.tvString)
+        val tvString: Button       = view.findViewById(R.id.tvBtn)
         val btnFavorite: ImageButton = view.findViewById(R.id.btnFavorite)
+        val btnTrash: ImageButton = view.findViewById(R.id.btnDelete)
         val divider: View            = view.findViewById(R.id.divider)
 
         init {
             btnFavorite.setOnClickListener {
                 onFavoriteClick(adapterPosition)
+            }
+            btnTrash.setOnClickListener {
+                onTrashClick(adapterPosition)
             }
         }
     }
