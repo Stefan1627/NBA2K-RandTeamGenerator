@@ -18,6 +18,7 @@ import com.google.firebase.firestore.SetOptions
 
 class MatchHistory : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
+    private val matchEntries = mutableListOf<Map<String,Any>>()
     private val data = mutableListOf<String>()
     val favorites = mutableSetOf<Int>()
     private lateinit var adapter: StringListAdapter
@@ -114,34 +115,32 @@ class MatchHistory : AppCompatActivity() {
 
         userDoc.get()
             .addOnSuccessListener { snap ->
-                // 1) Read the raw arrays of Maps
                 @Suppress("UNCHECKED_CAST")
-                val matches = snap.get("matchesList") as? List<Map<String, Any>> ?: emptyList()
-                @Suppress("UNCHECKED_CAST")
-                val favs    = snap.get("favoritesList") as? List<Map<String, Any>> ?: emptyList()
+                val matches = snap.get("matchesList") as? List<Map<String,Any>> ?: emptyList()
 
-                // 2) Build a set of indices into `matches` that are favorites
-                val newFavs = mutableSetOf<Int>()
-                matches.forEachIndexed { idx, entry ->
-                    // compare by name (or you could compare the entire map)
-                    val name = entry["name"] as? String
-                    if (name != null && favs.any { it["name"] == name }) {
-                        newFavs.add(idx)
+                val rawFavs = snap.get("favoritesList") as? List<*> ?: emptyList<Any>()
+
+                val favMaps = rawFavs.mapNotNull { elem ->
+                    when (elem) {
+                        is Map<*,*> -> @Suppress("UNCHECKED_CAST")
+                        (elem as? Map<String,Any>)
+                        else         -> null
                     }
                 }
 
-                // 3) Remember old size for fine‐grained notifications
                 val oldSize = data.size
 
-                // 4) Wipe & refill `data` with *just* the match names
-                data.clear()
-                data.addAll(matches.mapNotNull { it["name"] as? String })
+                matchEntries.clear(); matchEntries.addAll(matches)
+                data.clear(); data.addAll(matches.mapNotNull { it["name"] as? String })
 
-                // 5) Swap in the new favorites index set
-                favorites.clear()
-                favorites.addAll(newFavs)
+                val newFavs = matches.indices
+                    .filter { idx ->
+                        val e = matches[idx]
+                        favMaps.any { it["name"] == e["name"] && it["data"] == e["data"] }
+                    }
+                    .toSet()
+                favorites.clear(); favorites.addAll(newFavs)
 
-                // 6) Fire precise RecyclerView updates
                 if (oldSize > 0) {
                     adapter.notifyItemRangeRemoved(0, oldSize)
                 }
@@ -149,7 +148,6 @@ class MatchHistory : AppCompatActivity() {
                     adapter.notifyItemRangeInserted(0, data.size)
                 }
 
-                // 7) Print only the names
                 data.forEachIndexed { idx, name ->
                     println("$name — favorite: ${favorites.contains(idx)}")
                 }
@@ -164,33 +162,23 @@ class MatchHistory : AppCompatActivity() {
      * Toggle locally + in Firestore, then redraw item.
      */
     private fun toggleFavorite(position: Int) {
-        val matchJson = data[position]
         val user = FirebaseAuth.getInstance().currentUser
-            ?: return  // no‐one’s signed in
+            ?: return
 
         val userDoc = FirebaseFirestore.getInstance()
             .collection("users")
             .document(user.uid)
 
-        // 1) check current state
-        val isCurrentlyFav = favorites.contains(position)
+        val entry = matchEntries[position]
+        val isFav = favorites.contains(position)
+        val op    = if (isFav)
+            FieldValue.arrayRemove(entry)
+        else
+            FieldValue.arrayUnion(entry)
 
-        // 2) pick the right FieldValue op
-        val op = if (isCurrentlyFav) {
-            FieldValue.arrayRemove(matchJson)
-        } else {
-            FieldValue.arrayUnion(matchJson)
-        }
-
-        // 3) send it to Firestore
         userDoc.update("favoritesList", op)
             .addOnSuccessListener {
-                // 4) only now update your local set + UI
-                if (isCurrentlyFav) {
-                    favorites.remove(position)
-                } else {
-                    favorites.add(position)
-                }
+                if (isFav) favorites.remove(position) else favorites.add(position)
                 adapter.notifyItemChanged(position)
             }
             .addOnFailureListener { e ->
