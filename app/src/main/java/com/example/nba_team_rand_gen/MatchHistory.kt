@@ -77,7 +77,8 @@ class MatchHistory : AppCompatActivity() {
             items           = data,
             favorites       = favorites,
             onFavoriteClick = { pos -> toggleFavorite(pos) },
-            onTrashClick   = { pos -> deleteMatch(pos) }
+            onTrashClick   = { pos -> deleteMatch(pos) },
+            onDescriptionClick = { pos -> descriptionShow(pos)}
         )
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
@@ -202,6 +203,10 @@ class MatchHistory : AppCompatActivity() {
     }
 
     private fun deleteMatch(position: Int) {
+        Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun descriptionShow(position: Int) {
         Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show()
     }
 }

@@ -11,7 +11,8 @@ class StringListAdapter(
     private val items: List<String>,
     private val favorites: MutableSet<Int>,
     private val onFavoriteClick: (position: Int) -> Unit,
-    private val onTrashClick: (position: Int) -> Unit
+    private val onTrashClick: (position: Int) -> Unit,
+    private val onDescriptionClick: (position: Int) -> Unit
 ) : RecyclerView.Adapter<StringListAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,6 +27,9 @@ class StringListAdapter(
             }
             btnTrash.setOnClickListener {
                 onTrashClick(adapterPosition)
+            }
+            tvString.setOnClickListener {
+                onDescriptionClick(adapterPosition)
             }
         }
     }
