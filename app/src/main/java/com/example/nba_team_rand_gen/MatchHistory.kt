@@ -28,7 +28,7 @@ class MatchHistory : AppCompatActivity() {
          * Appends [json] to /users/{uid}/matchesList array.
          * @return Task<Int> that yields 0 on success, -1 otherwise.
          */
-        fun uploadMatch(json: String): Task<Int> {
+        fun uploadMatch(json: String, matchName: String): Task<Int> {
             // must have a logged-in user
             val user = FirebaseAuth.getInstance().currentUser
                 ?: return Tasks.forResult(-1)
@@ -38,8 +38,14 @@ class MatchHistory : AppCompatActivity() {
                 .collection("users")
                 .document(user.uid)
 
+            // build the object we want to store in the array
+            val entry = mapOf(
+                "name"      to matchName,
+                "data"      to json,
+            )
+
             // try to append to the array
-            return userDoc.update("matchesList", FieldValue.arrayUnion(json))
+            return userDoc.update("matchesList", FieldValue.arrayUnion(entry))
                 .continueWithTask { updateTask ->
                     if (updateTask.isSuccessful) {
                         // update succeeded
@@ -47,7 +53,7 @@ class MatchHistory : AppCompatActivity() {
                     } else {
                         // fallback: create the array with this first entry
                         userDoc.set(
-                            mapOf("matchesList" to listOf(json)),
+                            mapOf("matchesList" to listOf(entry)),
                             SetOptions.merge()
                         ).continueWith { setTask ->
                             if (setTask.isSuccessful) 0 else -1
@@ -104,25 +110,34 @@ class MatchHistory : AppCompatActivity() {
 
         userDoc.get()
             .addOnSuccessListener { snap ->
+                // 1) Read the raw arrays of Maps
                 @Suppress("UNCHECKED_CAST")
-                val matches = snap.get("matchesList") as? List<String> ?: emptyList()
+                val matches = snap.get("matchesList") as? List<Map<String, Any>> ?: emptyList()
                 @Suppress("UNCHECKED_CAST")
-                val favs    = snap.get("favoritesList") as? List<String> ?: emptyList()
+                val favs    = snap.get("favoritesList") as? List<Map<String, Any>> ?: emptyList()
 
-                // build new favorites index set
+                // 2) Build a set of indices into `matches` that are favorites
                 val newFavs = mutableSetOf<Int>()
-                matches.forEachIndexed { idx, json ->
-                    if (favs.contains(json)) newFavs.add(idx)
+                matches.forEachIndexed { idx, entry ->
+                    // compare by name (or you could compare the entire map)
+                    val name = entry["name"] as? String
+                    if (name != null && favs.any { it["name"] == name }) {
+                        newFavs.add(idx)
+                    }
                 }
 
-                // remember old size, then apply changes
+                // 3) Remember old size for fine‐grained notifications
                 val oldSize = data.size
+
+                // 4) Wipe & refill `data` with *just* the match names
                 data.clear()
-                data.addAll(matches)
+                data.addAll(matches.mapNotNull { it["name"] as? String })
+
+                // 5) Swap in the new favorites index set
                 favorites.clear()
                 favorites.addAll(newFavs)
 
-                // now fire specific change events
+                // 6) Fire precise RecyclerView updates
                 if (oldSize > 0) {
                     adapter.notifyItemRangeRemoved(0, oldSize)
                 }
@@ -130,9 +145,9 @@ class MatchHistory : AppCompatActivity() {
                     adapter.notifyItemRangeInserted(0, data.size)
                 }
 
-                // print each with its favorite flag
-                data.forEachIndexed { idx, json ->
-                    println("$json — favorite: ${favorites.contains(idx)}")
+                // 7) Print only the names
+                data.forEachIndexed { idx, name ->
+                    println("$name — favorite: ${favorites.contains(idx)}")
                 }
             }
             .addOnFailureListener { e ->
