@@ -12,13 +12,12 @@ import android.widget.TextView
 import android.widget.Toast
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kotlinx.serialization.json.Json
 
-class ShowPlayer : AppCompatActivity() {
+class ShowPlayer : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_player)
@@ -38,7 +37,7 @@ class ShowPlayer : AppCompatActivity() {
             appendLine()
             append(
                 firstTeam.joinToString("\n") {
-                    "${it.player.player_name}(${it.player.ovr}) - ${it.teamName}"
+                    "${it.player.playerName}(${it.player.ovr}) - ${it.teamName}"
                 }
             )
         }
@@ -48,7 +47,7 @@ class ShowPlayer : AppCompatActivity() {
             appendLine()
             append(
                 secondTeam.joinToString("\n") {
-                    "${it.player.player_name}(${it.player.ovr}) - ${it.teamName}"
+                    "${it.player.playerName}(${it.player.ovr}) - ${it.teamName}"
                 }
             )
         }
@@ -102,8 +101,8 @@ class ShowPlayer : AppCompatActivity() {
             }
         }
 
-        val backbtn = findViewById<Button>(R.id.back_btn)
-        backbtn.setOnClickListener{
+        val backBtn = findViewById<Button>(R.id.back_btn)
+        backBtn.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

@@ -26,7 +26,6 @@ class LoginActivity: AppCompatActivity() {
     private fun isUserLoggedIn(): Boolean {
         val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
         var expiry = prefs.getLong("session_expiry", -1L)
-        println("$expiry ------------------------- ${System.currentTimeMillis()}")
         if (auth.currentUser != null && expiry > System.currentTimeMillis()) {
             return true
         } else {

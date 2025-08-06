@@ -1,6 +1,5 @@
 package com.example.nba_team_rand_gen
 
-import android.content.Context
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
@@ -57,7 +56,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun onAuthSuccess() {
         val expiry = System.currentTimeMillis() + SESSION_DURATION_MS
-        getSharedPreferences("session_prefs", Context.MODE_PRIVATE).edit {
+        getSharedPreferences("session_prefs", MODE_PRIVATE).edit {
             putLong("session_expiry", expiry)
         }
         startActivity(Intent(this, MainActivity::class.java))

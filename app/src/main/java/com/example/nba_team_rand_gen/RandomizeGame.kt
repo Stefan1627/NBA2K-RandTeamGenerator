@@ -8,16 +8,16 @@ import kotlinx.serialization.json.*
 @Serializable
 data class Team(
     val id: Int,
-    val team_name: String,
+    val teamName: String,
     val type: String
 )
 
 @Serializable
 data class Player(
     val id: Int,
-    val player_name: String,
+    val playerName: String,
     val ovr: Int,
-    val team_id: Int
+    val teamId: Int
 )
 
 @Serializable
@@ -69,7 +69,7 @@ class RandomizeGame(private val context: Context) {
         }
 
         val validTeamIds = selectedTeams.map { it.id }.toSet()
-        val teamNames = selectedTeams.associate { it.id to it.team_name }
+        val teamNames = selectedTeams.associate { it.id to it.teamName }
 
         var nrPlayers = 0
         nrPlayers = when (gameType) {
@@ -87,7 +87,7 @@ class RandomizeGame(private val context: Context) {
         val playersText = loadPlayersJson()
         val allPlayers: List<Player> = json.decodeFromString(playersText)
 
-        val pool = allPlayers.filter { it.team_id in validTeamIds }
+        val pool = allPlayers.filter { it.teamId in validTeamIds }
         if (pool.size < nrPlayers) {
             println("Not enough players (${pool.size}) for a team of size $nrPlayers in mode $type")
             return emptyList()
@@ -95,7 +95,7 @@ class RandomizeGame(private val context: Context) {
 
         return pickRandomTeam(pool, nrPlayers)
             .map { player ->
-                PlayerWithTeam(player, teamNames[player.team_id] ?: "Unknown")
+                PlayerWithTeam(player, teamNames[player.teamId] ?: "Unknown")
             }
     }
 }

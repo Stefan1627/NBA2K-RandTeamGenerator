@@ -3,14 +3,13 @@ package com.example.nba_team_rand_gen
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MatchHistory : AppCompatActivity() {
+class MatchHistory : BaseActivity() {
     private lateinit var recyclerView: RecyclerView
     private val matchEntries = mutableListOf<Map<String,Any>>()
     private val data = mutableListOf<String>()
@@ -42,8 +41,8 @@ class MatchHistory : AppCompatActivity() {
 
         loadMatchesAndFavorites()
 
-        val backbtn = findViewById<Button>(R.id.back_btn)
-        backbtn.setOnClickListener{
+        val backBtn = findViewById<Button>(R.id.back_btn)
+        backBtn.setOnClickListener{
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

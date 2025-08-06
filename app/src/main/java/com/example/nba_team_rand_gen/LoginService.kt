@@ -1,6 +1,5 @@
 package com.example.nba_team_rand_gen
 
-import android.content.Context
 import android.os.Bundle
 import android.content.Intent
 import android.widget.Button
@@ -9,8 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.google.firebase.auth.FirebaseAuth
+import kotlin.time.Duration.Companion.hours
 
-const val SESSION_DURATION_MS = 10L * 1000
+val SESSION_DURATION_MS = 1.hours.inWholeMilliseconds
 
 class LoginService : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
@@ -62,7 +62,7 @@ class LoginService : AppCompatActivity() {
     private fun onAuthSuccess() {
         // save session expiry…
         val expiry = System.currentTimeMillis() + SESSION_DURATION_MS
-        getSharedPreferences("session_prefs", Context.MODE_PRIVATE).edit {
+        getSharedPreferences("session_prefs", MODE_PRIVATE).edit {
             putLong("session_expiry", expiry)
         }
         // go to main

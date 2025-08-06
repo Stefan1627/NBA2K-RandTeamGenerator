@@ -23,13 +23,17 @@ class StringListAdapter(
 
         init {
             btnFavorite.setOnClickListener {
-                onFavoriteClick(adapterPosition)
+                if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    onFavoriteClick(bindingAdapterPosition)
+                }
             }
             btnTrash.setOnClickListener {
-                onTrashClick(adapterPosition)
+                bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+                    ?.let(onTrashClick)
             }
             tvString.setOnClickListener {
-                onDescriptionClick(adapterPosition)
+                bindingAdapterPosition.takeIf { it != RecyclerView.NO_POSITION }
+                    ?.let(onDescriptionClick)
             }
         }
     }
@@ -43,7 +47,6 @@ class StringListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvString.text = items[position]
 
-        // Optionally hide the divider on the last item (or any other logic):
         holder.divider.visibility =
             if (position == items.size - 1) View.GONE else View.VISIBLE
         holder.btnFavorite.isSelected = favorites.contains(position)

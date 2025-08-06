@@ -8,12 +8,11 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import android.widget.Button
 import android.widget.Spinner
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.serialization.json.*
 
-class MainActivity : View.OnClickListener, AppCompatActivity() {
+class MainActivity : View.OnClickListener, BaseActivity() {
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             supportActionBar?.setBackgroundDrawable(drawable)
         }
 
-        val randbtn = findViewById<Button>(R.id.random_button)
+        val randBtn = findViewById<Button>(R.id.random_button)
 
         val type = findViewById<Spinner>(R.id.choose_type)
         val options = arrayOf("All", "Current", "Classic", "All-time")
@@ -49,17 +48,17 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             }
         }
 
-        val gametype = findViewById<Spinner>(R.id.choose_game_type)
-        val gameoptions = arrayOf("1vs1", "2vs2", "3vs3", "4vs4", "5vs5")
+        val gameType = findViewById<Spinner>(R.id.choose_game_type)
+        val gameOptions = arrayOf("1vs1", "2vs2", "3vs3", "4vs4", "5vs5")
         var finalGame = ""
-        if(gametype != null) {
-            val adapter = ArrayAdapter(this, R.layout.spinner_list, gameoptions)
+        if(gameType != null) {
+            val adapter = ArrayAdapter(this, R.layout.spinner_list, gameOptions)
             adapter.setDropDownViewResource(R.layout.spinner_list)
-            gametype.adapter = adapter
+            gameType.adapter = adapter
 
-            gametype.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            gameType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                    finalGame = gameoptions[p2]
+                    finalGame = gameOptions[p2]
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -68,7 +67,7 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             }
         }
 
-        randbtn.setOnClickListener{
+        randBtn.setOnClickListener{
             val randomizeGame = RandomizeGame(this)
             val teams: List<PlayerWithTeam> =
                 randomizeGame.randomize(finalType, finalGame)
@@ -81,14 +80,14 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
             finish()
         }
 
-        val historybtn = findViewById<Button>(R.id.history_button)
-        historybtn.setOnClickListener {
+        val historyBtn = findViewById<Button>(R.id.history_button)
+        historyBtn.setOnClickListener {
             startActivity(Intent(this, MatchHistory::class.java))
             finish()
         }
 
-        val favbtn = findViewById<Button>(R.id.fav_button)
-        favbtn.setOnClickListener {
+        val favBtn = findViewById<Button>(R.id.fav_button)
+        favBtn.setOnClickListener {
             startActivity(Intent(this, FavoriteService::class.java))
             finish()
         }
