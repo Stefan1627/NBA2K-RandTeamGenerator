@@ -8,15 +8,18 @@ import kotlinx.serialization.json.*
 @Serializable
 data class Team(
     val id: Int,
-    val teamName: String,
+    @SerialName("team_name")
+    val teamName: String = "Unknown",
     val type: String
 )
 
 @Serializable
 data class Player(
     val id: Int,
+    @SerialName("player_name")
     val playerName: String,
     val ovr: Int,
+    @SerialName("team_id")
     val teamId: Int
 )
 

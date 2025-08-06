@@ -14,7 +14,7 @@ class FavoriteService: BaseActivity() {
     private lateinit var recyclerView: RecyclerView
     private val data = mutableListOf<String>()
     val favorites = mutableSetOf<Int>()
-    private val matchEntries = mutableListOf<Map<String,Any>>()
+    private val matchEntries = mutableListOf<Map<String,Any?>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +67,7 @@ class FavoriteService: BaseActivity() {
                 val rawFavs = snap.get("favoritesList") as? List<*> ?: emptyList<Any>()
 
                 // 2) Keep only the Map<String,Any> entries
+                @Suppress("UNCHECKED_CAST")
                 val favMaps = rawFavs.mapNotNull { elem ->
                     (elem as? Map<*, *>)
                         ?.filterKeys { it is String }
