@@ -20,6 +20,9 @@
             android:name=".SignUpActivity"
             android:exported="false"/>
         <activity
+            android:name=".FavoriteService"
+            android:exported="false"/>
+        <activity
             android:name=".ShowPlayer"
             android:exported="false" />
         <activity

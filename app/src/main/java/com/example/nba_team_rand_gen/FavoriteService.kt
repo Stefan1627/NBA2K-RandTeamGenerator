@@ -10,12 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class MatchHistory : AppCompatActivity() {
+class FavoriteService: AppCompatActivity() {
+    private lateinit var adapter: StringListAdapter
     private lateinit var recyclerView: RecyclerView
-    private val matchEntries = mutableListOf<Map<String,Any>>()
     private val data = mutableListOf<String>()
     val favorites = mutableSetOf<Int>()
-    private lateinit var adapter: StringListAdapter
+    private val matchEntries = mutableListOf<Map<String,Any>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +23,8 @@ class MatchHistory : AppCompatActivity() {
 
         if (supportActionBar != null) {
             supportActionBar?.elevation = 10F
-            val drawable = ResourcesCompat.getDrawable(resources, R.drawable.action_bar_gradient, theme)
+            val drawable =
+                ResourcesCompat.getDrawable(resources, R.drawable.action_bar_gradient, theme)
             supportActionBar?.setBackgroundDrawable(drawable)
         }
 
@@ -36,11 +37,11 @@ class MatchHistory : AppCompatActivity() {
         )
 
         recyclerView = findViewById<RecyclerView>(R.id.recyclerView).apply {
-            layoutManager = LinearLayoutManager(this@MatchHistory)
-            adapter = this@MatchHistory.adapter
+            layoutManager = LinearLayoutManager(this@FavoriteService)
+            adapter = this@FavoriteService.adapter
         }
 
-        loadMatchesAndFavorites()
+        loadMatches()
 
         val backbtn = findViewById<Button>(R.id.back_btn)
         backbtn.setOnClickListener{
@@ -49,13 +50,7 @@ class MatchHistory : AppCompatActivity() {
         }
     }
 
-    /**
-     * 1. Fetches both "matchesList" and "favoritesList"
-     * 2. Fills `data` and `favorites`
-     * 3. Prints each match + favorite state
-     * 4. Notifies adapter
-     */
-    private fun loadMatchesAndFavorites() {
+    private fun loadMatches() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
             println("Please log in first.")
@@ -68,32 +63,32 @@ class MatchHistory : AppCompatActivity() {
 
         userDoc.get()
             .addOnSuccessListener { snap ->
+                // 1) Load the raw favorites array
                 @Suppress("UNCHECKED_CAST")
-                val matches = snap.get("matchesList") as? List<Map<String,Any>> ?: emptyList()
-
                 val rawFavs = snap.get("favoritesList") as? List<*> ?: emptyList<Any>()
 
+                // 2) Keep only the Map<String,Any> entries
                 val favMaps = rawFavs.mapNotNull { elem ->
-                    when (elem) {
-                        is Map<*,*> -> @Suppress("UNCHECKED_CAST")
-                        (elem as? Map<String,Any>)
-                        else         -> null
-                    }
+                    (elem as? Map<*, *>)
+                        ?.filterKeys { it is String }
+                        ?.mapKeys { it.key as String } as? Map<String, Any>
                 }
 
+                // 3) Remember old size for RecyclerView diff
                 val oldSize = data.size
 
-                matchEntries.clear(); matchEntries.addAll(matches)
-                data.clear(); data.addAll(matches.mapNotNull { it["name"] as? String })
+                // 4) Populate your lists from favMaps
+                matchEntries.clear()
+                matchEntries.addAll(favMaps)
 
-                val newFavs = matches.indices
-                    .filter { idx ->
-                        val e = matches[idx]
-                        favMaps.any { it["name"] == e["name"] && it["data"] == e["data"] }
-                    }
-                    .toSet()
-                favorites.clear(); favorites.addAll(newFavs)
+                data.clear()
+                data.addAll(favMaps.mapNotNull { it["name"] as? String })
 
+                // 5) Since everything you load here is a favorite, mark all indices
+                favorites.clear()
+                favorites.addAll(data.indices)
+
+                // 6) Notify adapter of the changes
                 if (oldSize > 0) {
                     adapter.notifyItemRangeRemoved(0, oldSize)
                 }
@@ -101,12 +96,13 @@ class MatchHistory : AppCompatActivity() {
                     adapter.notifyItemRangeInserted(0, data.size)
                 }
 
+                // 7) Log what you’ve got
                 data.forEachIndexed { idx, name ->
-                    println("$name — favorite: ${favorites.contains(idx)}")
+                    println("$name — favorite: true")
                 }
             }
             .addOnFailureListener { e ->
-                println("Failed to load histories: ${e.message}")
+                println("Failed to load favorites: ${e.message}")
             }
     }
 }

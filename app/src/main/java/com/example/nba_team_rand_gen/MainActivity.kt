@@ -89,7 +89,8 @@ class MainActivity : View.OnClickListener, AppCompatActivity() {
 
         val favbtn = findViewById<Button>(R.id.fav_button)
         favbtn.setOnClickListener {
-            Toast.makeText(this, "Coming soon...", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, FavoriteService::class.java))
+            finish()
         }
     }
 

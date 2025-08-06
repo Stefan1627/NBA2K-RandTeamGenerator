@@ -88,7 +88,7 @@ class ShowPlayer : AppCompatActivity() {
             saveBtn.setOnClickListener {
                 val matchName = input.text.toString().trim()
 
-                MatchHistory.uploadMatch(json, matchName)
+                ManageMatches.uploadMatch(json, matchName)
                     .addOnSuccessListener { code ->
                         if (code == 0) {
                             Toast.makeText(this, "Match \"$matchName\" saved!", Toast.LENGTH_SHORT).show()
