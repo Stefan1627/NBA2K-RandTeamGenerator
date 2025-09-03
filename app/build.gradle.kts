@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.nba_team_rand_gen"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.nba_team_rand_gen"
@@ -39,6 +39,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
+        viewBinding = true
         compose = true
     }
     composeOptions {
@@ -87,4 +88,18 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.firestore.ktx)
     implementation(libs.androidx.recyclerview)
+
+    implementation(libs.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.ui.tooling.preview)
+    debugImplementation(libs.ui.tooling)
+
+    // Navigation for Compose
+    implementation(libs.androidx.navigation.compose)
+
+    // Needed for AndroidViewBinding(...)
+    implementation(libs.androidx.ui.viewbinding)
+
+    // (Optional) Material icons if you use Icons.Default.*
+    implementation(libs.androidx.material.icons.extended)
 }

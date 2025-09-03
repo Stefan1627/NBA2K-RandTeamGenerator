@@ -34,15 +34,4 @@ class LoginActivity: AppCompatActivity() {
             return false
         }
     }
-
-//    override fun onStart() {
-//        super.onStart()
-//        auth.currentUser?.let {
-//            val prefs = getSharedPreferences("session_prefs", MODE_PRIVATE)
-//            if (prefs.getLong("session_expiry", 0L) > System.currentTimeMillis()) {
-//                startActivity(Intent(this, MainActivity::class.java))
-//                finish()
-//            }
-//        }
-//    }
 }

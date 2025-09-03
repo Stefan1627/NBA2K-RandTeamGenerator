@@ -1,32 +1,37 @@
     [versions]
     agp = "8.9.1"
     firebaseAuthKtx = "23.2.1"
-    firebaseBom = "34.0.0"
-    firebaseBomVersion = "34.0.0"
+    firebaseBom = "34.2.0"
+    firebaseBomVersion = "34.2.0"
     firebaseCommon = "22.0.0"
     firebaseFirestoreKtx = "25.1.4"
-kotlin = "2.2.0"
-    coreKtx = "1.16.0"
+    kotlin = "2.2.0"
+    coreKtx = "1.17.0"
     junit = "4.13.2"
-    junitVersion = "1.2.1"
-    espressoCore = "3.6.1"
+    junitVersion = "1.3.0"
+    espressoCore = "3.7.0"
     kotlinxSerializationJson = "1.9.0"
-    lifecycleRuntimeKtx = "2.9.2"
+    lifecycleRuntimeKtx = "2.9.3"
     activityCompose = "1.10.1"
-    composeBom = "2025.07.00"
+    composeBom = "2025.08.01"
     constraintlayout = "2.2.1"
     appcompat = "1.7.1"
-    playServicesBase = "18.7.2"
-playServicesBasement = "18.7.1"
+    navigationCompose = "2.9.3"
+    playServicesBasement = "18.7.1"
     material = "1.12.0"
     activity = "1.10.1"
-playServicesSecurity = "18.0.1"
-recyclerview = "1.4.0"
+    recyclerview = "1.4.0"
 
     [libraries]
     androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 
+
+    androidx-material = { module = "androidx.compose.material:material" }
+    androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+    androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
     androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerview" }
+
+    androidx-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding", version = "1.9.0" }
     firebase-auth-ktx = { module = "com.google.firebase:firebase-auth-ktx", version.ref = "firebaseAuthKtx" }
     #noinspection SimilarGradleDependency
     firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
@@ -45,7 +50,7 @@ recyclerview = "1.4.0"
     androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
     androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
     androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-    androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+    androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version = "1.9.0" }
     androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
     androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
     androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
@@ -53,14 +58,15 @@ recyclerview = "1.4.0"
 
     kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 
-    play-services-base = { module = "com.google.android.gms:play-services-base", version.ref = "playServicesBase" }
     play-services-basement = { group = "com.google.android.gms", name = "play-services-basement", version.ref = "playServicesBasement" }
     material = { group = "com.google.android.material", name = "material", version.ref = "material" }
     androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-    play-services-security = { module = "com.google.android.gms:play-services-security", version.ref = "playServicesSecurity" }
+    ui = { module = "androidx.compose.ui:ui" }
+    ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
+    ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
     [plugins]
-    compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.0.21" }
+    compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version = "2.2.0" }
     android-application = { id = "com.android.application", version.ref = "agp" }
     jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
