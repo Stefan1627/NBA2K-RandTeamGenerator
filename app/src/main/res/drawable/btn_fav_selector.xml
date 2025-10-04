@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- when selected (favorited) -->
+    <item android:state_selected="true"
+        android:drawable="@drawable/fav_sel_svg" />
+    <!-- default (not favorited) -->
+    <item android:drawable="@drawable/fav_unsel_svg" />
+</selector>

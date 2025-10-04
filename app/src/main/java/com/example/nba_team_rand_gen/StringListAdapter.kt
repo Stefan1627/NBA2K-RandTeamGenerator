@@ -24,6 +24,7 @@ class StringListAdapter(
         init {
             btnFavorite.setOnClickListener {
                 if (bindingAdapterPosition != RecyclerView.NO_POSITION) {
+                    btnFavorite.isSelected = !btnFavorite.isSelected
                     onFavoriteClick(bindingAdapterPosition)
                 }
             }
@@ -46,10 +47,11 @@ class StringListAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvString.text = items[position]
-
         holder.divider.visibility =
             if (position == items.size - 1) View.GONE else View.VISIBLE
-        holder.btnFavorite.isSelected = favorites.contains(position)
+
+        val isFav = favorites.contains(position)
+        holder.btnFavorite.isSelected = isFav
     }
 
     override fun getItemCount() = items.size
