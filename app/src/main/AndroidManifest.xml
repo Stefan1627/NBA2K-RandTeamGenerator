@@ -20,9 +20,6 @@
             android:name=".SignUpActivity"
             android:exported="false"/>
         <activity
-            android:name=".ShowPlayer"
-            android:exported="false" />
-        <activity
             android:name=".LoginService"
             android:exported="false" />
         <activity

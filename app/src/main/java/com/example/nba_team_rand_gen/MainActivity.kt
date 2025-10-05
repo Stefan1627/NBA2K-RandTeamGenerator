@@ -1,6 +1,5 @@
 package com.example.nba_team_rand_gen
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -120,11 +119,31 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Navigation(navController: NavHostController) {
         NavHost(navController, startDestination = NavigationItem.Home.route) {
-            composable(NavigationItem.Home.route) { LegacyHomeScreen() }
+            composable(NavigationItem.Home.route) { LegacyHomeScreen(navController) }
             composable(NavigationItem.Favorites.route) { FavoritesScreen() }
             composable(NavigationItem.Explore.route) { MatchHistoryScreen() }
             composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
             composable(NavigationItem.Profile.route){ SimpleTabBody("Profile") }
+
+            composable(
+                route = "showPlayer?teamsJson={teamsJson}",
+                arguments = listOf(
+                    androidx.navigation.navArgument("teamsJson") {
+                        type = androidx.navigation.NavType.StringType
+                        nullable = false
+                    }
+                )
+            ) { backStackEntry ->
+                val json = backStackEntry.arguments?.getString("teamsJson") ?: "[]"
+                ShowPlayerScreen(
+                    json = json,
+                    onBack = { navController.popBackStack() },
+                    onSaved = {
+                        // Go back to Home after a successful save
+                        navController.popBackStack(route = NavigationItem.Home.route, inclusive = false)
+                    }
+                )
+            }
         }
     }
 
@@ -218,8 +237,7 @@ class MainActivity : ComponentActivity() {
      * Embeds your original activity_main.xml and re-applies the same behavior.
      */
     @Composable
-    private fun LegacyHomeScreen() {
-        val context = LocalContext.current
+    private fun LegacyHomeScreen(navController: NavController) {
         AndroidViewBinding(
             factory = ActivityMainBinding::inflate,
             modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
@@ -262,11 +280,137 @@ class MainActivity : ComponentActivity() {
                 val teams: List<PlayerWithTeam> = randomizeGame.randomize(finalType, finalGame)
 
                 val teamsJson = Json.encodeToString(teams)
-                val intent = Intent(root.context, ShowPlayer::class.java).apply {
-                    putExtra("teamsJson", teamsJson)
+                val encoded = android.net.Uri.encode(teamsJson)
+                navController.navigate("showPlayer?teamsJson=$encoded")
+            }
+        }
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun ShowPlayerScreen(
+        json: String,
+        onBack: () -> Unit,
+        onSaved: () -> Unit
+    ) {
+        val context = LocalContext.current
+        val teams: List<PlayerWithTeam> = remember(json) {
+            runCatching { Json.decodeFromString<List<PlayerWithTeam>>(json) }.getOrElse { emptyList() }
+        }
+
+        val half = teams.size / 2
+        val firstTeam = remember(teams) { teams.subList(0, half) }
+        val secondTeam = remember(teams) { teams.subList(half, teams.size) }
+
+        var showDialog by remember { mutableStateOf(false) }
+        var matchName by remember { mutableStateOf("") }
+        var saving by remember { mutableStateOf(false) }
+
+        Scaffold(
+            containerColor = colorResource(R.color.splash_color),
+            contentWindowInsets = WindowInsets.systemBars
+        ) { padding ->
+            androidx.compose.foundation.layout.Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .padding(16.dp)
+            ) {
+                Text(text = stringResource(R.string.first_team), fontSize = 18.sp, color = Color.Red)
+                TeamList(team = firstTeam)
+
+                androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
+
+                Text(text = stringResource(R.string.second_team), fontSize = 18.sp, color = Color.Red)
+                TeamList(team = secondTeam)
+
+                androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
+
+                androidx.compose.foundation.layout.Row {
+                    androidx.compose.material3.OutlinedButton(
+                        onClick = onBack,
+                        modifier = Modifier.weight(1f)
+                    ) { Text("Back") }
+
+                    androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
+
+                    androidx.compose.material3.Button(
+                        onClick = { showDialog = true },
+                        enabled = teams.isNotEmpty() && !saving,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        if (saving) {
+                            androidx.compose.material3.CircularProgressIndicator(
+                                modifier = Modifier,
+                                strokeWidth = 2.dp
+                            )
+                        } else {
+                            Text("Accept")
+                        }
+                    }
                 }
-                root.context.startActivity(intent)
-                (context as? Activity)?.finish()
+            }
+        }
+
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { if (!saving) showDialog = false },
+                title = { Text("Name your match") },
+                text = {
+                    androidx.compose.material3.OutlinedTextField(
+                        value = matchName,
+                        onValueChange = { matchName = it },
+                        label = { Text("Enter match name") },
+                        singleLine = true,
+                        modifier = Modifier
+                            .padding(top = 8.dp)
+                            .windowInsetsPadding(WindowInsets.safeDrawing)
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        enabled = matchName.isNotBlank() && !saving,
+                        onClick = {
+                            saving = true
+                            ManageMatches.uploadMatch(json, matchName.trim())
+                                .addOnSuccessListener { code ->
+                                    saving = false
+                                    if (code == 0) {
+                                        Toast.makeText(
+                                            context,
+                                            "Match \"${matchName.trim()}\" saved!",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        showDialog = false
+                                        onSaved()
+                                    } else {
+                                        Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                                .addOnFailureListener {
+                                    saving = false
+                                    Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
+                                }
+                        }
+                    ) { Text("Save") }
+                },
+                dismissButton = {
+                    TextButton(enabled = !saving, onClick = { showDialog = false }) { Text("Return") }
+                }
+            )
+        }
+    }
+
+    @Composable
+    private fun TeamList(team: List<PlayerWithTeam>) {
+        androidx.compose.foundation.layout.Column {
+            team.forEach { item ->
+                Text(
+                    text = "${item.player.playerName} (${item.player.ovr}) - ${item.teamName}",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(vertical = 4.dp)
+                )
             }
         }
     }
@@ -275,8 +419,6 @@ class MainActivity : ComponentActivity() {
     private fun FavoritesScreen(
         modifier: Modifier = Modifier
     ) {
-        val context = LocalContext.current
-
         // Keep one instance of your data containers and adapter across recompositions
         val data = remember { mutableListOf<String>() }
         val favorites = remember { mutableSetOf<Int>() }
@@ -327,8 +469,6 @@ class MainActivity : ComponentActivity() {
     fun MatchHistoryScreen(
         modifier: Modifier = Modifier
     ) {
-        val context = LocalContext.current
-
         // Remember lists and adapter between recompositions
         val data = remember { mutableListOf<String>() }
         val favorites = remember { mutableSetOf<Int>() }
@@ -404,6 +544,7 @@ class MainActivity : ComponentActivity() {
                 @Suppress("UNCHECKED_CAST")
                 val rawFavs = snap.get("favoritesList") as? List<*> ?: emptyList<Any>()
 
+                @Suppress("UNCHECKED_CAST")
                 val favMaps = rawFavs.mapNotNull { elem ->
                     when (elem) {
                         is Map<*, *> -> (elem as? Map<String, Any>)
@@ -470,7 +611,7 @@ class MainActivity : ComponentActivity() {
                 val favMaps: List<Map<String, Any?>> = rawFavs.mapNotNull { elem ->
                     (elem as? Map<*, *>)          // keep only maps
                         ?.filterKeys { it is String }
-                        ?.mapKeys { it.key as String } as? Map<String, Any?>
+                        ?.mapKeys { it.key as String }
                 }
 
                 val oldSize = data.size
