@@ -402,29 +402,15 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun TeamList(team: List<PlayerWithTeam>) {
-        androidx.compose.foundation.layout.Column {
-            team.forEach { item ->
-                Text(
-                    text = "${item.player.playerName} (${item.player.ovr}) - ${item.teamName}",
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(vertical = 4.dp)
-                )
-            }
-        }
-    }
-
-    @Composable
     private fun FavoritesScreen(
         modifier: Modifier = Modifier
     ) {
-        // Keep one instance of your data containers and adapter across recompositions
+        // Keep one instance of my data containers and adapter across recompositions
         val data = remember { mutableListOf<String>() }
         val favorites = remember { mutableSetOf<Int>() }
         val matchEntries = remember { mutableListOf<Map<String, Any?>>() }
 
-        // Your existing adapter API
+        // My existing adapter API
         val adapter = remember {
             StringListAdapter(
                 items = data,
@@ -454,7 +440,7 @@ class MainActivity : ComponentActivity() {
                     favorites = favorites,
                     matchEntries = matchEntries,
                     notifyInserted = { count ->
-                        // Mirror your old diff notifications
+                        // Mirror my old diff notifications
                         if (count > 0) adapter.notifyItemRangeInserted(0, count)
                     },
                     notifyRemoved = { count ->
@@ -637,6 +623,20 @@ class MainActivity : ComponentActivity() {
             }
     }
 
+    @Composable
+    private fun TeamList(team: List<PlayerWithTeam>) {
+        androidx.compose.foundation.layout.Column {
+            team.forEach { item ->
+                Text(
+                    text = "${item.player.playerName} (${item.player.ovr}) - ${item.teamName}",
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    modifier = Modifier.padding(vertical = 4.dp)
+                )
+            }
+        }
+    }
+    
     // Simple placeholders; replace with real content any time
     @Composable
     private fun SimpleTabBody(label: String) {
