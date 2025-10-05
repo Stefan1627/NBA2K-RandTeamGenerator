@@ -1,55 +1,79 @@
-
 # NBA 2K Random Team Generator
 
-An Android application for generating random NBA teams, designed to make team selection easy and fun for NBA enthusiasts.
+An Android app that generates fair, random NBA teams and lets you save, revisit, and manage matchups — built with **Kotlin**, **Jetpack Compose (Material 3)**, and **Firebase**.
 
-I enjoyed making this application because I learned the basics of kotlin
-and some things about servers and DBMS using MySQL and wampserver for hosting
-my database of players and teams.
+> **Author:** Stefan Calmac  
+> **Android versions:** 24 → 36 (36)  
+> **Gradle versions:** 8.9.3, 
+> **Java/Kotlin:** 17, 2.2.0
 
-## Features
+---
 
-- Randomizes NBA teams for gameplay or other purposes.
-- Clean UI to ensure ease of use.
-- Lightweight and efficient.
+## ✨ Features
 
-## Screenshots
+- **One-tap team randomizer** – Generates balanced teams from your player pool.
+- **Modern UI with Jetpack Compose** – Material 3 design, edge-to-edge layouts, and smooth navigation.
+- **Bottom navigation** – `Home`, `Favorites`, `Explore`, `Post`, `Profile` routes via Navigation-Compose.
+- **Save & manage matches** – Persist matchups and quickly revisit them later.
+- **Auth powered by Firebase** – Email/password sign-in and session handling.
+- **Interoperability** – Uses `AndroidViewBinding` where needed alongside Compose.
+- **Lightweight & fast** – Minimal dependencies, Kotlin-first codebase.
 
+---
+
+## 🧱 Tech Stack
+
+- **Language:** Kotlin
+- **UI:** Jetpack Compose (Material 3), Navigation-Compose
+- **State:** Compose state + `remember`/`mutableStateOf`
+- **Firebase:** Authentication, Cloud Firestore
+- **Serialization:** `kotlinx.serialization` (for `Team` / `PlayerWithTeam` JSON)
+- **InterOp:** `AndroidViewBinding` for existing views, RecyclerView adapter for some lists
+- **Build:** Gradle (KTS/Groovy), Android Gradle Plugin
+
+> Notable files from this repo snapshot:
+> - `MainActivity.kt` – app scaffold, top/bottom bars, Compose navigation host, sign-out dialog
+> - `RandomizeGame.kt` – core team randomization & models (`Team`, likely `PlayerWithTeam`)
+> - `ManageMatches.kt` – saved matches workflow
+> - `LoginActivity.kt`, `LoginService.kt`, `SignUpService.kt` – authentication flows (Firebase)
+> - `NavigationItem.kt` – bottom nav routes + icons
+> - `StringListAdapter.kt` – simple RecyclerView adapter used via view binding interop
+
+---
+
+## 🗺️ App Flow (High-level)
+
+1. **Auth**: Users sign up or sign in with Firebase Auth. Session duration is managed app-side.
+2. **Home**: Entry point with actions to randomize teams.
+3. **Randomize**: Generates two teams; shows a composed screen (`ShowPlayerScreen`) with options to save as a named match.
+4. **Save/Manage Matches**: Persists to Firestore; view and manage in **Matches** (via `ManageMatches.kt`).
+5. **Explore/Favorites/Profile**: Present and planned screens wired into bottom navigation.
+
+---
+
+## 📸 Screenshots
 ![Main Screen](screenshots/screenshot1.jpg)
 
-## Installation
+---
 
-1. Clone the repository or download the ZIP.
-2. Open the project in **Android Studio**.
-3. Sync Gradle to ensure all dependencies are downloaded.
-4. Connect an Android device or start an emulator.
-5. Build and run the application.
+# 🧪 How to Use
+- Sign In / Sign Up with email and password.
+- Tap Randomize to generate two teams.
+- Save the matchup with a memorable name.
+- Find and manage saved matches in the dedicated screen.
+- Navigate between Home, Favorites, Explore, Post, and Profile from the bottom bar.
 
-## Project Structure
+---
 
-- **`app/src/main/`**: Contains the source code and resources for the app.
-  - **Java Files**:
-    - `MainActivity.kt`: The main entry point for the app.
-    - `RandomizeGame.kt`: Handles the team randomization logic.
-    - `ShowPlayer.kt`: Manages player display.
-  - **Resources**:
-    - Layouts: XML files defining the UI (`activity_main.xml`, `activity_show_player.xml`).
-    - Drawables: App icons and other drawable assets.
-    - Values: Strings, themes, and colors used in the app.
-- **`AndroidManifest.xml`**: Describes essential app information.
-- **Gradle Files**: Contains build scripts and dependency configurations.
+# 🚀 Roadmap Ideas
+- Import/export player pools
+- Seeding & fairness options (e.g., positions/ratings)
+- Offline cache of saved matches
+- Dynamic color (Material You) support
+- UI tests and snapshot tests
 
-## Prerequisites
+---
 
-- Android Studio Dolphin or later.
-- Minimum Android SDK version 21.
+# 🤝 Contributing
 
-## How to Use
-
-1. Launch the app on your device.
-2. Select options for randomization (if applicable).
-3. Generate teams with a single tap.
-
-## Contributing
-
-Feel free to fork this project, make improvements, and create pull requests. Contributions are always welcome!
+Contributions and suggestions are welcome! Feel free to open an issue or a pull request.

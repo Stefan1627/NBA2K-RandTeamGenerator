@@ -636,7 +636,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-    
+
     // Simple placeholders; replace with real content any time
     @Composable
     private fun SimpleTabBody(label: String) {

@@ -15,7 +15,7 @@ android {
     defaultConfig {
         applicationId = "com.example.nba_team_rand_gen"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
