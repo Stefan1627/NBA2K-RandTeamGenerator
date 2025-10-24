@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#F4F4F4</color>
     <color name="splash_color">#1A1A1A</color>
+    <color name="menu_color">#262626</color>
     <color name="red">#FF0000</color>
 </resources>

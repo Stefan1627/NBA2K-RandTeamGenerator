@@ -3,9 +3,6 @@ package com.example.nba_team_rand_gen
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -46,33 +43,36 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nba_team_rand_gen.databinding.ActivityMainBinding
+import com.example.nba_team_rand_gen.data.model.PlayerWithTeam
 import com.example.nba_team_rand_gen.databinding.ActivityShowMatchesBinding
+import com.example.nba_team_rand_gen.ui.screens.home.HomeScreen
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.serialization.json.Json
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        auth = FirebaseAuth.getInstance()
 
         setContent {
+            // 1) luam VM-ul aici
+            val authVm: com.example.nba_team_rand_gen.ui.auth.AuthViewModel =
+                androidx.lifecycle.viewmodel.compose.viewModel(factory = com.example.nba_team_rand_gen.ui.auth.AuthViewModel.Factory)
+
             MaterialTheme {
                 MainScreen(
                     onConfirmSignOut = {
-                        FirebaseAuth.getInstance().signOut()
-                        startActivity(
-                            Intent(this, LoginActivity::class.java).apply {
-                                flags =
-                                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            }
-                        )
-                        finish()
+                        // 2) delegam semnarea la VM, apoi navigam spre LoginActivity
+                        authVm.signOut {
+                            startActivity(
+                                Intent(this, LoginActivity::class.java).apply {
+                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                }
+                            )
+                            finish()
+                        }
                     }
                 )
             }
@@ -119,7 +119,12 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun Navigation(navController: NavHostController) {
         NavHost(navController, startDestination = NavigationItem.Home.route) {
-            composable(NavigationItem.Home.route) { LegacyHomeScreen(navController) }
+            composable(NavigationItem.Home.route) {
+                // folosim HomeScreen nou; route-ul pentru ShowPlayer se construieste in HomeScreen
+                HomeScreen(
+                    onNavigateShowRoute = { route -> navController.navigate(route) }
+                )
+            }
             composable(NavigationItem.Favorites.route) { FavoritesScreen() }
             composable(NavigationItem.Explore.route) { MatchHistoryScreen() }
             composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
@@ -229,59 +234,6 @@ class MainActivity : ComponentActivity() {
                     },
                     label = { Text(text = item.title) },
                 )
-            }
-        }
-    }
-
-    /**
-     * Embeds your original activity_main.xml and re-applies the same behavior.
-     */
-    @Composable
-    private fun LegacyHomeScreen(navController: NavController) {
-        AndroidViewBinding(
-            factory = ActivityMainBinding::inflate,
-            modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing)
-        ) {
-            // ----- TYPE SPINNER -----
-            val typeOptions = arrayOf("All", "Current", "Classic", "All-time")
-            val typeAdapter = ArrayAdapter(root.context, R.layout.spinner_list, typeOptions).apply {
-                setDropDownViewResource(R.layout.spinner_list)
-            }
-            chooseType.adapter = typeAdapter
-            var finalType = typeOptions.getOrElse(chooseType.selectedItemPosition) { "All" }
-            chooseType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
-                ) { finalType = typeOptions[position] }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Toast.makeText(root.context, "nothing selected", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            // ----- GAME TYPE SPINNER -----
-            val gameOptions = arrayOf("1vs1", "2vs2", "3vs3", "4vs4", "5vs5")
-            val gameAdapter = ArrayAdapter(root.context, R.layout.spinner_list, gameOptions).apply {
-                setDropDownViewResource(R.layout.spinner_list)
-            }
-            chooseGameType.adapter = gameAdapter
-            var finalGame = gameOptions.getOrElse(chooseGameType.selectedItemPosition) { "1vs1" }
-            chooseGameType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
-                ) { finalGame = gameOptions[position] }
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-                    Toast.makeText(root.context, "nothing selected", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            // ----- BUTTONS -----
-            randomButton.setOnClickListener {
-                val randomizeGame = RandomizeGame(root.context)
-                val teams: List<PlayerWithTeam> = randomizeGame.randomize(finalType, finalGame)
-
-                val teamsJson = Json.encodeToString(teams)
-                val encoded = android.net.Uri.encode(teamsJson)
-                navController.navigate("showPlayer?teamsJson=$encoded")
             }
         }
     }

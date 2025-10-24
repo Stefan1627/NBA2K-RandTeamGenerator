@@ -1,33 +1,12 @@
 package com.example.nba_team_rand_gen
 
 import android.content.Context
+import com.example.nba_team_rand_gen.data.model.Player
+import com.example.nba_team_rand_gen.data.model.PlayerWithTeam
+import com.example.nba_team_rand_gen.data.model.Team
 import kotlin.random.Random
 import kotlinx.serialization.*
 import kotlinx.serialization.json.*
-
-@Serializable
-data class Team(
-    val id: Int,
-    @SerialName("team_name")
-    val teamName: String = "Unknown",
-    val type: String
-)
-
-@Serializable
-data class Player(
-    val id: Int,
-    @SerialName("player_name")
-    val playerName: String,
-    val ovr: Int,
-    @SerialName("team_id")
-    val teamId: Int
-)
-
-@Serializable
-data class PlayerWithTeam(
-    val player: Player,
-    val teamName: String
-)
 
 class RandomizeGame(private val context: Context) {
     private fun loadTeamsJson(): String =

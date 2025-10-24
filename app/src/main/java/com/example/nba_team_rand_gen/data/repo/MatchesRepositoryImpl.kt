@@ -1,0 +1,30 @@
+package com.example.nba_team_rand_gen.data.repo
+
+import com.example.nba_team_rand_gen.data.firebase.MatchesRemoteDataSource
+import com.example.nba_team_rand_gen.data.model.Match
+import com.example.nba_team_rand_gen.data.model.PlayerWithTeam
+import com.example.nba_team_rand_gen.domain.repo.MatchesRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.serialization.json.Json
+
+class MatchesRepositoryImpl(
+    private val remote: MatchesRemoteDataSource
+) : MatchesRepository {
+
+    override suspend fun saveMatch(name: String, teams: List<PlayerWithTeam>) {
+        val json = Json.encodeToString(teams)
+        remote.createMatch(name, json)
+    }
+
+    override fun favorites(): Flow<List<Match>> = remote.favoritesFlow()
+
+    override fun history(): Flow<List<Match>> = remote.historyFlow()
+
+    override suspend fun toggleFavorite(matchId: String) {
+        remote.toggleFavorite(matchId)
+    }
+
+    override suspend fun deleteMatch(matchId: String) {
+        remote.deleteMatch(matchId)
+    }
+}

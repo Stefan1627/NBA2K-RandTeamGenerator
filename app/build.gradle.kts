@@ -78,6 +78,10 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.common)
     implementation(platform(libs.firebase.bom.v3270))
+    implementation(libs.androidx.compose.runtime)
+    implementation(libs.androidx.compose.foundation)
+    implementation(libs.androidx.compose.ui)
+    implementation(libs.androidx.compose.ui.unit)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -93,6 +97,8 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
+
+    implementation("com.composables:core:1.46.1")
 
     // Navigation for Compose
     implementation(libs.androidx.navigation.compose)
