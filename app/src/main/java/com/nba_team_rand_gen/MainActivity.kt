@@ -55,6 +55,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerScreen
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerViewModel
 import com.nba_team_rand_gen.ui.auth.AuthViewModel
+import com.nba_team_rand_gen.ui.screens.favorites.FavoritesFactory
+import com.nba_team_rand_gen.ui.screens.favorites.FavoritesScreen
+import com.nba_team_rand_gen.ui.screens.favorites.FavoritesViewModel
+import com.nba_team_rand_gen.ui.screens.history.HistoryFactory
+import com.nba_team_rand_gen.ui.screens.history.HistoryScreen
+import com.nba_team_rand_gen.ui.screens.history.HistoryViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -130,8 +136,28 @@ class MainActivity : ComponentActivity() {
                     onNavigateShowRoute = { route -> navController.navigate(route) }
                 )
             }
-            composable(NavigationItem.Favorites.route) { FavoritesScreen() }
-            composable(NavigationItem.Explore.route) { MatchHistoryScreen() }
+            composable(NavigationItem.Favorites.route) { backStackEntry ->
+                val remote = remember(backStackEntry) { MatchesRemoteDataSource() }
+                val repo   = remember(remote) { MatchesRepositoryImpl(remote) }
+                val vm: FavoritesViewModel = viewModel(
+                    viewModelStoreOwner = backStackEntry,
+                    factory = FavoritesFactory(repo)
+                )
+
+                // Your Compose screen (no description click version)
+                FavoritesScreen(vm = vm)
+            }
+            composable(NavigationItem.Explore.route) { backStackEntry ->
+                val remote = remember(backStackEntry) { MatchesRemoteDataSource() }
+                val repo   = remember(remote) { MatchesRepositoryImpl(remote) }
+                val vm: HistoryViewModel = viewModel(
+                    viewModelStoreOwner = backStackEntry,
+                    factory = HistoryFactory(repo)
+                )
+
+                // Your Compose screen (no description click version)
+                HistoryScreen(vm = vm)
+            }
             composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
             composable(NavigationItem.Profile.route){ SimpleTabBody("Profile") }
 
@@ -246,110 +272,6 @@ class MainActivity : ComponentActivity() {
                         )
                     },
                     label = { Text(text = item.title) },
-                )
-            }
-        }
-    }
-
-    @Composable
-    private fun FavoritesScreen(
-        modifier: Modifier = Modifier
-    ) {
-        // Keep one instance of my data containers and adapter across recompositions
-        val data = remember { mutableListOf<String>() }
-        val favorites = remember { mutableSetOf<Int>() }
-        val matchEntries = remember { mutableListOf<Map<String, Any?>>() }
-
-        // My existing adapter API
-        val adapter = remember {
-            StringListAdapter(
-                items = data,
-                favorites = favorites,
-                onFavoriteClick = { pos -> ManageMatches.toggleFavorite(pos) },
-                onTrashClick = { pos -> ManageMatches.deleteMatch(pos) },
-                onDescriptionClick = { pos -> ManageMatches.descriptionShow(pos) }
-            )
-        }
-
-        // Inflate the legacy XML and bind everything
-        AndroidViewBinding(
-            factory = ActivityShowMatchesBinding::inflate,
-            modifier = modifier.windowInsetsPadding(WindowInsets.safeDrawing)
-        ) {
-            // Set up RecyclerView once
-            if (recyclerView.adapter !== adapter) {
-                recyclerView.layoutManager = LinearLayoutManager(root.context)
-                recyclerView.adapter = adapter
-            }
-
-            // Avoid reloading on every recomposition — tag the view once loaded
-            if (recyclerView.tag != "loaded") {
-                recyclerView.tag = "loaded"
-                loadFavorites(
-                    data = data,
-                    favorites = favorites,
-                    matchEntries = matchEntries,
-                    notifyInserted = { count ->
-                        // Mirror my old diff notifications
-                        if (count > 0) adapter.notifyItemRangeInserted(0, count)
-                    },
-                    notifyRemoved = { count ->
-                        if (count > 0) adapter.notifyItemRangeRemoved(0, count)
-                    }
-                )
-            }
-        }
-    }
-
-    @Composable
-    fun MatchHistoryScreen(
-        modifier: Modifier = Modifier
-    ) {
-        // Remember lists and adapter between recompositions
-        val data = remember { mutableListOf<String>() }
-        val favorites = remember { mutableSetOf<Int>() }
-        val matchEntries = remember { mutableListOf<Map<String, Any?>>() }
-
-        val adapter = remember {
-            StringListAdapter(
-                items = data,
-                favorites = favorites,
-                onFavoriteClick = { pos -> ManageMatches.toggleFavorite(pos) },
-                onTrashClick = { pos -> ManageMatches.deleteMatch(pos) },
-                onDescriptionClick = { pos -> ManageMatches.descriptionShow(pos) }
-            )
-        }
-
-        AndroidViewBinding(
-            factory = ActivityShowMatchesBinding::inflate,
-            modifier = modifier.windowInsetsPadding(WindowInsets.safeDrawing)
-        ) {
-            // Setup RecyclerView
-            if (recyclerView.adapter !== adapter) {
-                recyclerView.layoutManager = LinearLayoutManager(root.context)
-                recyclerView.adapter = adapter
-            }
-
-            ManageMatches.bind(
-                entries = matchEntries,
-                favs = favorites,
-                adapterRef = adapter,
-                context = root.context
-            )
-
-            // Avoid multiple reloads
-            if (recyclerView.tag != "loaded") {
-                recyclerView.tag = "loaded"
-                loadMatchesAndFavorites(
-                    data = data,
-                    favorites = favorites,
-                    matchEntries = matchEntries,
-                    notifyRemoved = { count ->
-                        if (count > 0) adapter.notifyItemRangeRemoved(0, count)
-                    },
-                    notifyInserted = { count ->
-                        if (count > 0) adapter.notifyItemRangeInserted(0, count)
-                    }
                 )
             }
         }

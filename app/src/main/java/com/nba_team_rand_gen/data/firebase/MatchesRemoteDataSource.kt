@@ -1,5 +1,6 @@
 package com.nba_team_rand_gen.data.firebase
 
+import android.util.Log
 import com.nba_team_rand_gen.data.model.Match
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
@@ -51,7 +52,12 @@ class MatchesRemoteDataSource(
             .whereEqualTo("favorite", true)
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snap, err ->
-                if (err != null) { trySend(emptyList()); return@addSnapshotListener }
+                if (err != null) {
+                    // 🔎 Log it so you see the “create index” link in Logcat
+                    Log.e("FavoritesRepo", "favoritesFlow error", err)
+                    trySend(emptyList())
+                    return@addSnapshotListener
+                }
                 val list = snap?.documents.orEmpty().map { d ->
                     Match(
                         id = d.id,
