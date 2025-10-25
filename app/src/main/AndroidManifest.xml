@@ -17,13 +17,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.nba_team_rand_gen.SignUpActivity"
             android:exported="false"/>
         <activity
-            android:name=".LoginService"
+            android:name="com.nba_team_rand_gen.LoginService"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.nba_team_rand_gen.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.NBA_Team_Rand_Gen">
             <intent-filter>
@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.nba_team_rand_gen.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NBA_Team_Rand_Gen">
         </activity>

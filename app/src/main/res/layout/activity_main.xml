@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context = ".MainActivity">
+    tools:context = "com.nba_team_rand_gen.MainActivity">
 
     <Button
         android:id="@+id/random_button"

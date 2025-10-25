@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.nba_team_rand_gen"
+    namespace = "com.nba_team_rand_gen"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.nba_team_rand_gen"
+        applicationId = "com.nba_team_rand_gen"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
