@@ -18,5 +18,5 @@ class AuthDataSource(
     fun uidOrThrow(): String =
         auth.currentUser?.uid ?: throw IllegalStateException("User not logged in")
 
-    suspend fun signOut() = auth.signOut()
+    fun signOut() = auth.signOut()
 }

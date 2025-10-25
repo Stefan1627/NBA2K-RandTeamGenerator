@@ -1,4 +1,6 @@
-package com.example.nba_team_rand_gen
+package com.example.nba_team_rand_gen.ui.nav
+
+import com.example.nba_team_rand_gen.R
 
 sealed class NavigationItem(var route: String, var icon: Int, var title: String) {
     data object Home : NavigationItem("home", R.drawable.ic_home_svg, "Home")

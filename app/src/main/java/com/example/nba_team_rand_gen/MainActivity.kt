@@ -3,7 +3,6 @@ package com.example.nba_team_rand_gen
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -27,7 +26,6 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -36,19 +34,26 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidViewBinding
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType.Companion.StringType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nba_team_rand_gen.data.model.PlayerWithTeam
+import com.example.nba_team_rand_gen.data.firebase.MatchesRemoteDataSource
+import com.example.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
 import com.example.nba_team_rand_gen.databinding.ActivityShowMatchesBinding
+import com.example.nba_team_rand_gen.ui.nav.NavigationItem
 import com.example.nba_team_rand_gen.ui.screens.home.HomeScreen
+import com.example.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerFactory
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.serialization.json.Json
+import com.example.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerScreen
+import com.example.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -57,9 +62,8 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            // 1) luam VM-ul aici
             val authVm: com.example.nba_team_rand_gen.ui.auth.AuthViewModel =
-                androidx.lifecycle.viewmodel.compose.viewModel(factory = com.example.nba_team_rand_gen.ui.auth.AuthViewModel.Factory)
+                viewModel(factory = com.example.nba_team_rand_gen.ui.auth.AuthViewModel.Factory)
 
             MaterialTheme {
                 MainScreen(
@@ -133,20 +137,25 @@ class MainActivity : ComponentActivity() {
             composable(
                 route = "showPlayer?teamsJson={teamsJson}",
                 arguments = listOf(
-                    androidx.navigation.navArgument("teamsJson") {
-                        type = androidx.navigation.NavType.StringType
+                    navArgument("teamsJson") {
+                        type = StringType
                         nullable = false
                     }
                 )
             ) { backStackEntry ->
-                val json = backStackEntry.arguments?.getString("teamsJson") ?: "[]"
+                val remote = remember(backStackEntry) { MatchesRemoteDataSource() }
+                val repo   = remember(remote) { MatchesRepositoryImpl(remote) }
+                val vm: ShowPlayerViewModel = viewModel(
+                    viewModelStoreOwner = backStackEntry,
+                    factory = ShowPlayerFactory(repo)
+                )
+
                 ShowPlayerScreen(
-                    json = json,
                     onBack = { navController.popBackStack() },
                     onSaved = {
-                        // Go back to Home after a successful save
                         navController.popBackStack(route = NavigationItem.Home.route, inclusive = false)
-                    }
+                    },
+                    vm = vm
                 )
             }
         }
@@ -238,120 +247,120 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    fun ShowPlayerScreen(
-        json: String,
-        onBack: () -> Unit,
-        onSaved: () -> Unit
-    ) {
-        val context = LocalContext.current
-        val teams: List<PlayerWithTeam> = remember(json) {
-            runCatching { Json.decodeFromString<List<PlayerWithTeam>>(json) }.getOrElse { emptyList() }
-        }
-
-        val half = teams.size / 2
-        val firstTeam = remember(teams) { teams.subList(0, half) }
-        val secondTeam = remember(teams) { teams.subList(half, teams.size) }
-
-        var showDialog by remember { mutableStateOf(false) }
-        var matchName by remember { mutableStateOf("") }
-        var saving by remember { mutableStateOf(false) }
-
-        Scaffold(
-            containerColor = colorResource(R.color.splash_color),
-            contentWindowInsets = WindowInsets.systemBars
-        ) { padding ->
-            androidx.compose.foundation.layout.Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .padding(16.dp)
-            ) {
-                Text(text = stringResource(R.string.first_team), fontSize = 18.sp, color = Color.Red)
-                TeamList(team = firstTeam)
-
-                androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
-
-                Text(text = stringResource(R.string.second_team), fontSize = 18.sp, color = Color.Red)
-                TeamList(team = secondTeam)
-
-                androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
-
-                androidx.compose.foundation.layout.Row {
-                    androidx.compose.material3.OutlinedButton(
-                        onClick = onBack,
-                        modifier = Modifier.weight(1f)
-                    ) { Text("Back") }
-
-                    androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
-
-                    androidx.compose.material3.Button(
-                        onClick = { showDialog = true },
-                        enabled = teams.isNotEmpty() && !saving,
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        if (saving) {
-                            androidx.compose.material3.CircularProgressIndicator(
-                                modifier = Modifier,
-                                strokeWidth = 2.dp
-                            )
-                        } else {
-                            Text("Accept")
-                        }
-                    }
-                }
-            }
-        }
-
-        if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { if (!saving) showDialog = false },
-                title = { Text("Name your match") },
-                text = {
-                    androidx.compose.material3.OutlinedTextField(
-                        value = matchName,
-                        onValueChange = { matchName = it },
-                        label = { Text("Enter match name") },
-                        singleLine = true,
-                        modifier = Modifier
-                            .padding(top = 8.dp)
-                            .windowInsetsPadding(WindowInsets.safeDrawing)
-                    )
-                },
-                confirmButton = {
-                    TextButton(
-                        enabled = matchName.isNotBlank() && !saving,
-                        onClick = {
-                            saving = true
-                            ManageMatches.uploadMatch(json, matchName.trim())
-                                .addOnSuccessListener { code ->
-                                    saving = false
-                                    if (code == 0) {
-                                        Toast.makeText(
-                                            context,
-                                            "Match \"${matchName.trim()}\" saved!",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                        showDialog = false
-                                        onSaved()
-                                    } else {
-                                        Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
-                                    }
-                                }
-                                .addOnFailureListener {
-                                    saving = false
-                                    Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
-                                }
-                        }
-                    ) { Text("Save") }
-                },
-                dismissButton = {
-                    TextButton(enabled = !saving, onClick = { showDialog = false }) { Text("Return") }
-                }
-            )
-        }
-    }
+//    @OptIn(ExperimentalMaterial3Api::class)
+//    @Composable
+//    fun ShowPlayerScreen(
+//        json: String,
+//        onBack: () -> Unit,
+//        onSaved: () -> Unit
+//    ) {
+//        val context = LocalContext.current
+//        val teams: List<PlayerWithTeam> = remember(json) {
+//            runCatching { Json.decodeFromString<List<PlayerWithTeam>>(json) }.getOrElse { emptyList() }
+//        }
+//
+//        val half = teams.size / 2
+//        val firstTeam = remember(teams) { teams.subList(0, half) }
+//        val secondTeam = remember(teams) { teams.subList(half, teams.size) }
+//
+//        var showDialog by remember { mutableStateOf(false) }
+//        var matchName by remember { mutableStateOf("") }
+//        var saving by remember { mutableStateOf(false) }
+//
+//        Scaffold(
+//            containerColor = colorResource(R.color.splash_color),
+//            contentWindowInsets = WindowInsets.systemBars
+//        ) { padding ->
+//            androidx.compose.foundation.layout.Column(
+//                modifier = Modifier
+//                    .padding(padding)
+//                    .windowInsetsPadding(WindowInsets.safeDrawing)
+//                    .padding(16.dp)
+//            ) {
+//                Text(text = stringResource(R.string.first_team), fontSize = 18.sp, color = Color.Red)
+//                TeamList(team = firstTeam)
+//
+//                androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
+//
+//                Text(text = stringResource(R.string.second_team), fontSize = 18.sp, color = Color.Red)
+//                TeamList(team = secondTeam)
+//
+//                androidx.compose.foundation.layout.Spacer(Modifier.weight(1f))
+//
+//                androidx.compose.foundation.layout.Row {
+//                    androidx.compose.material3.OutlinedButton(
+//                        onClick = onBack,
+//                        modifier = Modifier.weight(1f)
+//                    ) { Text("Back") }
+//
+//                    androidx.compose.foundation.layout.Spacer(Modifier.padding(8.dp))
+//
+//                    androidx.compose.material3.Button(
+//                        onClick = { showDialog = true },
+//                        enabled = teams.isNotEmpty() && !saving,
+//                        modifier = Modifier.weight(1f)
+//                    ) {
+//                        if (saving) {
+//                            androidx.compose.material3.CircularProgressIndicator(
+//                                modifier = Modifier,
+//                                strokeWidth = 2.dp
+//                            )
+//                        } else {
+//                            Text("Accept")
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        if (showDialog) {
+//            AlertDialog(
+//                onDismissRequest = { if (!saving) showDialog = false },
+//                title = { Text("Name your match") },
+//                text = {
+//                    androidx.compose.material3.OutlinedTextField(
+//                        value = matchName,
+//                        onValueChange = { matchName = it },
+//                        label = { Text("Enter match name") },
+//                        singleLine = true,
+//                        modifier = Modifier
+//                            .padding(top = 8.dp)
+//                            .windowInsetsPadding(WindowInsets.safeDrawing)
+//                    )
+//                },
+//                confirmButton = {
+//                    TextButton(
+//                        enabled = matchName.isNotBlank() && !saving,
+//                        onClick = {
+//                            saving = true
+//                            ManageMatches.uploadMatch(json, matchName.trim())
+//                                .addOnSuccessListener { code ->
+//                                    saving = false
+//                                    if (code == 0) {
+//                                        Toast.makeText(
+//                                            context,
+//                                            "Match \"${matchName.trim()}\" saved!",
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
+//                                        showDialog = false
+//                                        onSaved()
+//                                    } else {
+//                                        Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
+//                                    }
+//                                }
+//                                .addOnFailureListener {
+//                                    saving = false
+//                                    Toast.makeText(context, "Save failed.", Toast.LENGTH_LONG).show()
+//                                }
+//                        }
+//                    ) { Text("Save") }
+//                },
+//                dismissButton = {
+//                    TextButton(enabled = !saving, onClick = { showDialog = false }) { Text("Return") }
+//                }
+//            )
+//        }
+//    }
 
     @Composable
     private fun FavoritesScreen(
@@ -573,20 +582,6 @@ class MainActivity : ComponentActivity() {
             .addOnFailureListener { e ->
                 Log.e("FavoritesScreen", "Failed to load favorites", e)
             }
-    }
-
-    @Composable
-    private fun TeamList(team: List<PlayerWithTeam>) {
-        androidx.compose.foundation.layout.Column {
-            team.forEach { item ->
-                Text(
-                    text = "${item.player.playerName} (${item.player.ovr}) - ${item.teamName}",
-                    color = Color.White,
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(vertical = 4.dp)
-                )
-            }
-        }
     }
 
     // Simple placeholders; replace with real content any time

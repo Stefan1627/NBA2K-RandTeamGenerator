@@ -1,5 +1,6 @@
 package com.example.nba_team_rand_gen.ui.screens.showplayer
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,10 +26,11 @@ class ShowPlayerViewModel(
     private val repo: MatchesRepository
 ) : ViewModel() {
 
-    private val json = savedStateHandle.get<String>("teamsJson") ?: "[]"
-    private val parsed = runCatching {
-        Json.decodeFromString<List<PlayerWithTeam>>(json) }
-            .getOrDefault(emptyList())
+    private val json: String = savedStateHandle.get<String>("teamsJson") ?: "[]"
+
+    private val parsed: List<PlayerWithTeam> = runCatching {
+        Json.decodeFromString<List<PlayerWithTeam>>(json)
+    }.getOrDefault(emptyList())
 
     private val _state = MutableStateFlow(ShowPlayerUiState(teams = parsed))
     val state: StateFlow<ShowPlayerUiState> = _state

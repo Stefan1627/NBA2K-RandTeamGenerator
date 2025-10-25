@@ -8,7 +8,6 @@ class RandomizeTeamsUseCase(
     private val app: Application
 ) {
     operator fun invoke(type: String, game: String): List<PlayerWithTeam> {
-        // Application e un context sigur (nu se leaga de un ecran)
         return RandomizeGame(app).randomize(type, game)
     }
 }

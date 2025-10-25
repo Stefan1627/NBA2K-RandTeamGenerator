@@ -98,7 +98,7 @@ dependencies {
     implementation(libs.ui.tooling.preview)
     debugImplementation(libs.ui.tooling)
 
-    implementation("com.composables:core:1.46.1")
+    implementation(libs.core)
 
     // Navigation for Compose
     implementation(libs.androidx.navigation.compose)
