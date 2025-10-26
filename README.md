@@ -1,4 +1,5 @@
 # NBA 2K Random Team Generator
+### Readme needs an update
 
 An Android app that generates fair, random NBA teams and lets you save, revisit, and manage matchups — built with **Kotlin**, **Jetpack Compose (Material 3)**, and **Firebase**.
 
