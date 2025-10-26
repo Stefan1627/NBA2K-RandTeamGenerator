@@ -1,6 +1,5 @@
 package com.nba_team_rand_gen
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,6 +21,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -30,12 +30,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nba_team_rand_gen.ui.nav.NavigationItem
 import com.nba_team_rand_gen.ui.auth.AuthViewModel
+import com.nba_team_rand_gen.ui.auth.LoginScreen
+import com.nba_team_rand_gen.ui.auth.SignUpScreen
 import com.nba_team_rand_gen.ui.nav.Navigation
 
 class MainActivity : ComponentActivity() {
@@ -47,20 +50,30 @@ class MainActivity : ComponentActivity() {
         setContent {
             val authVm: AuthViewModel =
                 viewModel(factory = AuthViewModel.Companion.Factory)
+            val loggedIn by authVm.isLoggedIn.collectAsStateWithLifecycle()
+
+            var showSignUp by rememberSaveable { mutableStateOf(false) }
 
             MaterialTheme {
-                MainScreen(
-                    onConfirmSignOut = {
-                        authVm.signOut {
-                            startActivity(
-                                Intent(this, LoginActivity::class.java).apply {
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                }
-                            )
-                            finish()
-                        }
+                if (!loggedIn) {
+                    if (showSignUp) {
+                        SignUpScreen(
+                            onSignInClick = { showSignUp = false }
+                        )
+                    } else {
+                        LoginScreen(
+                            onLoggedIn = {},
+                            onCreateAccount = { showSignUp = true }
+                        )
                     }
-                )
+                } else {
+
+                    MainScreen(
+                        onConfirmSignOut = {
+                            authVm.signOut()
+                        }
+                    )
+                }
             }
         }
     }
