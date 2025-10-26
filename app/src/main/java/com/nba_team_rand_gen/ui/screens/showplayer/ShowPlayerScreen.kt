@@ -83,14 +83,18 @@ fun ShowPlayerScreen(
             text = {
                 OutlinedTextField(
                     value = s.matchName,
-                    onValueChange = vm::updateName,
+                    onValueChange = { new -> vm.updateName(new.take(21)) },
                     label = { Text("Enter match name") },
                     singleLine = true,
+                    supportingText = { Text("${s.matchName.length}/21") },
                     colors = OutlinedTextFieldDefaults.colors(
                         unfocusedBorderColor = Color.White,
                         focusedBorderColor = Color.White,
                         unfocusedTextColor = Color.LightGray,
-                        focusedTextColor = Color.White
+                        focusedTextColor = Color.White,
+                        focusedLabelColor = Color.White,
+                        unfocusedLabelColor = Color.White,
+                        cursorColor = Color.Red
                     )
                 )
             },
