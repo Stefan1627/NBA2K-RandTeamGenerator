@@ -1,10 +1,12 @@
 package com.nba_team_rand_gen.ui.screens.home
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.usecase.RandomizeTeamsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 
 data class HomeUiState(
@@ -31,9 +33,11 @@ class HomeViewModel(
             is HomeEvent.OnType -> _state.update { it.copy(type = e.v) }
             is HomeEvent.OnGame -> _state.update { it.copy(game = e.v) }
             HomeEvent.Randomize -> {
-                val teams = randomize(_state.value.type, _state.value.game)
-                val json = Json.encodeToString(teams)
-                _state.update { it.copy(navigateToShow = json) }
+                viewModelScope.launch {
+                    val teams = randomize(_state.value.type, _state.value.game)
+                    val json = Json.encodeToString(teams)
+                    _state.update { it.copy(navigateToShow = json) }
+                }
             }
             HomeEvent.NavConsumed -> _state.update { it.copy(navigateToShow = null) }
         }
