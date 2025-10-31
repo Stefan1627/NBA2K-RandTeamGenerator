@@ -24,7 +24,7 @@ class SessionManager private constructor(
         scope.launch {
             while (isActive) {
                 _isValid.value = checkValid()
-                delay(5_000) // tune as you like
+                delay(5_000)
             }
         }
     }

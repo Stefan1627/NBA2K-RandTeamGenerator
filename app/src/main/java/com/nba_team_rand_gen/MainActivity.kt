@@ -33,6 +33,8 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nba_team_rand_gen.ui.nav.NavigationItem
@@ -176,17 +178,24 @@ class MainActivity : ComponentActivity() {
             containerColor = colorResource(id = R.color.splash_color)
         ) {
             val navBackStackEntry by navController.currentBackStackEntryAsState()
-            val currentRoute = navBackStackEntry?.destination?.route
+            val currentDestination = navBackStackEntry?.destination
             items.forEach { item ->
+                val isSelected = currentDestination
+                    ?.hierarchy
+                    ?.any { it.route == item.route } == true
+
                 NavigationBarItem(
-                    selected = currentRoute == item.route,
+                    selected = isSelected,
                     onClick = {
-                        navController.navigate(item.route) {
-                            navController.graph.startDestinationRoute?.let { route ->
-                                popUpTo(route) { saveState = true }
+                        val popped = navController.popBackStack(item.route, inclusive = false)
+                        if (!popped) {
+                            navController.navigate(item.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                            launchSingleTop = true
-                            restoreState = true
                         }
                     },
                     icon = {

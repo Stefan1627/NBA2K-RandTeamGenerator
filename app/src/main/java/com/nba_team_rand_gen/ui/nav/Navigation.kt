@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.nba_team_rand_gen.data.firebase.MatchesRemoteDataSource
+import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
 import com.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesFactory
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesScreen
@@ -22,6 +23,9 @@ import com.nba_team_rand_gen.ui.screens.history.HistoryFactory
 import com.nba_team_rand_gen.ui.screens.history.HistoryScreen
 import com.nba_team_rand_gen.ui.screens.history.HistoryViewModel
 import com.nba_team_rand_gen.ui.screens.home.HomeScreen
+import com.nba_team_rand_gen.ui.screens.profile.ProfileScreen
+import com.nba_team_rand_gen.ui.screens.profile.ProfileViewModel
+import com.nba_team_rand_gen.ui.screens.profile.ProfileViewModelFactory
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerFactory
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerScreen
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerViewModel
@@ -55,7 +59,18 @@ fun Navigation(navController: NavHostController) {
             HistoryScreen(vm = vm)
         }
         composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
-        composable(NavigationItem.Profile.route){ SimpleTabBody("Profile") }
+        composable(NavigationItem.Profile.route){ backStackEntry ->
+            val vm: ProfileViewModel = viewModel(
+                viewModelStoreOwner = backStackEntry,
+                factory = ProfileViewModelFactory(AuthRepositoryImpl())
+            )
+            ProfileScreen(
+                vm = vm,
+                onHistoryClick = { navController.navigate(NavigationItem.Explore.route) },
+                onMyPostsClick = { navController.navigate(NavigationItem.Post.route) },
+                onEditProfileClick = { /* TODO: navigate to EditProfile when available */ }
+            )
+        }
 
         composable(
             route = "showPlayer?teamsJson={teamsJson}",
