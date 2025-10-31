@@ -1,17 +1,26 @@
 package com.nba_team_rand_gen.ui.nav
 
+import android.app.Activity
+import android.widget.Toast
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType.Companion.StringType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.nba_team_rand_gen.data.firebase.MatchesRemoteDataSource
 import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
@@ -29,9 +38,31 @@ import com.nba_team_rand_gen.ui.screens.profile.ProfileViewModelFactory
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerFactory
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerScreen
 import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerViewModel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Composable
 fun Navigation(navController: NavHostController) {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    var backPressedOnce by remember { mutableStateOf(false) }
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+    val isOnHome = currentRoute == NavigationItem.Home.route
+
+    BackHandler(enabled = isOnHome) {
+        if(backPressedOnce) {
+            (context as? Activity)?.moveTaskToBack(true)
+        } else {
+            backPressedOnce = true
+            Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
+            scope.launch {
+                delay(2000)
+                backPressedOnce = false
+            }
+        }
+    }
+
     NavHost(navController, startDestination = NavigationItem.Home.route) {
         composable(NavigationItem.Home.route) {
             HomeScreen(
