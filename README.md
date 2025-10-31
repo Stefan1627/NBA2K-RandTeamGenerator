@@ -5,8 +5,8 @@ An Android app that generates fair, random NBA teams and lets you save, revisit,
 
 > **Author:** Stefan Calmac  
 > **Android versions:** 24 → 36 (36)  
-> **Gradle versions:** 8.9.3, 
-> **Java/Kotlin:** 17, 2.2.0
+> **Gradle versions:** 8.13.0, 
+> **Java/Kotlin:** 17, 2.2.21
 
 ---
 
@@ -14,7 +14,7 @@ An Android app that generates fair, random NBA teams and lets you save, revisit,
 
 - **One-tap team randomizer** – Generates balanced teams from your player pool.
 - **Modern UI with Jetpack Compose** – Material 3 design, edge-to-edge layouts, and smooth navigation.
-- **Bottom navigation** – `Home`, `Favorites`, `Explore`, `Post`, `Profile` routes via Navigation-Compose.
+- **Bottom navigation** – `Home`, `Favorites`, `History`, `Post`, `Profile` routes via Navigation-Compose.
 - **Save & manage matches** – Persist matchups and quickly revisit them later.
 - **Auth powered by Firebase** – Email/password sign-in and session handling.
 - **Interoperability** – Uses `AndroidViewBinding` where needed alongside Compose.
@@ -29,7 +29,6 @@ An Android app that generates fair, random NBA teams and lets you save, revisit,
 - **State:** Compose state + `remember`/`mutableStateOf`
 - **Firebase:** Authentication, Cloud Firestore
 - **Serialization:** `kotlinx.serialization` (for `Team` / `PlayerWithTeam` JSON)
-- **InterOp:** `AndroidViewBinding` for existing views, RecyclerView adapter for some lists
 - **Build:** Gradle (KTS/Groovy), Android Gradle Plugin
 
 > Notable files from this repo snapshot:
