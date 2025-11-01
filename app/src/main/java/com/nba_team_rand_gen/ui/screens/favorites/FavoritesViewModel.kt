@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+/** Manages favorite players/teams. Exposes Flow-based state sourced from repository. */
 class FavoritesViewModel(private val repo: MatchesRepositoryImpl) : ViewModel() {
     val state = repo.favorites()
         .map { MatchesUiState(items = it, loading = false) }

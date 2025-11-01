@@ -22,6 +22,9 @@ sealed interface HomeEvent {
     data object NavConsumed: HomeEvent
 }
 
+/** Home screen state holder. Loads available teams/players and invokes RandomizeTeamsUseCase
+ * to produce a random lineup. Exposes a sealed UI state to render
+ * loading/data/error deterministically. */
 class HomeViewModel(
     private val randomize: RandomizeTeamsUseCase
 ) : ViewModel() {

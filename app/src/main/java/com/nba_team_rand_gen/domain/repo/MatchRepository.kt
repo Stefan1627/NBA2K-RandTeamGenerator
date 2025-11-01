@@ -4,6 +4,8 @@ import com.nba_team_rand_gen.data.model.Match
 import com.nba_team_rand_gen.data.model.PlayerWithTeam
 import kotlinx.coroutines.flow.Flow
 
+/** Domain contract for reading/writing matches and players.
+ * Keeps UI independent of Firebase details. */
 interface MatchesRepository {
     suspend fun saveMatch(name: String, teams: List<PlayerWithTeam>)
     fun favorites(): Flow<List<Match>>

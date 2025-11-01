@@ -9,6 +9,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 
+/** Firestore access layer for matches/players collections.
+ * Uses callbackFlow to bridge snapshot listeners into Flow for reactive UI.
+ * All DB reads are scoped to the currently signed-in user where relevant. */
 class MatchesRemoteDataSource(
     private val db: FirebaseFirestore = FirebaseFirestore.getInstance(),
     private val auth: AuthDataSource = AuthDataSource()

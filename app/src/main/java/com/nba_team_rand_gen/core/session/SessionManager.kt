@@ -13,6 +13,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
+/** In-memory + SharedPreferences session gate. Tracks an expiry timestamp
+ * and exposes a StateFlow<Boolean> for `isActive`. When expired,
+ * triggers sign-out via AuthRepository. Designed to be app-wide singleton. */
 class SessionManager private constructor(
     private val prefs: SharedPreferences
 ) {

@@ -32,6 +32,7 @@ sealed interface SignUpEvent {
     data object SuccessConsumed : SignUpEvent
 }
 
+/** Handles account creation. After success, displayName is set via Firebase profile update. */
 class SignUpViewModel(
     private val repo: AuthRepository = AuthRepositoryImpl(),
     private val session: SessionManager

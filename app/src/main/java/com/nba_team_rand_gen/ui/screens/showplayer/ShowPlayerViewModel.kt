@@ -20,6 +20,8 @@ data class ShowPlayerUiState(
     val error: String? = null
 )
 
+/** State holder for the currently shown random players.
+ * Also exposes actions to save to history/favorites. */
 class ShowPlayerViewModel(
     savedStateHandle: SavedStateHandle,
     private val repo: MatchesRepository

@@ -5,6 +5,8 @@ import com.nba_team_rand_gen.data.firebase.AuthDataSource
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 
+/** Repository facade over AuthDataSource.
+ * Converts Firebase callbacks into suspend/Flow APIs for ViewModels. */
 class AuthRepositoryImpl(
     private val auth: AuthDataSource = AuthDataSource()
 ) : AuthRepository {

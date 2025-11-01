@@ -5,6 +5,9 @@ import com.nba_team_rand_gen.data.model.PlayerWithTeam
 import com.nba_team_rand_gen.data.repo.RosterRepository
 import kotlin.random.Random
 
+/** Business logic to generate random teams from the selected teamIds.
+ * Uses Fisher–Yates shuffle to pick a uniform random subset of size
+ * derived from mode (e.g., 5vs5 => 10 players). Returns PlayerWithTeam for UI. */
 class RandomizeTeamsUseCase(
     private val repo: RosterRepository
 ) {

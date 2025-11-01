@@ -14,8 +14,10 @@ data class ProfileUiState(
     val loading: Boolean = true
 )
 
+/** User profile VM (read-only for this task). Observes auth user
+ * and profile fields. EditProfile is intentionally ignored. */
 class ProfileViewModel(
-    private val repo: AuthRepository
+    repo: AuthRepository
 ): ViewModel() {
 
     val state = repo.currentUser

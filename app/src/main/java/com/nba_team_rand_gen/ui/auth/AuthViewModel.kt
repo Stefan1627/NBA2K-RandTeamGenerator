@@ -16,6 +16,9 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 
+/** Auth orchestration VM. Collects current user Flow,
+ * exposes simple intents (signIn, signUp, signOut) and UI state for screens to observe.
+ * All operations are cancellation-safe. */
 class AuthViewModel(
     private val repo: AuthRepository = AuthRepositoryImpl(),
     private val session: SessionManager

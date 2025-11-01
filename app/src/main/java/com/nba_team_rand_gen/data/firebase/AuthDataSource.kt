@@ -10,6 +10,9 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+/** FirebaseAuth wrapper. Exposes a cold Flow<FirebaseUser?> that emits auth state changes.
+ *  Provides email/password sign-in & sign-up using suspendCancellableCoroutine, and signOut.
+ *  UI subscribes to currentUser to reactively navigate when session changes. */
 class AuthDataSource(
     private val auth: FirebaseAuth = FirebaseAuth.getInstance()
 ) {
@@ -22,6 +25,7 @@ class AuthDataSource(
     fun uidOrThrow(): String =
         auth.currentUser?.uid ?: throw IllegalStateException("User not logged in")
 
+    /** Signs in with email/password and resumes with the FirebaseUser or throws on error. */
     suspend fun signInEmail(email: String, password: String): FirebaseUser =
         suspendCancellableCoroutine { cont ->
             auth.signInWithEmailAndPassword(email, password)
@@ -29,6 +33,8 @@ class AuthDataSource(
                 .addOnFailureListener { e -> cont.resumeWithException(e) }
         }
 
+    /** Creates an account then updates displayName in the same chain;
+     * resumes with the created FirebaseUser. */
     suspend fun signUpEmail(fullName: String, email: String, password: String): FirebaseUser =
         suspendCancellableCoroutine { cont ->
             auth.createUserWithEmailAndPassword(email, password)

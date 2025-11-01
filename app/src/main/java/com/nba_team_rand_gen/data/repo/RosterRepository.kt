@@ -7,6 +7,8 @@ import com.nba_team_rand_gen.data.model.Player
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/** Roster data access (teams/players). Implemented elsewhere;
+ * ViewModels/UseCases depend only on this contract. */
 class RosterRepository(
     private val app: Application
 ) {

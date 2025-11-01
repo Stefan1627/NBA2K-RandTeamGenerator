@@ -30,6 +30,7 @@ sealed interface LoginEvent {
     data object SuccessConsumed : LoginEvent
 }
 
+/** Handles email/password sign-in. Validates input minimally and forwards to AuthRepository. */
 class LoginViewModel(
     private val repo: AuthRepository = AuthRepositoryImpl(),
     private val session: SessionManager

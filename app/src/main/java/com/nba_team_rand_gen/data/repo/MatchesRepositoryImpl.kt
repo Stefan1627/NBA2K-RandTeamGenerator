@@ -7,6 +7,9 @@ import com.nba_team_rand_gen.domain.repo.MatchesRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.serialization.json.Json
 
+/** Repository implementation combining remote Firestore
+ * sources with small in-memory transforms.
+ * Abstracts data layer away from ViewModels and UseCases. */
 class MatchesRepositoryImpl(
     private val remote: MatchesRemoteDataSource
 ) : MatchesRepository {

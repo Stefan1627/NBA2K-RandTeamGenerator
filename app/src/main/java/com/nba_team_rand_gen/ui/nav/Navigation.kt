@@ -25,6 +25,9 @@ import androidx.navigation.navArgument
 import com.nba_team_rand_gen.data.firebase.MatchesRemoteDataSource
 import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
 import com.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
+import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreen
+import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreenFactory
+import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreenViewModel
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesFactory
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesScreen
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesViewModel
@@ -130,6 +133,21 @@ fun Navigation(navController: NavHostController) {
                 vm = vm
             )
         }
+
+//        composable (
+//            route = "editProfile",
+//            arguments = emptyList(),
+//
+//        ) { backStackEntry ->
+//            val vm: EditProfileScreenViewModel = viewModel(
+//                viewModelStoreOwner = backStackEntry,
+//                factory = EditProfileScreenFactory(AuthRepositoryImpl())
+//            )
+//            EditProfileScreen(
+//                vm = vm,
+//                onSaveClick = { TODO("impement this")}
+//            )
+//        }
     }
 }
 

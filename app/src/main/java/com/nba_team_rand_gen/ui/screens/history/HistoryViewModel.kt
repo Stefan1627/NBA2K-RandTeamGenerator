@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
+/** Streams previously generated teams from repository for display. Supports simple filtering by date. */
 class HistoryViewModel(private val repo: MatchesRepositoryImpl) : ViewModel() {
     val state = repo.history()
         .map { MatchesUiState(items = it, loading = false) }
