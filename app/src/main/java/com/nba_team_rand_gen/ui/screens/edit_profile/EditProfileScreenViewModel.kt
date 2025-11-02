@@ -1,32 +1,23 @@
-package com.nba_team_rand_gen.ui.screens.profile
+package com.nba_team_rand_gen.ui.screens.edit_profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.repo.AuthRepository
+import com.nba_team_rand_gen.ui.screens.profile.ProfileUiState
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-data class ProfileUiState(
-    val displayName: String = "",
-    val email: String = "",
-    val photoUrl: String? = null,
-    val loading: Boolean = true
-)
-
-/** User profile VM (read-only for this task). Observes auth user
- * and profile fields. EditProfile is intentionally ignored. */
-class ProfileViewModel(
+class EditProfileScreenViewModel (
     repo: AuthRepository
 ): ViewModel() {
-
     val state = repo.currentUser
         .map { user ->
             if (user == null) ProfileUiState(loading = false)
             else ProfileUiState(
-                displayName = user.name.orEmpty(),
+                displayName = user.displayName.orEmpty(),
                 email = user.email.orEmpty(),
-                photoUrl = user.photoUrl,
+                photoUrl = user.photoUrl?.toString(),
                 loading = false
             )
         }
