@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import com.nba_team_rand_gen.data.model.User
 
 /** Auth orchestration VM. Collects current user Flow,
  * exposes simple intents (signIn, signUp, signOut) and UI state for screens to observe.
@@ -24,7 +25,7 @@ class AuthViewModel(
     private val session: SessionManager
 ) : ViewModel() {
 
-    val currentUser: StateFlow<FirebaseUser?> =
+    val currentUser: StateFlow<User?> =
         repo.currentUser.stateIn(viewModelScope,
             SharingStarted.WhileSubscribed(5_000),
             null)
