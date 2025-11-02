@@ -3,11 +3,13 @@ package com.nba_team_rand_gen.ui.screens.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.usecase.RandomizeTeamsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 
 data class HomeUiState(
     val type: String = "All",
@@ -25,7 +27,8 @@ sealed interface HomeEvent {
 /** Home screen state holder. Loads available teams/players and invokes RandomizeTeamsUseCase
  * to produce a random lineup. Exposes a sealed UI state to render
  * loading/data/error deterministically. */
-class HomeViewModel(
+@HiltViewModel
+class HomeViewModel @Inject constructor(
     private val randomize: RandomizeTeamsUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeUiState())

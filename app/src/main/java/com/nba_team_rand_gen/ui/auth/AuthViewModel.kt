@@ -1,27 +1,24 @@
 package com.nba_team_rand_gen.ui.auth
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
-import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
 import com.nba_team_rand_gen.domain.repo.AuthRepository
-import com.google.firebase.auth.FirebaseUser
 import com.nba_team_rand_gen.core.session.SessionManager
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import com.nba_team_rand_gen.data.model.User
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 /** Auth orchestration VM. Collects current user Flow,
  * exposes simple intents (signIn, signUp, signOut) and UI state for screens to observe.
  * All operations are cancellation-safe. */
-class AuthViewModel(
-    private val repo: AuthRepository = AuthRepositoryImpl(),
+@HiltViewModel
+class AuthViewModel @Inject constructor(
+    private val repo: AuthRepository,
     private val session: SessionManager
 ) : ViewModel() {
 
@@ -49,16 +46,6 @@ class AuthViewModel(
         viewModelScope.launch {
             session.clear()
             repo.signOut()
-        }
-    }
-
-    companion object {
-        val Factory = viewModelFactory {
-            initializer {
-                val app = this[APPLICATION_KEY] as Application
-                AuthViewModel(
-                    repo = AuthRepositoryImpl(),
-                    session = SessionManager.from(app))}
         }
     }
 }

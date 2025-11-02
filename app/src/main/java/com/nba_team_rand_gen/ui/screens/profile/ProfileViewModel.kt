@@ -3,9 +3,11 @@ package com.nba_team_rand_gen.ui.screens.profile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.repo.AuthRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
 data class ProfileUiState(
     val displayName: String = "",
@@ -16,7 +18,8 @@ data class ProfileUiState(
 
 /** User profile VM (read-only for this task). Observes auth user
  * and profile fields. EditProfile is intentionally ignored. */
-class ProfileViewModel(
+@HiltViewModel
+class ProfileViewModel @Inject constructor(
     repo: AuthRepository
 ): ViewModel() {
 

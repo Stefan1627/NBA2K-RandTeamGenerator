@@ -28,11 +28,12 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.nba_team_rand_gen.R
 
 @Composable
 fun ProfileScreen(
-    vm: ProfileViewModel,
+    vm: ProfileViewModel = hiltViewModel(),
     onHistoryClick: () -> Unit,
     onMyPostsClick: () -> Unit,
     onEditProfileClick: () -> Unit

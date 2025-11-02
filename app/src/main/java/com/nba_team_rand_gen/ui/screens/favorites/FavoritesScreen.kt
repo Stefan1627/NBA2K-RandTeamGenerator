@@ -9,13 +9,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nba_team_rand_gen.ui.StringList
 
 @Composable
 fun FavoritesScreen(
-    vm: FavoritesViewModel = viewModel(),
+    vm: FavoritesViewModel = hiltViewModel(),
 ) {
     val s by vm.state.collectAsStateWithLifecycle()
 

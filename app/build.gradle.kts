@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.compose.compiler)
     id("com.google.gms.google-services")
     kotlin("plugin.serialization") version "2.2.0"
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -108,4 +110,8 @@ dependencies {
 
     // (Optional) Material icons if you use Icons.Default.*
     implementation(libs.androidx.material.icons.extended)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 }

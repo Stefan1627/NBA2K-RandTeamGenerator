@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.data.model.PlayerWithTeam
 import com.nba_team_rand_gen.domain.repo.MatchesRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
+import javax.inject.Inject
 import kotlin.collections.emptyList
 
 data class ShowPlayerUiState(
@@ -22,7 +24,8 @@ data class ShowPlayerUiState(
 
 /** State holder for the currently shown random players.
  * Also exposes actions to save to history/favorites. */
-class ShowPlayerViewModel(
+@HiltViewModel
+class ShowPlayerViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val repo: MatchesRepository
 ) : ViewModel() {

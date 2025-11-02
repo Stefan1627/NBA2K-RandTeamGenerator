@@ -30,8 +30,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -42,7 +42,9 @@ import com.nba_team_rand_gen.ui.auth.AuthViewModel
 import com.nba_team_rand_gen.ui.auth.LoginScreen
 import com.nba_team_rand_gen.ui.auth.SignUpScreen
 import com.nba_team_rand_gen.ui.nav.Navigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +52,7 @@ class MainActivity : ComponentActivity() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            val authVm: AuthViewModel =
-                viewModel(factory = AuthViewModel.Companion.Factory)
+            val authVm: AuthViewModel = hiltViewModel()
             val loggedIn by authVm.isLoggedIn.collectAsStateWithLifecycle()
 
             var showSignUp by rememberSaveable { mutableStateOf(false) }

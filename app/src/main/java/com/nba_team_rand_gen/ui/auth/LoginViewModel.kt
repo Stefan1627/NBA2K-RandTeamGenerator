@@ -1,18 +1,15 @@
 package com.nba_team_rand_gen.ui.auth
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.nba_team_rand_gen.core.session.SessionManager
-import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
 import com.nba_team_rand_gen.domain.repo.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 data class LoginUiState(
     val email: String = "",
@@ -31,8 +28,9 @@ sealed interface LoginEvent {
 }
 
 /** Handles email/password sign-in. Validates input minimally and forwards to AuthRepository. */
-class LoginViewModel(
-    private val repo: AuthRepository = AuthRepositoryImpl(),
+@HiltViewModel
+class LoginViewModel @Inject constructor(
+    private val repo: AuthRepository,
     private val session: SessionManager
 ) : ViewModel() {
 
@@ -67,17 +65,6 @@ class LoginViewModel(
             }
             LoginEvent.ErrorConsumed -> _state.update { it.copy(error = null) }
             LoginEvent.SuccessConsumed -> _state.update { it.copy(success = false) }
-        }
-    }
-
-    companion object {
-        val Factory = viewModelFactory {
-            initializer {
-                val app = this[APPLICATION_KEY] as Application
-                LoginViewModel(
-                    repo = AuthRepositoryImpl(),
-                    session = SessionManager.from(app)
-                ) }
         }
     }
 }

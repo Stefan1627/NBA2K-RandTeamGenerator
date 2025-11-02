@@ -1,6 +1,5 @@
 package com.nba_team_rand_gen.ui.screens.home
 
-import android.app.Application
 import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,18 +27,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.nba_team_rand_gen.R
 
 @Composable
 fun HomeScreen(
-    vm: HomeViewModel = viewModel(
-        factory = HomeViewModelFactory(LocalContext.current.applicationContext as Application)
-    ),
+    vm: HomeViewModel = hiltViewModel(),
     onNavigateShowRoute: (String) -> Unit
 ) {
     val s by vm.state.collectAsStateWithLifecycle()

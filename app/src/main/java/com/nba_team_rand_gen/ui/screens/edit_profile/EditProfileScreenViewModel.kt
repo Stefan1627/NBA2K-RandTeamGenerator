@@ -4,20 +4,23 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.repo.AuthRepository
 import com.nba_team_rand_gen.ui.screens.profile.ProfileUiState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
 
-class EditProfileScreenViewModel (
+@HiltViewModel
+class EditProfileScreenViewModel @Inject constructor(
     repo: AuthRepository
 ): ViewModel() {
     val state = repo.currentUser
         .map { user ->
             if (user == null) ProfileUiState(loading = false)
             else ProfileUiState(
-                displayName = user.displayName.orEmpty(),
+                displayName = user.name.orEmpty(),
                 email = user.email.orEmpty(),
-                photoUrl = user.photoUrl?.toString(),
+                photoUrl = user.photoUrl,
                 loading = false
             )
         }

@@ -29,6 +29,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nba_team_rand_gen.R
 import com.nba_team_rand_gen.data.model.PlayerWithTeam
@@ -38,7 +39,7 @@ import kotlin.collections.forEach
 fun ShowPlayerScreen(
     onBack: () -> Unit,
     onSaved: () -> Unit,
-    vm: ShowPlayerViewModel
+    vm: ShowPlayerViewModel = hiltViewModel()
 ) {
     val s by vm.state.collectAsStateWithLifecycle()
     var showDialog by remember { mutableStateOf(false) }

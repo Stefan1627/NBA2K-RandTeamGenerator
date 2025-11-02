@@ -26,11 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 fun LoginScreen(
-    vm: LoginViewModel = viewModel(factory = LoginViewModel.Factory),
+    vm: LoginViewModel = hiltViewModel(),
     onLoggedIn: () -> Unit = {},
     onCreateAccount: () -> Unit = {}
 ) {

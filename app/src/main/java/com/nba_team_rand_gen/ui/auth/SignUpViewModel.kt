@@ -1,18 +1,15 @@
 package com.nba_team_rand_gen.ui.auth
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.nba_team_rand_gen.core.session.SessionManager
-import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
 import com.nba_team_rand_gen.domain.repo.AuthRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
 data class SignUpUiState(
     val fullName: String = "",
@@ -33,8 +30,9 @@ sealed interface SignUpEvent {
 }
 
 /** Handles account creation. After success, displayName is set via Firebase profile update. */
-class SignUpViewModel(
-    private val repo: AuthRepository = AuthRepositoryImpl(),
+@HiltViewModel
+class SignUpViewModel @Inject constructor(
+    private val repo: AuthRepository,
     private val session: SessionManager
 ) : ViewModel() {
 
@@ -74,18 +72,6 @@ class SignUpViewModel(
             if (res.isSuccess) {
                 // Flip the shared session flow -> AuthViewModel.isLoggedIn becomes true
                 session.start(1)
-            }
-        }
-    }
-
-    companion object {
-        val Factory = viewModelFactory {
-            initializer {
-                val app = this[APPLICATION_KEY] as Application
-                SignUpViewModel(
-                    repo = AuthRepositoryImpl(),
-                    session = SessionManager.from(app)
-                )
             }
         }
     }

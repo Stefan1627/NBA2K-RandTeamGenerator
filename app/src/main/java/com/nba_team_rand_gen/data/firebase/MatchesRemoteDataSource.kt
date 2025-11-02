@@ -8,13 +8,14 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
 /** Firestore access layer for matches/players collections.
  * Uses callbackFlow to bridge snapshot listeners into Flow for reactive UI.
  * All DB reads are scoped to the currently signed-in user where relevant. */
-class MatchesRemoteDataSource(
-    private val db: FirebaseFirestore = FirebaseFirestore.getInstance(),
-    private val auth: AuthDataSource = AuthDataSource()
+class MatchesRemoteDataSource @Inject constructor(
+    private val db: FirebaseFirestore,
+    private val auth: AuthDataSource
 ) {
     private fun col() =
         db.collection("users")

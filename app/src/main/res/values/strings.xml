@@ -19,4 +19,5 @@
     <string name="full_name">Full name</string>
     <string name="return1">Return</string>
     <string name="sign_out">Sign Out</string>
+    <string name="exit_retry">Press back again to exit</string>
 </resources>

@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 
 @Composable
 fun SignUpScreen(
-    vm: SignUpViewModel = viewModel(factory = SignUpViewModel.Factory),
+    vm: SignUpViewModel = hiltViewModel(),
     onSignInClick: () -> Unit = {}
 ) {
     val state by vm.state.collectAsState()

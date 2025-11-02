@@ -4,13 +4,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.data.model.MatchesUiState
 import com.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /** Streams previously generated teams from repository for display. Supports simple filtering by date. */
-class HistoryViewModel(private val repo: MatchesRepositoryImpl) : ViewModel() {
+@HiltViewModel
+class HistoryViewModel @Inject constructor(
+    private val repo: MatchesRepositoryImpl
+) : ViewModel() {
     val state = repo.history()
         .map { MatchesUiState(items = it, loading = false) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), MatchesUiState())
