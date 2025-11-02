@@ -8,12 +8,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.suspendCancellableCoroutine
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 /** FirebaseAuth wrapper. Exposes a cold Flow<FirebaseUser?> that emits auth state changes.
  *  Provides email/password sign-in & sign-up using suspendCancellableCoroutine, and signOut.
  *  UI subscribes to currentUser to reactively navigate when session changes. */
+@Singleton
 class AuthDataSource @Inject constructor(
     private val auth: FirebaseAuth
 ) {

@@ -3,7 +3,7 @@ package com.nba_team_rand_gen.ui.screens.favorites
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.data.model.MatchesUiState
-import com.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
+import com.nba_team_rand_gen.domain.repo.MatchesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
@@ -14,7 +14,7 @@ import javax.inject.Inject
 /** Manages favorite players/teams. Exposes Flow-based state sourced from repository. */
 @HiltViewModel
 class FavoritesViewModel @Inject constructor(
-    private val repo: MatchesRepositoryImpl
+    private val repo: MatchesRepository
 ) : ViewModel() {
     val state = repo.favorites()
         .map { MatchesUiState(items = it, loading = false) }
