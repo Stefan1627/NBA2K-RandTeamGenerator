@@ -33,14 +33,3 @@ object Providers {
     fun provideRandomizeTeamsUseCase(repo: RosterRepository): RandomizeTeamsUseCase =
         RandomizeTeamsUseCase(repo)
 }
-
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
-
-    @Binds @Singleton
-    abstract fun bindAuthRepository(impl: AuthRepositoryImpl): AuthRepository
-
-    @Binds @Singleton
-    abstract fun bindMatchesRepository(impl: MatchesRepositoryImpl): MatchesRepository
-}

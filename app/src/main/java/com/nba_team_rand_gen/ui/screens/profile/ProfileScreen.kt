@@ -34,9 +34,9 @@ import com.nba_team_rand_gen.R
 @Composable
 fun ProfileScreen(
     vm: ProfileViewModel = hiltViewModel(),
-    onHistoryClick: () -> Unit,
-    onMyPostsClick: () -> Unit,
-    onEditProfileClick: () -> Unit
+    onHistoryRoute: (String) -> Unit,
+    onMyPostsRoute: (String) -> Unit,
+    onEditProfileRoute: (String) -> Unit
 ) {
     val state by vm.state.collectAsState()
 
@@ -97,7 +97,7 @@ fun ProfileScreen(
         Spacer(Modifier.height(4.dp))
 
         Button(
-            onClick = onHistoryClick,
+            onClick = {vm.onEvent(ProfileEvent.OnHistoryClick)},
             contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
@@ -107,7 +107,7 @@ fun ProfileScreen(
         Spacer(Modifier.height(12.dp))
 
         Button(
-            onClick = onMyPostsClick,
+            onClick = { vm.onEvent(ProfileEvent.OnMyPostsClick) },
             contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
@@ -117,11 +117,24 @@ fun ProfileScreen(
         Spacer(Modifier.height(12.dp))
 
         Button(
-            onClick = onEditProfileClick,
+            onClick = { vm.onEvent(ProfileEvent.OnEditProfileClick) },
             contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.White)
         ) {
             Text("Edit Profile", color = Color.Black)
         }
+    }
+
+    state.navigateToHistory?.let {
+        onHistoryRoute(it)
+        vm.onEvent(ProfileEvent.NavConsumed)
+    }
+    state.navigateToMyPosts?.let {
+        onMyPostsRoute(it)
+        vm.onEvent(ProfileEvent.NavConsumed)
+    }
+    state.navigateToEditProfile?.let {
+        onEditProfileRoute(it)
+        vm.onEvent(ProfileEvent.NavConsumed)
     }
 }

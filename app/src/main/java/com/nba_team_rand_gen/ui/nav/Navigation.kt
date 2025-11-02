@@ -21,6 +21,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import androidx.navigation.navigation
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesScreen
 import com.nba_team_rand_gen.ui.screens.history.HistoryScreen
 import com.nba_team_rand_gen.ui.screens.home.HomeScreen
@@ -37,9 +38,9 @@ fun Navigation(navController: NavHostController) {
     var backPressedOnce by remember { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val isOnHome = currentRoute == NavigationItem.Home.route
+    val isOnHomeRoot = currentRoute == HOME_ROOT
 
-    BackHandler(enabled = isOnHome) {
+    BackHandler(enabled = isOnHomeRoot) {
         if(backPressedOnce) {
             (context as? Activity)?.moveTaskToBack(true)
         } else {
@@ -53,60 +54,82 @@ fun Navigation(navController: NavHostController) {
     }
 
     NavHost(navController, startDestination = NavigationItem.Home.route) {
-        composable(NavigationItem.Home.route) {
-            HomeScreen(
-                onNavigateShowRoute = { route -> navController.navigate(route) }
-            )
-        }
-        composable(NavigationItem.Favorites.route) { backStackEntry ->
-            FavoritesScreen()
-        }
-        composable(NavigationItem.Explore.route) { backStackEntry ->
-            HistoryScreen()
-        }
-        composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
-        composable(NavigationItem.Profile.route){ backStackEntry ->
-            ProfileScreen(
-                onHistoryClick = { navController.navigate(NavigationItem.Explore.route) },
-                onMyPostsClick = { navController.navigate(NavigationItem.Post.route) },
-                onEditProfileClick = { /* TODO: navigate to EditProfile when available */ }
-            )
+        // HOME (tab graph)
+        navigation(
+            route = NavigationItem.Home.route,
+            startDestination = HOME_ROOT
+        ) {
+            composable(HOME_ROOT) {
+                HomeScreen(
+                    onNavigateShowRoute = { route -> navController.navigate(route) }
+                )
+            }
+
+            composable(
+                route = "showPlayer?teamsJson={teamsJson}",
+                arguments = listOf(
+                    navArgument("teamsJson") {
+                        type = StringType
+                        nullable = false
+                    }
+                )
+            ) { backStackEntry ->
+                ShowPlayerScreen(
+                    onBack = { navController.popBackStack() },
+                    onSaved = {
+                        navController.popBackStack(
+                            route = HOME_ROOT,
+                            inclusive = false)
+                    }
+                )
+            }
         }
 
-        composable(
-            route = "showPlayer?teamsJson={teamsJson}",
-            arguments = listOf(
-                navArgument("teamsJson") {
-                    type = StringType
-                    nullable = false
-                }
-            )
-        ) { backStackEntry ->
-            ShowPlayerScreen(
-                onBack = { navController.popBackStack() },
-                onSaved = {
-                    navController.popBackStack(
-                        route = NavigationItem.Home.route,
-                        inclusive = false
-                    )
-                }
-            )
+        // FAVORITES (tab graph)
+        navigation(
+            route = NavigationItem.Favorites.route,
+            startDestination = FAVORITES_ROOT
+        ) {
+            composable(FAVORITES_ROOT) { FavoritesScreen() }
         }
 
-//        composable (
-//            route = "editProfile",
-//            arguments = emptyList(),
-//
-//        ) { backStackEntry ->
-//            val vm: EditProfileScreenViewModel = viewModel(
-//                viewModelStoreOwner = backStackEntry,
-//                factory = EditProfileScreenFactory(AuthRepositoryImpl())
-//            )
-//            EditProfileScreen(
-//                vm = vm,
-//                onSaveClick = { TODO("impement this")}
-//            )
-//        }
+        // EXPLORE (tab graph)
+        navigation(
+            route = NavigationItem.Explore.route,
+            startDestination = EXPLORE_ROOT
+        ) {
+            composable(EXPLORE_ROOT) {
+                SimpleTabBody("Explore")
+            }
+        }
+
+        // POST (tab graph)
+        navigation(
+            route = NavigationItem.Post.route,
+            startDestination = POST_ROOT
+        ) {
+            composable(POST_ROOT) {
+                SimpleTabBody("Post")
+            }
+        }
+
+        // PROFILE (tab graph + child screens)
+        navigation(
+            route = NavigationItem.Profile.route,
+            startDestination = PROFILE_ROOT
+        ) {
+            composable(PROFILE_ROOT) {
+                ProfileScreen(
+                    onHistoryRoute = { route -> navController.navigate(route) },
+                    onMyPostsRoute = { route -> navController.navigate(route) },
+                    onEditProfileRoute = { route -> navController.navigate(route) }
+                )
+            }
+
+            composable("historyScreen") { HistoryScreen() }
+            composable("myPostsScreen") { SimpleTabBody("MyPosts") }
+            composable("editProfile")   { SimpleTabBody("editProfiles") }
+        }
     }
 }
 

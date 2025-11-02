@@ -32,9 +32,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nba_team_rand_gen.ui.nav.NavigationItem
@@ -42,6 +41,8 @@ import com.nba_team_rand_gen.ui.auth.AuthViewModel
 import com.nba_team_rand_gen.ui.auth.LoginScreen
 import com.nba_team_rand_gen.ui.auth.SignUpScreen
 import com.nba_team_rand_gen.ui.nav.Navigation
+import com.nba_team_rand_gen.ui.nav.rootForTab
+import com.nba_team_rand_gen.ui.nav.navigateBottomTab
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -166,7 +167,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun BottomNavigationBar(navController: NavController) {
+    fun BottomNavigationBar(navController: NavHostController) {
         val items = listOf(
             NavigationItem.Home,
             NavigationItem.Favorites,
@@ -188,15 +189,13 @@ class MainActivity : ComponentActivity() {
                 NavigationBarItem(
                     selected = isSelected,
                     onClick = {
-                        val popped = navController.popBackStack(item.route, inclusive = false)
-                        if (!popped) {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+                        if (isSelected) {
+                            // reselection -> pop to tab root
+                            val root = rootForTab(item.route)
+                            navController.popBackStack(root, inclusive = false)
+                        } else {
+                            // switch tab with state restore
+                            navController.navigateBottomTab(item.route)
                         }
                     },
                     icon = {
