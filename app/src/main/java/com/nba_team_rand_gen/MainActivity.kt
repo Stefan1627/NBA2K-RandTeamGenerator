@@ -32,7 +32,9 @@ import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -167,7 +169,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun BottomNavigationBar(navController: NavHostController) {
+    fun BottomNavigationBar(navController: NavController) {
         val items = listOf(
             NavigationItem.Home,
             NavigationItem.Favorites,
@@ -189,13 +191,15 @@ class MainActivity : ComponentActivity() {
                 NavigationBarItem(
                     selected = isSelected,
                     onClick = {
-                        if (isSelected) {
-                            // reselection -> pop to tab root
-                            val root = rootForTab(item.route)
-                            navController.popBackStack(root, inclusive = false)
-                        } else {
-                            // switch tab with state restore
-                            navController.navigateBottomTab(item.route)
+                        val popped = navController.popBackStack(item.route, inclusive = false)
+                        if (!popped) {
+                            navController.navigate(item.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = false
+                            }
                         }
                     },
                     icon = {

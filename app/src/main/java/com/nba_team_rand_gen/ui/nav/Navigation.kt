@@ -54,81 +54,49 @@ fun Navigation(navController: NavHostController) {
     }
 
     NavHost(navController, startDestination = NavigationItem.Home.route) {
-        // HOME (tab graph)
-        navigation(
-            route = NavigationItem.Home.route,
-            startDestination = HOME_ROOT
-        ) {
-            composable(HOME_ROOT) {
-                HomeScreen(
-                    onNavigateShowRoute = { route -> navController.navigate(route) }
-                )
-            }
-
-            composable(
-                route = "showPlayer?teamsJson={teamsJson}",
-                arguments = listOf(
-                    navArgument("teamsJson") {
-                        type = StringType
-                        nullable = false
-                    }
-                )
-            ) { backStackEntry ->
-                ShowPlayerScreen(
-                    onBack = { navController.popBackStack() },
-                    onSaved = {
-                        navController.popBackStack(
-                            route = HOME_ROOT,
-                            inclusive = false)
-                    }
-                )
-            }
+        composable(NavigationItem.Home.route) {
+            HomeScreen(
+                onNavigateShowRoute = { route -> navController.navigate(route) }
+            )
         }
 
-        // FAVORITES (tab graph)
-        navigation(
-            route = NavigationItem.Favorites.route,
-            startDestination = FAVORITES_ROOT
-        ) {
-            composable(FAVORITES_ROOT) { FavoritesScreen() }
+        composable(NavigationItem.Favorites.route) { backStackEntry ->
+            FavoritesScreen()
         }
 
-        // EXPLORE (tab graph)
-        navigation(
-            route = NavigationItem.Explore.route,
-            startDestination = EXPLORE_ROOT
-        ) {
-            composable(EXPLORE_ROOT) {
-                SimpleTabBody("Explore")
-            }
+        composable(route = "historyScreen") { backStackEntry ->
+            HistoryScreen()
         }
 
-        // POST (tab graph)
-        navigation(
-            route = NavigationItem.Post.route,
-            startDestination = POST_ROOT
-        ) {
-            composable(POST_ROOT) {
-                SimpleTabBody("Post")
-            }
+        composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
+        composable(NavigationItem.Explore.route) {SimpleTabBody("Explore")}
+        composable(route = "editProfileScreen") {SimpleTabBody("EditProfile")}
+        composable(NavigationItem.Profile.route) { backStackEntry ->
+            ProfileScreen(
+                onHistoryRoute = { route -> navController.navigate("historyScreen") },
+                onMyPostsRoute = { route -> navController.navigate(NavigationItem.Post.route) },
+                onEditProfileRoute = { route -> navController.navigate("editProfileScreen") }
+            )
         }
 
-        // PROFILE (tab graph + child screens)
-        navigation(
-            route = NavigationItem.Profile.route,
-            startDestination = PROFILE_ROOT
-        ) {
-            composable(PROFILE_ROOT) {
-                ProfileScreen(
-                    onHistoryRoute = { route -> navController.navigate(route) },
-                    onMyPostsRoute = { route -> navController.navigate(route) },
-                    onEditProfileRoute = { route -> navController.navigate(route) }
-                )
-            }
-
-            composable("historyScreen") { HistoryScreen() }
-            composable("myPostsScreen") { SimpleTabBody("MyPosts") }
-            composable("editProfile")   { SimpleTabBody("editProfiles") }
+        composable(
+            route = "showPlayer?teamsJson={teamsJson}",
+            arguments = listOf(
+                navArgument("teamsJson") {
+                    type = StringType
+                    nullable = false
+                }
+            )
+        ) { backStackEntry ->
+            ShowPlayerScreen(
+                onBack = { navController.popBackStack() },
+                onSaved = {
+                    navController.popBackStack(
+                        route = NavigationItem.Home.route,
+                        inclusive = false
+                    )
+                }
+            )
         }
     }
 }
