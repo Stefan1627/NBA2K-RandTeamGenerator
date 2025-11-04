@@ -1,5 +1,15 @@
 # NBA 2K Random Team Generator
 ### Readme needs an update
+### TODOS
+1. Big picture
+   - edit profile screen
+   - posts backend
+   - posts screen
+2. various things to be fixed
+    - sparge Composable-urile mari in bucati mici (Header, List, EmptyState, ErrorState).
+    - adauga loading/empty/error - afiseaza elemente specific pentru siguranta (spinners, empty placeholders, retry).
+    - pune contentDescription pe imagini/icoane, foloseste doar culori din tema (fara hex hardcodate), verifica contrastul si suportul Dark Mode.
+    - lazy loading(Pagin3)
 
 An Android app that generates fair, random NBA teams and lets you save, revisit, and manage matchups — built with **Kotlin**, **Jetpack Compose (Material 3)**, and **Firebase**.
 

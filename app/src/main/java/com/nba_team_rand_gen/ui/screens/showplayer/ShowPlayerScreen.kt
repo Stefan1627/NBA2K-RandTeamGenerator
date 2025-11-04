@@ -50,7 +50,7 @@ fun ShowPlayerScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        // listeaza echipele
+        // teams listing
         Text(text = stringResource(R.string.first_team), fontSize = 18.sp, color = Color.Red)
         TeamList(s.teams.take(s.teams.size / 2))
 

@@ -21,7 +21,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
-import androidx.navigation.navigation
 import com.nba_team_rand_gen.ui.screens.favorites.FavoritesScreen
 import com.nba_team_rand_gen.ui.screens.history.HistoryScreen
 import com.nba_team_rand_gen.ui.screens.home.HomeScreen
@@ -38,7 +37,7 @@ fun Navigation(navController: NavHostController) {
     var backPressedOnce by remember { mutableStateOf(false) }
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    val isOnHomeRoot = currentRoute == HOME_ROOT
+    val isOnHomeRoot = currentRoute == Routes.HOME
 
     BackHandler(enabled = isOnHomeRoot) {
         if(backPressedOnce) {
@@ -53,46 +52,42 @@ fun Navigation(navController: NavHostController) {
         }
     }
 
-    NavHost(navController, startDestination = NavigationItem.Home.route) {
-        composable(NavigationItem.Home.route) {
-            HomeScreen(
+    NavHost(navController, startDestination = Routes.HOME) {
+        composable(Routes.HOME) { HomeScreen(
                 onNavigateShowRoute = { route -> navController.navigate(route) }
             )
         }
 
-        composable(NavigationItem.Favorites.route) { backStackEntry ->
-            FavoritesScreen()
-        }
+        composable(Routes.FAVORITES) { FavoritesScreen() }
 
-        composable(route = "historyScreen") { backStackEntry ->
-            HistoryScreen()
-        }
+        composable(Routes.HISTORY) { HistoryScreen() }
 
-        composable(NavigationItem.Post.route)  { SimpleTabBody("Post") }
-        composable(NavigationItem.Explore.route) {SimpleTabBody("Explore")}
-        composable(route = "editProfileScreen") {SimpleTabBody("EditProfile")}
-        composable(NavigationItem.Profile.route) { backStackEntry ->
-            ProfileScreen(
-                onHistoryRoute = { route -> navController.navigate("historyScreen") },
-                onMyPostsRoute = { route -> navController.navigate(NavigationItem.Post.route) },
-                onEditProfileRoute = { route -> navController.navigate("editProfileScreen") }
+        composable(Routes.POST)  { SimpleTabBody("Post") }
+
+        composable(Routes.EXPLORE) { SimpleTabBody("Explore") }
+
+        composable(Routes.EDIT_PROFILE) { SimpleTabBody("EditProfile") }
+
+        composable(Routes.PROFILE) { ProfileScreen(
+                onHistoryRoute = { route -> navController.navigate(Routes.HISTORY) },
+                onMyPostsRoute = { route -> navController.navigate(Routes.POST) },
+                onEditProfileRoute = { route -> navController.navigate(Routes.EDIT_PROFILE) }
             )
         }
 
         composable(
-            route = "showPlayer?teamsJson={teamsJson}",
+            route = Routes.SHOW_PLAYER,
             arguments = listOf(
                 navArgument("teamsJson") {
                     type = StringType
                     nullable = false
                 }
             )
-        ) { backStackEntry ->
-            ShowPlayerScreen(
+        ) { ShowPlayerScreen(
                 onBack = { navController.popBackStack() },
                 onSaved = {
                     navController.popBackStack(
-                        route = NavigationItem.Home.route,
+                        route = Routes.HOME,
                         inclusive = false
                     )
                 }
