@@ -4,10 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nba_team_rand_gen.domain.repo.AuthRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -20,7 +23,8 @@ data class ProfileUiState(
     val navigateToHistory: String? = null,
     val navigateToEditProfile: String? = null,
     val navigateToMyPosts: String? = null,
-    val loading: Boolean = true
+    val loading: Boolean = true,
+    val error: String? = null
 )
 
 sealed interface ProfileEvent{
@@ -37,16 +41,30 @@ class ProfileViewModel @Inject constructor(
     repo: AuthRepository
 ) : ViewModel() {
 
-    private val userState = repo.currentUser
-        .map { user ->
-            if (user == null) ProfileUiState(loading = false)
-            else ProfileUiState(
-                displayName = user.name.orEmpty(),
-                email = user.email.orEmpty(),
-                photoUrl = user.photoUrl,
-                loading = false
-            )
-        }
+    private val reload = MutableStateFlow(0)
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val userState = reload.flatMapLatest {
+        repo.currentUser
+            .map { user ->
+                if (user == null) {
+                    ProfileUiState(loading = false)
+                } else {
+                    ProfileUiState(
+                        displayName = user.name.orEmpty(),
+                        email = user.email.orEmpty(),
+                        photoUrl = user.photoUrl,
+                        loading = false
+                    )
+                }
+            }
+            .catch { e ->
+                emit(ProfileUiState(
+                    loading = false,
+                    error = e.message ?: "Failed to load profile"
+                ))
+            }
+    }
 
     private val _nav = MutableStateFlow(ProfileUiState())
 
@@ -58,6 +76,10 @@ class ProfileViewModel @Inject constructor(
             navigateToMyPosts = n.navigateToMyPosts
         )
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), ProfileUiState())
+
+    fun refresh() {
+        reload.update { it + 1 }
+    }
 
     fun onEvent(e: ProfileEvent) {
         when (e) {

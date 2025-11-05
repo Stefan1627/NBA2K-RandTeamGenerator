@@ -9,7 +9,7 @@
     - sparge Composable-urile mari in bucati mici (Header, List, EmptyState, ErrorState).
     - adauga loading/empty/error - afiseaza elemente specific pentru siguranta (spinners, empty placeholders, retry).
     - pune contentDescription pe imagini/icoane, foloseste doar culori din tema (fara hex hardcodate), verifica contrastul si suportul Dark Mode.
-    - lazy loading(Pagin3)
+    - lazy loading(Paging3)
 
 An Android app that generates fair, random NBA teams and lets you save, revisit, and manage matchups — built with **Kotlin**, **Jetpack Compose (Material 3)**, and **Firebase**.
 

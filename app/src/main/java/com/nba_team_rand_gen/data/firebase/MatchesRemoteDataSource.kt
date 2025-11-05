@@ -38,7 +38,10 @@ class MatchesRemoteDataSource @Inject constructor(
         val reg = col()
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snap, err ->
-                if (err != null) { trySend(emptyList()); return@addSnapshotListener }
+                if (err != null) {
+                    close(err)
+                    return@addSnapshotListener
+                }
                 val list = snap?.documents.orEmpty().map { d ->
                     Match(
                         id = d.id,
@@ -61,7 +64,7 @@ class MatchesRemoteDataSource @Inject constructor(
                 if (err != null) {
                     // 🔎 Log it so you see the “create index” link in Logcat
                     Log.e("FavoritesRepo", "favoritesFlow error", err)
-                    trySend(emptyList())
+                    close(err)
                     return@addSnapshotListener
                 }
                 val list = snap?.documents.orEmpty().map { d ->
