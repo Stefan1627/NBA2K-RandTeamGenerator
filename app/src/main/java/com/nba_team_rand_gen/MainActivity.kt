@@ -192,7 +192,7 @@ class MainActivity : ComponentActivity() {
                             // Switch to another tab -> show its root
                             navController.navigate(item.route) {
                                 popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+                                    saveState = false
                                 }
                                 launchSingleTop = true
                                 restoreState = false   // open root of target tab

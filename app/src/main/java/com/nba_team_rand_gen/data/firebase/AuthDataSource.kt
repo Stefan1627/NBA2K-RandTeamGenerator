@@ -1,5 +1,7 @@
 package com.nba_team_rand_gen.data.firebase
 
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.userProfileChangeRequest
@@ -52,4 +54,44 @@ class AuthDataSource @Inject constructor(
         }
 
     fun signOut() = auth.signOut()
+
+    /** Update ONLY non-blank fields. Throws if not logged in. */
+    suspend fun updateProfile(
+        fullName: String?,
+        email: String?,
+    ): FirebaseUser = suspendCancellableCoroutine { cont ->
+        val user = auth.currentUser
+            ?: return@suspendCancellableCoroutine cont.resumeWithException(
+                IllegalStateException("User not logged in")
+            )
+
+        val tasks = mutableListOf<Task<*>>()
+
+        if (!fullName.isNullOrBlank()) {
+            val req = userProfileChangeRequest {
+                if (fullName.isNotBlank()) displayName = fullName
+            }
+            tasks += user.updateProfile(req)
+        }
+
+        if (!email.isNullOrBlank() && email != user.email) {
+            tasks += user.verifyBeforeUpdateEmail(email)
+        }
+
+        if (tasks.isEmpty()) {
+            cont.resume(user)
+        } else {
+            Tasks.whenAllComplete(tasks)
+                .addOnSuccessListener { cont.resume(user) }
+                .addOnFailureListener { e -> cont.resumeWithException(e) }
+        }
+    }
+
+    /** Forces a refresh of the current Firebase user. */
+    suspend fun reloadCurrentUser(): FirebaseUser? = suspendCancellableCoroutine { cont ->
+        val user = auth.currentUser ?: return@suspendCancellableCoroutine cont.resume(null)
+        user.reload()
+            .addOnSuccessListener { cont.resume(auth.currentUser) }
+            .addOnFailureListener { e -> cont.resumeWithException(e) }
+    }
 }

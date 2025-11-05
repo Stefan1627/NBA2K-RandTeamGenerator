@@ -1,5 +1,6 @@
 package com.nba_team_rand_gen.ui.components
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,7 +29,7 @@ fun LoadingState(
 fun EmptyState(
     title: String,
     subtitle: String? = null,
-    modifier: Modifier = Modifier
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ) {
     Box(Modifier.fillMaxSize().then(modifier)) {
         Column(

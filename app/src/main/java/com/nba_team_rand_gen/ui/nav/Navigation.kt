@@ -29,6 +29,7 @@ import com.nba_team_rand_gen.ui.screens.showplayer.ShowPlayerScreen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.nba_team_rand_gen.R
+import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -66,7 +67,9 @@ fun Navigation(navController: NavHostController) {
 
         composable(Routes.EXPLORE) { SimpleTabBody("Explore") }
 
-        composable(Routes.EDIT_PROFILE) { SimpleTabBody("EditProfile") }
+        composable(Routes.EDIT_PROFILE) { EditProfileScreen(
+            navController = navController
+        ) }
 
         composable(Routes.PROFILE) { ProfileScreen(
                 onHistoryRoute = { route -> navController.navigate(Routes.HISTORY) },

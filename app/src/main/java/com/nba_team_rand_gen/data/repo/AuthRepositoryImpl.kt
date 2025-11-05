@@ -28,4 +28,18 @@ class AuthRepositoryImpl @Inject constructor(
     ): Result<User> = runCatching { auth.signUpEmail(fullName, email, password).toData() }
 
     override suspend fun signOut() { auth.signOut() }
+
+    override suspend fun updateProfile(
+        fullName: String,
+        email: String
+    ) {
+        auth.updateProfile(
+            fullName = fullName.ifBlank { null },
+            email = email.ifBlank { null },
+        )
+    }
+
+    override suspend fun reloadCurrentUser() {
+        auth.reloadCurrentUser()
+    }
 }

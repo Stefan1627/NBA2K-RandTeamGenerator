@@ -6,8 +6,8 @@
    - posts backend
    - posts screen
 2. various things to be fixed
-    - sparge Composable-urile mari in bucati mici (Header, List, EmptyState, ErrorState).
-    - adauga loading/empty/error - afiseaza elemente specific pentru siguranta (spinners, empty placeholders, retry).
+    - sparge Composable-urile mari in bucati mici (Header, List, EmptyState, ErrorState).(done?)
+    - adauga loading/empty/error - afiseaza elemente specific pentru siguranta (spinners, empty placeholders, retry).(done?)
     - pune contentDescription pe imagini/icoane, foloseste doar culori din tema (fara hex hardcodate), verifica contrastul si suportul Dark Mode.
     - lazy loading(Paging3)
 
