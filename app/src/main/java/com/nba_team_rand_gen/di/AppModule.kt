@@ -3,13 +3,8 @@ package com.nba_team_rand_gen.di
 import android.app.Application
 import android.content.Context
 import com.nba_team_rand_gen.core.session.SessionManager
-import com.nba_team_rand_gen.data.repo.AuthRepositoryImpl
-import com.nba_team_rand_gen.data.repo.MatchesRepositoryImpl
 import com.nba_team_rand_gen.data.repo.RosterRepository
-import com.nba_team_rand_gen.domain.repo.AuthRepository
-import com.nba_team_rand_gen.domain.repo.MatchesRepository
 import com.nba_team_rand_gen.domain.usecase.RandomizeTeamsUseCase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
