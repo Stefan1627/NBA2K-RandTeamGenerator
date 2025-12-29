@@ -179,7 +179,9 @@ class MainActivity : ComponentActivity() {
             items.forEach { item ->
                 val isSelected = currentDestination
                     ?.hierarchy
-                    ?.any { it.route == item.route } == true
+                    ?.any { destination ->
+                        destination.route?.startsWith(item.route) == true
+                    } == true
 
                 NavigationBarItem(
                     selected = isSelected,
