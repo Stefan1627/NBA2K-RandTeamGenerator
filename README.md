@@ -15,8 +15,8 @@ An Android app that generates fair, random NBA teams and lets you save, revisit,
 
 > **Author:** Stefan Calmac  
 > **Android versions:** 24 → 36 (36)  
-> **Gradle versions:** 8.13.1, 
-> **Java/Kotlin:** 17, 2.2.21
+> **Gradle versions:** 8.13.2, 
+> **Java/Kotlin:** 17, 2.3.0
 
 ---
 
