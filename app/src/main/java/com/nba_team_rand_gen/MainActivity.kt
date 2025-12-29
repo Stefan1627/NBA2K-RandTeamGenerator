@@ -137,14 +137,10 @@ class MainActivity : ComponentActivity() {
             ),
             actions = {
                 IconButton(onClick = onSignOutClick) {
-                    runCatching {
-                        Icon(
-                            painter = painterResource(id = R.drawable.sign_out_svg),
-                            contentDescription = "Sign out"
-                        )
-                    }.getOrElse {
-                        Text("Sign out", color = Color.White)
-                    }
+                    Icon(
+                        painter = painterResource(id = R.drawable.sign_out_svg),
+                        contentDescription = "Sign out"
+                    )
                 }
             }
         )
