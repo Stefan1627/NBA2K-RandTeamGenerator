@@ -11,7 +11,7 @@ import javax.inject.Singleton
 class PostsRepositoryImpl @Inject constructor(
     private val remote: PostsRemoteDataSource
 ): PostsRepository {
-    override fun posts(): Flow<List<Post>> = remote.postsFlow()
+    override fun posts(): Flow<List<Post>> = remote.myPostsFlow()
 
     override suspend fun createPost(title: String, json: String) {
         remote.createPost(title, json)
