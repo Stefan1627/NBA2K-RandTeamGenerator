@@ -30,6 +30,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.nba_team_rand_gen.R
 import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreen
+import com.nba_team_rand_gen.ui.screens.posts.PostsScreen
 
 @Composable
 fun Navigation(navController: NavHostController) {
@@ -63,7 +64,23 @@ fun Navigation(navController: NavHostController) {
 
         composable(Routes.HISTORY) { HistoryScreen() }
 
-        composable(Routes.POST)  { SimpleTabBody("Post") }
+        composable(
+            route = Routes.POST + "?title={title}&json={json}",
+            arguments = listOf(
+                navArgument("title") {
+                    type = StringType
+                    defaultValue = ""
+                },
+                navArgument("json") {
+                    type = StringType
+                    defaultValue = ""
+                }
+            )
+        ) {
+            PostsScreen(
+                onDone = { navController.popBackStack() }
+            )
+        }
 
         composable(Routes.EXPLORE) { SimpleTabBody("Explore") }
 
