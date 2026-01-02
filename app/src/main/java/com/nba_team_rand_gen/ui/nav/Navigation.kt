@@ -3,18 +3,13 @@ package com.nba_team_rand_gen.ui.nav
 import android.app.Activity
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType.Companion.StringType
 import androidx.navigation.compose.NavHost
@@ -30,6 +25,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import com.nba_team_rand_gen.R
 import com.nba_team_rand_gen.ui.screens.edit_profile.EditProfileScreen
+import com.nba_team_rand_gen.ui.screens.explore.ExploreScreen
 import com.nba_team_rand_gen.ui.screens.posts.PostsScreen
 
 @Composable
@@ -82,7 +78,9 @@ fun Navigation(navController: NavHostController) {
             )
         }
 
-        composable(Routes.EXPLORE) { SimpleTabBody("Explore") }
+        composable(Routes.EXPLORE) {
+            ExploreScreen()
+        }
 
         composable(Routes.EDIT_PROFILE) { EditProfileScreen(
             navController = navController
@@ -114,9 +112,4 @@ fun Navigation(navController: NavHostController) {
             )
         }
     }
-}
-
-@Composable
-private fun SimpleTabBody(label: String) {
-    Text(text = label, color = Color.White, modifier = Modifier.padding(16.dp))
 }

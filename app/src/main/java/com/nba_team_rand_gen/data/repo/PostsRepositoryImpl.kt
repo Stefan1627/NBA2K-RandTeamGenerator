@@ -6,12 +6,16 @@ import com.nba_team_rand_gen.domain.repo.PostsRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
+import com.google.firebase.firestore.DocumentSnapshot
 
 @Singleton
 class PostsRepositoryImpl @Inject constructor(
     private val remote: PostsRemoteDataSource
 ): PostsRepository {
-    override fun posts(): Flow<List<Post>> = remote.myPostsFlow()
+    override fun myPosts(): Flow<List<Post>> = remote.myPostsFlow()
+
+    override suspend fun explorePosts(lastVisible: DocumentSnapshot?): Pair<List<Post>, DocumentSnapshot?> =
+        remote.getExplorePosts(lastVisible)
 
     override suspend fun createPost(title: String, json: String) {
         remote.createPost(title, json)

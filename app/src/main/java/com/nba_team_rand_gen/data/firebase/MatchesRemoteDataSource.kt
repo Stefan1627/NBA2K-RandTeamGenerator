@@ -62,7 +62,6 @@ class MatchesRemoteDataSource @Inject constructor(
             .orderBy("timestamp", Query.Direction.DESCENDING)
             .addSnapshotListener { snap, err ->
                 if (err != null) {
-                    // 🔎 Log it so you see the “create index” link in Logcat
                     Log.e("FavoritesRepo", "favoritesFlow error", err)
                     close(err)
                     return@addSnapshotListener

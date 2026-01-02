@@ -1,6 +1,7 @@
 package com.nba_team_rand_gen.data.firebase
 
 import android.util.Log
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.nba_team_rand_gen.data.model.Post
@@ -10,6 +11,8 @@ import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import javax.inject.Singleton
+
+private const val PAGE_SIZE = 10L
 
 @Singleton
 class PostsRemoteDataSource @Inject constructor(
@@ -33,26 +36,33 @@ class PostsRemoteDataSource @Inject constructor(
         db.collection("posts").add(data).await()
     }
 
-    fun explorePostsFlow(): Flow<List<Post>> = callbackFlow {
-        val reg = postsCol()
-            .orderBy("timestamp", Query.Direction.DESCENDING)
-            .addSnapshotListener { snap, err ->
-                if (err != null) {
-                    close(err)
-                    return@addSnapshotListener
-                }
+    suspend fun getExplorePosts(lastVisible: DocumentSnapshot?): Pair<List<Post>, DocumentSnapshot?> {
+        return try {
+            var query = postsCol()
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(PAGE_SIZE)
 
-                val posts = snap?.documents.orEmpty().map { doc ->
-                    Post(
-                        id = doc.id,
-                        title = doc.getString("title") ?: "",
-                        json = doc.getString("json") ?: "",
-                        timestamp = doc.getLong("timestamp") ?: 0L
-                    )
-                }
-                trySend(posts).isSuccess
+            if (lastVisible != null) {
+                query = query.startAfter(lastVisible)
             }
-        awaitClose { reg.remove() }
+
+            val snapshot = query.get().await()
+
+            val posts = snapshot.documents.map { doc ->
+                Post(
+                    id = doc.id,
+                    title = doc.getString("title") ?: "",
+                    json = doc.getString("json") ?: "",
+                    timestamp = doc.getLong("timestamp") ?: 0L
+                )
+            }
+
+            // Return the data AND the last document (the new cursor)
+            Pair(posts, snapshot.documents.lastOrNull())
+
+        } catch (e: Exception) {
+            throw e
+        }
     }
 
     fun myPostsFlow(): Flow<List<Post>> = callbackFlow {
