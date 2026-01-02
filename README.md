@@ -5,11 +5,13 @@
    - (done?)edit profile screen
    - (done?)create posts backend
    - (done?)create posts screen
+   - (done?)create explore posts screen
+   - beautify posts
 2. various things to be fixed
     - (done?)sparge Composable-urile mari in bucati mici (Header, List, EmptyState, ErrorState).
     - (done?)adauga loading/empty/error - afiseaza elemente specific pentru siguranta (spinners, empty placeholders, retry).
     - (done?)pune contentDescription pe imagini/icoane, foloseste doar culori din tema (fara hex hardcodate), verifica contrastul si suportul Dark Mode.
-    - lazy loading(.limit() & .startAfter())
+    - (done?)lazy loading(.limit() & .startAfter())
 
 An Android application that generates fair, random NBA teams and lets users save, revisit, and share matchups through a global posts feed — built with **Kotlin**, **Jetpack Compose (Material 3)**, and **Firebase**.
 
